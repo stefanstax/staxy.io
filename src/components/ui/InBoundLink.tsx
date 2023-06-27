@@ -3,16 +3,16 @@ import Link from "next/link";
 import { ReactNode } from "react";
 
 type InBoundLinkProps = {
-  className: string;
-  children: ReactNode;
-  cta: boolean;
-  secondary: boolean;
-  currentPath: string;
-  footerLink: boolean;
-  to: string;
-  activeClassName: string;
-  outSource: boolean;
-  ctaOutSource: boolean;
+  className?: string;
+  children?: ReactNode;
+  cta?: boolean;
+  secondary?: boolean;
+  currentPath?: string;
+  footerLink?: boolean;
+  to?: string;
+  activeClassName?: string;
+  outSource?: boolean;
+  ctaOutSource?: boolean;
 };
 
 const InBoundLink = ({
