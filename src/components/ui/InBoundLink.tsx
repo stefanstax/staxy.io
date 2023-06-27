@@ -37,8 +37,8 @@ const InBoundLink = ({
   );
   return (
     <Link
-      href={to}
-      target={(outSource || ctaOutSource) && "_blank"}
+      href={to ? to : "/"}
+      target={outSource || ctaOutSource ? "_blank" : ""}
       className={classes}
     >
       {children}
