@@ -10,7 +10,7 @@ const Footer = () => {
           <div className="basis-full lg:basis-2/12">
             <Image
               className="invert-[100]"
-              idth={125}
+              width={125}
               height={65}
               src={StaxyLogo}
               alt=""
