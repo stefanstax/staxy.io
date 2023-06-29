@@ -7,7 +7,6 @@ import ScrollerCarousel from "~/components/ui/ScrollerCarousel";
 import StaxyPlatformOverview from "~/assets/images/staxy-platform-overview.png";
 import ImageBanner from "~/components/ui/ImageBanner";
 import SectionTitle from "~/components/ui/SectionTitle";
-import { api } from "~/utils/api";
 import ListSteps from "~/components/ui/ListSteps";
 
 export default function Home() {

@@ -1,10 +1,11 @@
 import classNames from "classnames";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
+import { type ReactNode } from "react";
 
 interface LayoutProps {
   className: string;
-  children: any;
+  children: ReactNode;
 }
 
 const Layout = ({ className, children }: LayoutProps): JSX.Element => {

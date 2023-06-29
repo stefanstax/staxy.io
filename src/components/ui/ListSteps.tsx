@@ -1,7 +1,5 @@
 import { Icon } from "@iconify/react";
-import { PrismaClient } from "@prisma/client";
 import classNames from "classnames";
-import { useEffect } from "react";
 import { api } from "~/utils/api";
 
 type ListStepsProps = {
@@ -14,6 +12,14 @@ const ListSteps = ({ stepClass, className }: ListStepsProps) => {
 
   const classes = classNames(className, `mx-auto`);
   const stepClasses = classNames(stepClass);
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
+  if (isError) {
+    return <h1>Error...</h1>;
+  }
 
   const renderSteps = data
     ?.sort((a, b) => a.order - b.order)
@@ -29,14 +35,17 @@ const ListSteps = ({ stepClass, className }: ListStepsProps) => {
       } = step;
 
       const endBlockImage = classNames(endBlock && `mx-auto`);
+
       const endBlockContent = classNames(
         endBlock ? `w-full justify-center items-center` : `w-7/12 md:w-5/12`
       );
+
       const endBlockContainer = classNames(
         endBlock
           ? `justify-between items-center`
           : `justify-center items-center`
       );
+
       return (
         <div
           key={identifier}
