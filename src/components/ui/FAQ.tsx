@@ -9,9 +9,12 @@ type FAQProps = {
   subContainerClass?: string;
 };
 
-const FAQ = ({ containerClass, subContainerClass }: FAQProps) => {
-  const [isOpen, setIsOpen] = useState({});
+type IsOpenState = {
+  [index: number]: boolean;
+};
 
+const FAQ = ({ containerClass, subContainerClass }: FAQProps) => {
+  const [isOpen, setIsOpen] = useState<IsOpenState>({});
   const { data, isLoading, isError } = api.faqs.getFaqs.useQuery();
 
   const handleClick = (index: number) => {
@@ -31,16 +34,14 @@ const FAQ = ({ containerClass, subContainerClass }: FAQProps) => {
 
   const containerClasses = classNames(containerClass);
   const renderFAQ = data?.map((faq, index) => {
-    const isFaqOpen = isOpen[index] || false;
+    const isFaqOpen = (isOpen[index] as boolean) ?? false;
 
     return (
       <>
         {faq?.question?.length > 5 && faq?.answer?.length > 5 && (
           <div
             key={index}
-            className={`my-2 h-[50px] w-full overflow-hidden rounded bg-purpy text-white duration-300 ease-in-out ${
-              isFaqOpen ? "h-[150px]" : "h-[50px]"
-            }`}
+            className="my-2 w-full overflow-hidden rounded bg-purpy text-white"
           >
             <h2
               className={`flex cursor-pointer items-center justify-between p-2 text-[20px] font-bold hover:underline ${
@@ -51,7 +52,7 @@ const FAQ = ({ containerClass, subContainerClass }: FAQProps) => {
               {faq?.question}
               {isFaqOpen ? (
                 <Icon
-                  icon="solar:archive-down-minimlistic-broken"
+                  icon="solar:archive-up-minimlistic-broken"
                   className={`transition-all ${
                     isFaqOpen ? "text-slate-200" : "text-white"
                   }`}
@@ -59,13 +60,15 @@ const FAQ = ({ containerClass, subContainerClass }: FAQProps) => {
                 />
               ) : (
                 <Icon
-                  icon="solar:archive-up-minimlistic-broken"
+                  icon="solar:archive-down-minimlistic-broken"
                   fontSize={32}
                 />
               )}
             </h2>
             <div
-              className={`p-2 py-4 text-[18px] font-[500] underline no-underline transition-all duration-300 ease-in-out`}
+              className={`${
+                isFaqOpen ? "block" : "hidden"
+              } p-2 py-4 text-[18px] font-[500]`}
             >
               <p>{faq?.answer}</p>
             </div>
