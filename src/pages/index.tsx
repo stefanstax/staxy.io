@@ -1,7 +1,14 @@
 // import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Layout from "~/components/segments/Layout";
+import FeaturesCarousel from "~/components/ui/FeaturesCarousel";
 import HeroBanner from "~/components/ui/HeroBanner";
+import ScrollerCarousel from "~/components/ui/ScrollerCarousel";
+import StaxyPlatformOverview from "~/assets/images/staxy-platform-overview.png";
+import ImageBanner from "~/components/ui/ImageBanner";
+import SectionTitle from "~/components/ui/SectionTitle";
+import { api } from "~/utils/api";
+import ListSteps from "~/components/ui/ListSteps";
 
 export default function Home() {
   return (
@@ -13,13 +20,79 @@ export default function Home() {
       </Head>
       <main className="min-h-screen">
         <Layout className="mt-[80px]">
-          <HeroBanner
-            className="min-h-screen bg-gradient-to-b from-neutral-900 from-[95%] to-yellow-400 to-[0%] px-4 text-beige lg:bg-gradient-to-r"
-            title="Imagine a place"
-            subtitle="Where you'll able to sell courses. Organize Events. Create Groups. Create Forums. Have personalized member profiles. And so much more!"
-            ctaLabel="Enroll now"
-            ctaLink="https://calendly.com/staxy"
-          />
+          <div className="flex min-h-[600px] flex-wrap items-center justify-center gap-[20px] bg-yellow-400">
+            <HeroBanner
+              className="px-4 text-matte"
+              title="Imagine a place"
+              subtitle="Where you'll able to sell courses. Organize Events. Create Groups. Create Forums. Have personalized member profiles. And so much more!"
+              ctaLabel="Schedule a meeting"
+              ctaLink="https://calendly.com/staxy"
+              ctaMessage={`New enrollment starts on 01/07/2023`}
+            />
+            <ScrollerCarousel
+              options={{
+                type: "loop",
+                drag: "free",
+                perPage: 5,
+                perMove: 1,
+                arrows: false,
+                pagination: false,
+                lazyLoad: true,
+                autoStart: true,
+                autoScroll: {
+                  pauseOnHover: false,
+                  pauseOnFocus: false,
+                  rewind: false,
+                  speed: 1,
+                },
+                gap: "2rem",
+                breakpoints: {
+                  640: {
+                    perPage: 2,
+                  },
+                },
+              }}
+            />
+          </div>
+          <div className="bg-byzantine px-4 py-10 text-beige">
+            <SectionTitle
+              title="Platform Overview"
+              subtitle="Gain a small glipse into your future"
+            />
+            <ImageBanner src={StaxyPlatformOverview} />
+          </div>
+          <div className="w-full px-4 py-10">
+            <SectionTitle
+              title="Feature Packed"
+              subtitle="To and above expectations"
+            />
+            <FeaturesCarousel
+              options={{
+                perPage: 3,
+                perMove: 1,
+                arrows: false,
+                pagination: false,
+                lazyLoad: true,
+                flickPower: 1,
+                gap: "2rem",
+                padding: "4rem",
+                slideFocus: true,
+                breakpoints: {
+                  640: {
+                    perPage: 1,
+                  },
+                },
+              }}
+            />
+          </div>
+          <div className="w-full bg-byzantine p-10">
+            <SectionTitle
+              className="text-beige"
+              title="Enrolment Steps"
+              subtitle="Enrolment starting on 01/07/2023"
+            />
+            <ListSteps className="max-w-[600px]" stepClass="my-24 text-beige" />
+          </div>
         </Layout>
       </main>
     </>

@@ -6,9 +6,8 @@ generator client {
 }
 
 datasource db {
-    provider     = "mysql"
-    url          = env("DATABASE_URL")
-    relationMode = "prisma"
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
 }
 
 model Example {
@@ -60,4 +59,28 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+model Feature {
+    identifier String @id @unique @default(cuid())
+    title      String
+    image      String
+    extraClass String
+}
+
+model Faq {
+    identifier String @id @unique @default(cuid())
+    question   String
+    answer     String
+}
+
+model Step {
+    identifier  String  @id @unique @default(cuid())
+    title       String
+    description String
+    highlight   String
+    mediaSrc    String
+    mediaFirst  Boolean
+    endBlock    Boolean
+    order       Int
 }

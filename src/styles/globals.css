@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.glass-angle {
+    transform: perspective(1200px) translateX(0px) translateY(-18.4728px) scale(0.969212) rotate(0deg) rotateX(6.15759deg) rotateY(0deg) translateZ(0px);
+}

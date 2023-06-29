@@ -7,6 +7,7 @@ interface HeroBannerProps {
   subtitle?: string;
   ctaLabel?: string;
   ctaLink?: string;
+  ctaMessage?: string;
   secondaryLabel?: string;
   secondaryLink?: string;
   className?: string;
@@ -19,6 +20,7 @@ const HeroBanner = ({
   subtitle,
   ctaLabel,
   ctaLink,
+  ctaMessage,
   secondaryLabel,
   secondaryLink,
   className,
@@ -46,6 +48,9 @@ const HeroBanner = ({
             >
               {ctaLabel}
             </InBoundLink>
+          )}
+          {ctaMessage && (
+            <span className="text-[12px] italic">{ctaMessage}</span>
           )}
           {secondaryLink && (
             <InBoundLink
