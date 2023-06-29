@@ -8,10 +8,10 @@ import StaxyPlatformOverview from "~/assets/images/staxy-platform-overview.png";
 import ImageBanner from "~/components/ui/ImageBanner";
 import SectionTitle from "~/components/ui/SectionTitle";
 import ListSteps from "~/components/ui/ListSteps";
+import CTA from "~/components/ui/CTA";
+import FAQ from "~/components/ui/FAQ";
 
 export default function Home() {
-  console.log(StaxyPlatformOverview);
-
   return (
     <>
       <Head>
@@ -69,7 +69,7 @@ export default function Home() {
             />
             <FeaturesCarousel
               options={{
-                perPage: 3,
+                perPage: 6,
                 perMove: 1,
                 arrows: false,
                 pagination: false,
@@ -94,6 +94,18 @@ export default function Home() {
             />
             <ListSteps className="max-w-[600px]" stepClass="my-24 text-beige" />
           </div>
+          <CTA
+            title="Ready to go live?"
+            description="Scheduling the meeting does not secure your project. Please bring your A game to the meeting."
+            message="first meeting is free."
+            label="Reserve a seat"
+            link="https://calendly.com/staxy"
+            ctaOutSource
+          />
+          <FAQ
+            containerClass="mx-auto w-full bg-gradient-to-b from-white from-[90%] to-yellow-400 to-[100%] drop-shadow-2xl"
+            subContainerClass="max-w-[1024px] mx-auto py-40"
+          />
         </Layout>
       </main>
     </>

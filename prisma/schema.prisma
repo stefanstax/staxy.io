@@ -66,6 +66,7 @@ model Feature {
     title      String
     image      String
     extraClass String
+    order      Int    @default(autoincrement())
 }
 
 model Faq {

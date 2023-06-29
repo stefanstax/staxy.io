@@ -25,14 +25,14 @@ const FeaturesCarousel = ({ className, options }: FeaturesCarouselProps) => {
   }
 
   const classes = classNames(
-    `group w-full md:w-4/12 lg:w-3/12 xl:w-2/12 flex flex-col h-full gap-[20px] justify-center items-center rounded-[20px] bg-slate-50 text-matte p-10 transition-all hover:bg-slate-100 cursor-grab`
+    `group flex flex-col h-full gap-[20px] justify-center items-center rounded-[20px] bg-purpy text-beige p-10 cursor-grab`
   );
 
   const parentClasses = classNames(className, `w-full my-24`);
 
   const FeatureLabel = ({ label }: FeatureLabelProps) => {
     return (
-      <span className="w-full rounded-[20px] bg-white p-2 text-center font-black uppercase italic text-matte">
+      <span className="w-full rounded-[20px] bg-beige p-2 text-center font-black uppercase italic text-purpy">
         {label}
       </span>
     );
@@ -41,7 +41,7 @@ const FeaturesCarousel = ({ className, options }: FeaturesCarouselProps) => {
   // * If options are missing
   if (!options) {
     options = {
-      perPage: 3,
+      perPage: 4,
       perMove: 1,
       arrows: false,
       pagination: false,

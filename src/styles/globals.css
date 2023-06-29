@@ -5,3 +5,46 @@
 .glass-angle {
     transform: perspective(1200px) translateX(0px) translateY(-18.4728px) scale(0.969212) rotate(0deg) rotateX(6.15759deg) rotateY(0deg) translateZ(0px);
 }
+
+.textByzantine {
+    color: #4555b5!important;
+}
+
+.textPurpy {
+    color: #8B91DE!important;
+}
+
+@font-face {
+    font-family: "Staxy";
+    src: url("../assets//fonts/Staxy-ExtraLight.woff2");
+    font-weight: 200;
+    display: swap;
+}
+@font-face {
+    font-family: "Staxy";
+    src: url("../assets//fonts/Staxy-Regular.woff2");
+    font-weight: 400;
+    display: swap;
+}
+@font-face {
+    font-family: "Staxy";
+    src: url("../assets//fonts/Staxy-Medium.woff2");
+    font-weight: 500;
+    display: swap;
+}
+@font-face {
+    font-family: "Staxy";
+    src: url("../assets//fonts/Staxy-Bold.woff2");
+    font-weight: 700;
+    display: swap;
+}
+@font-face {
+    font-family: "Staxy";
+    src: url("../assets//fonts/Staxy-ExtraBold.woff2");
+    font-weight: 900;
+    display: swap;
+  }
+
+  html * {
+      font-family: "Staxy", sans-serif!important;
+  }
