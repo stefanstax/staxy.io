@@ -10,6 +10,8 @@ import SectionTitle from "~/components/ui/SectionTitle";
 import ListSteps from "~/components/ui/ListSteps";
 
 export default function Home() {
+  console.log(StaxyPlatformOverview);
+
   return (
     <>
       <Head>
@@ -58,7 +60,7 @@ export default function Home() {
               title="Platform Overview"
               subtitle="Gain a small glipse into your future"
             />
-            <ImageBanner src={StaxyPlatformOverview} />
+            <ImageBanner src={StaxyPlatformOverview?.src} />
           </div>
           <div className="w-full px-4 py-10">
             <SectionTitle
