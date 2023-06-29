@@ -15,7 +15,6 @@ type FeatureLabelProps = {
 
 const FeaturesCarousel = ({ className, options }: FeaturesCarouselProps) => {
   const { data, isLoading, isError } = api.features.getFeatures.useQuery();
-  // const apiContext = api.useContext();
 
   if (isLoading) {
     return <h1>Loading...</h1>;

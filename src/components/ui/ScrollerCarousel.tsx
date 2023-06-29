@@ -10,6 +10,10 @@ type ScrollerCarouselProps = {
   className?: string;
 };
 
+type FeatureLabelProps = {
+  label?: string;
+};
+
 const ScrollerCarousel = ({ options, className }: ScrollerCarouselProps) => {
   const { data, isLoading, isError } = api.features.getFeatures.useQuery();
 
@@ -27,7 +31,7 @@ const ScrollerCarousel = ({ options, className }: ScrollerCarouselProps) => {
 
   const parentClasses = classNames(className, `w-full`);
 
-  const FeatureLabel = ({ label }) => {
+  const FeatureLabel = ({ label }: FeatureLabelProps) => {
     return <span className="self-center font-black italic">{label}</span>;
   };
 
