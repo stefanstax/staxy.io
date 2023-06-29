@@ -72,7 +72,7 @@ export default function Home() {
             />
             <FeaturesCarousel
               options={{
-                perPage: 4,
+                perPage: 1,
                 perMove: 1,
                 arrows: false,
                 pagination: false,
@@ -81,11 +81,15 @@ export default function Home() {
                 gap: "2rem",
                 padding: "4rem",
                 slideFocus: true,
+                mediaQuery: "min",
                 breakpoints: {
-                  640: {
-                    perPage: 1,
+                  768: {
+                    perPage: 2,
                   },
-                  1600: {
+                  1024: {
+                    perPage: 4,
+                  },
+                  1920: {
                     perPage: 6,
                   },
                 },
