@@ -4,7 +4,7 @@ import Footer from "./Footer";
 import { type ReactNode } from "react";
 
 interface LayoutProps {
-  className: string;
+  className?: string;
   children: ReactNode;
 }
 

@@ -14,6 +14,38 @@
     color: #8B91DE!important;
 }
 
+.staxy__mdx h1 {
+    font-size: 50px;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.staxy__mdx h3 {
+    font-size: 20px;
+    line-height: 44px;
+    font-weight: bold;
+}
+
+.staxy__mdx p {
+    margin: 1rem 0;
+}
+
+.staxy__mdx ul {
+    padding: 0rem 1rem;
+}
+
+.staxy__mdx ul li {
+    list-style-type: circle;
+    margin: 0.5rem 0px;
+}
+
+.staxy__mdx a {
+    color: #4555b5;
+    text-decoration: underline;
+    font-weight: 500;
+}
+
 @font-face {
     font-family: "Staxy";
     src: url("../assets//fonts/Staxy-ExtraLight.woff2");

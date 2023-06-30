@@ -3,6 +3,7 @@
  * for Docker builds.
  */
 await import("./src/env.mjs");
+import mdx from "@next/mdx";
 
 /** @type {import("next").NextConfig} */
 const config = {
@@ -20,4 +21,14 @@ const config = {
   },
 };
 
-export default config;
+const withMDX = mdx({
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+  },
+});
+
+export default withMDX({
+  ...config,
+  pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
+});
