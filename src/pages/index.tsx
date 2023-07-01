@@ -126,7 +126,7 @@ export default function Home() {
             <p className="mb-8 text-[20px]">
               Below you can find questions I received in the previous weeks.
             </p>
-            <FAQ containerClass="mx-auto px-4 w-full max-w-[800px] flex flex-col gap-[20px]" />
+            <FAQ containerClass="mx-auto px-4 w-full max-w-[800px] text-left" />
           </div>
         </Layout>
       </main>

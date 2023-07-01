@@ -76,7 +76,7 @@ const FAQ = ({ containerClass }: FAQProps) => {
       {renderFAQ}
       {!renderFAQ?.length && (
         <Loaders
-          clones={5}
+          clones={3}
           icon={
             isLoading
               ? `solar:card-search-broken`
@@ -89,11 +89,12 @@ const FAQ = ({ containerClass }: FAQProps) => {
           minWidth="min-w-[200px]"
           minHeight="min-h-[100px]"
           background="bg-slate-900"
+          className="flex flex-col gap-[10px]"
         />
       )}
       <InBoundLink
         to="https://calendy.com/staxy"
-        className="text-[14px] font-light no-underline transition-all hover:opacity-75"
+        className="text-[14px] font-bold no-underline transition-all hover:opacity-75"
         outSource
       >
         Click here to schedule a call for more...

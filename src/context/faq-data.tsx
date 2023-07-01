@@ -2,7 +2,8 @@ export const faq = [
   {
     id: 1,
     question: "How much is the platform price?",
-    answer: "For pricing please contact me via WhatsApp or send an email.",
+    answer:
+      "I am aware that platform like the one I'm selling goes for $25.000,00 up to 7-8 digits. I am also aware that majority of good ideas come to does with a limited budget. Starting price for a project this size I've chosen to be $1.500,00 paid through 4-6 weeks.",
   },
   {
     id: 2,
@@ -14,7 +15,8 @@ export const faq = [
   {
     id: 3,
     question: "Can I pay in installments?",
-    answer: "Payment related information can be discussed via call.",
+    answer:
+      "Yes. We can discuss weekly or monthly payments depending on your financial situation",
   },
   {
     id: 4,

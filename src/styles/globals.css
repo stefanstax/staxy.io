@@ -16,6 +16,14 @@
     color: #8B91DE!important;
 }
 
+.bgSlateLight {
+    background-color: #F8FAFC!important;
+}
+
+.rounded20 {
+    border-radius: 20px!important;
+}
+
 .staxy__mdx h1 {
     font-size: 50px;
     font-weight: 900;
