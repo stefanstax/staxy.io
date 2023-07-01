@@ -3,6 +3,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css/core";
 import { Icon } from "@iconify/react";
 import { api } from "~/utils/api";
+import Loaders from "./Loaders";
 
 type FeaturesCarouselProps = {
   options?: object;
@@ -15,14 +16,6 @@ type FeatureLabelProps = {
 
 const FeaturesCarousel = ({ className, options }: FeaturesCarouselProps) => {
   const { data, isLoading, isError } = api.features.getFeatures.useQuery();
-
-  if (isLoading) {
-    return <h1>Loading...</h1>;
-  }
-
-  if (isError) {
-    return <h1>Error...</h1>;
-  }
 
   const classes = classNames(
     `group flex flex-col h-full gap-[20px] justify-center items-center rounded-[20px] bg-purpy text-beige p-10 cursor-grab`
@@ -74,6 +67,24 @@ const FeaturesCarousel = ({ className, options }: FeaturesCarouselProps) => {
       }}
     >
       {renderFeatures}
+      {!renderFeatures?.length && (
+        <Loaders
+          clones={10}
+          slider
+          icon={
+            isLoading
+              ? `solar:card-search-broken`
+              : !renderFeatures?.length
+              ? "solar:card-search-broken"
+              : isError
+              ? "solar:card-error-broken"
+              : ""
+          }
+          minWidth="min-w-[200px]"
+          minHeight="min-h-[200px]"
+          background="bg-slate-900"
+        />
+      )}
     </Splide>
   );
 };

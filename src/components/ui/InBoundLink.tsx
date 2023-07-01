@@ -29,7 +29,7 @@ const InBoundLink = ({
 }: InBoundLinkProps): JSX.Element => {
   const classes = classNames(
     className,
-    footerLink && `font-light py-2 px-0`,
+    footerLink && `font-medium py-2 px-0`,
     `font-black p-2 rounded underline transition-all cursor-pointer hover:opacity-75`,
     currentPath === to && activeClassName,
     cta && !secondary && `bg-byzantine text-white`,

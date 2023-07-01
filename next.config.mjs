@@ -8,7 +8,9 @@ import mdx from "@next/mdx";
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: true,
-
+  images: {
+    domains: ["jhhqlpktefzuwshwfvcq.supabase.co"],
+  },
   /**
    * If you have `experimental: { appDir: true }` set, then you must comment the below `i18n` config
    * out.

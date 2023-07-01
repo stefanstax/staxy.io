@@ -3,7 +3,7 @@ import Head from "next/head";
 import Layout from "~/components/segments/Layout";
 import FeaturesCarousel from "~/components/ui/FeaturesCarousel";
 import HeroBanner from "~/components/ui/HeroBanner";
-import ScrollerCarousel from "~/components/ui/ScrollerCarousel";
+import CompaniesCarousel from "~/components/ui/CompaniesCarousel";
 import StaxyPlatformOverview from "~/assets/images/staxy-platform-overview.png";
 import ImageBanner from "~/components/ui/ImageBanner";
 import SectionTitle from "~/components/ui/SectionTitle";
@@ -23,7 +23,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="min-h-screen">
-        <Layout className="mt-[80px]">
+        <Layout className="mt-[60px]">
           <div className="flex min-h-[600px] flex-wrap items-center justify-center gap-[20px] bg-yellow-400">
             <HeroBanner
               className="px-4 text-matte"
@@ -31,28 +31,36 @@ export default function Home() {
               subtitle="Where you'll able to sell courses. Organize Events. Create Groups. Create Forums. Have personalized member profiles. And so much more!"
               ctaLabel="See if you qualify"
               ctaLink="https://calendly.com/staxy"
-              ctaMessage={`New enrollment starts on 01/07/2023`}
+              ctaMessage={`New enrollment starts on 15/07/2023`}
             />
-            <ScrollerCarousel
+            <CompaniesCarousel
               options={{
                 type: "loop",
-                drag: "free",
-                perPage: 5,
+                drag: false,
+                perPage: 2,
                 perMove: 1,
                 arrows: false,
                 pagination: false,
                 lazyLoad: true,
                 autoStart: true,
+                mediaQuery: "min",
+                gap: "2rem",
                 autoScroll: {
                   pauseOnHover: false,
-                  pauseOnFocus: false,
-                  rewind: false,
                   speed: 1,
                 },
-                gap: "2rem",
                 breakpoints: {
-                  640: {
-                    perPage: 2,
+                  768: {
+                    perPage: 3,
+                  },
+                  1024: {
+                    perPage: 4,
+                  },
+                  1366: {
+                    perPage: 5,
+                  },
+                  1920: {
+                    perPage: 7,
                   },
                 },
               }}
@@ -60,6 +68,7 @@ export default function Home() {
           </div>
           <div className="bg-byzantine px-4 py-10 text-beige">
             <SectionTitle
+              className="mb-4"
               title="Platform Overview"
               subtitle="Gain a small glipse into your future"
             />
@@ -100,7 +109,7 @@ export default function Home() {
             <SectionTitle
               className="text-beige"
               title="Enrolment Steps"
-              subtitle="Enrolment starting on 01/07/2023"
+              subtitle="Enrolment starting on 15/07/2023"
             />
             <ListSteps className="max-w-[600px]" stepClass="my-24 text-beige" />
           </div>
@@ -112,10 +121,13 @@ export default function Home() {
             link="https://calendly.com/staxy"
             ctaOutSource
           />
-          <FAQ
-            containerClass="mx-auto w-full bg-gradient-to-b from-white from-[90%] to-yellow-400 to-[100%] drop-shadow-2xl"
-            subContainerClass="max-w-[1024px] mx-auto py-40"
-          />
+          <div className="mx-auto w-full items-center justify-center bg-gradient-to-b from-white  from-[90%] to-yellow-400 to-[100%] py-40 text-center drop-shadow-2xl">
+            <h2 className="text-[40px] font-black">FAQ</h2>
+            <p className="mb-8 text-[20px]">
+              Below you can find questions I received in the previous weeks.
+            </p>
+            <FAQ containerClass="mx-auto px-4 w-full max-w-[800px] flex flex-col gap-[20px]" />
+          </div>
         </Layout>
       </main>
     </>

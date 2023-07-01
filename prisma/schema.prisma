@@ -85,3 +85,10 @@ model Step {
     endBlock    Boolean
     order       Int
 }
+
+model Company {
+    identifier String @id @unique @default(cuid())
+    title      String
+    image      String
+    order      Int    @default(autoincrement())
+}

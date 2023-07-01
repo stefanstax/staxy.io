@@ -5,7 +5,7 @@ import ArticleMDX from "~/components/segments/ArticleMDX";
 const TermsAndConditions = () => {
   return (
     <Layout>
-      <ArticleMDX className="mx-auto my-48 w-full max-w-[1024px]">
+      <ArticleMDX>
         <TermsAndConditionsDocument />
       </ArticleMDX>
     </Layout>

@@ -1,6 +1,7 @@
 import { Icon } from "@iconify/react";
 import classNames from "classnames";
 import { api } from "~/utils/api";
+import Loaders from "./Loaders";
 
 type ListStepsProps = {
   className: string;
@@ -14,11 +15,46 @@ const ListSteps = ({ stepClass, className }: ListStepsProps) => {
   const stepClasses = classNames(stepClass);
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return (
+      <div className="mx-auto my-8 flex w-full max-w-[968px] flex-wrap items-center justify-center gap-[20px]">
+        <Loaders
+          clones={4}
+          icon="solar:card-search-broken"
+          minWidth="min-w-[200px]"
+          minHeight="min-h-[200px]"
+          background="bg-blue-400"
+        />
+      </div>
+    );
+  }
+
+  if (!data?.length) {
+    return (
+      <div className="mx-auto my-8 flex w-full max-w-[968px] flex-wrap items-center justify-center gap-[20px]">
+        <Loaders
+          clones={4}
+          icon="solar:card-search-broken"
+          minWidth="min-w-[200px]"
+          minHeight="min-h-[200px]"
+          background="bg-slate-900"
+          className="w-5/12"
+        />
+      </div>
+    );
   }
 
   if (isError) {
-    return <h1>Error...</h1>;
+    return (
+      <div className="mx-auto my-8 flex w-full max-w-[968px] flex-wrap items-center justify-center gap-[20px]">
+        <Loaders
+          clones={4}
+          icon="solar:folder-error-broken"
+          minWidth="200"
+          minHeight="min-h-[200px]"
+          background="bg-red-400"
+        />
+      </div>
+    );
   }
 
   const renderSteps = data

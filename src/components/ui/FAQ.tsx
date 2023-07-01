@@ -3,17 +3,17 @@ import { useState } from "react";
 import InBoundLink from "./InBoundLink";
 import { api } from "~/utils/api";
 import { Icon } from "@iconify/react";
+import Loaders from "./Loaders";
 
 type FAQProps = {
   containerClass?: string;
-  subContainerClass?: string;
 };
 
 type IsOpenState = {
   [index: number]: boolean;
 };
 
-const FAQ = ({ containerClass, subContainerClass }: FAQProps) => {
+const FAQ = ({ containerClass }: FAQProps) => {
   const [isOpen, setIsOpen] = useState<IsOpenState>({});
   const { data, isLoading, isError } = api.faqs.getFaqs.useQuery();
 
@@ -24,14 +24,6 @@ const FAQ = ({ containerClass, subContainerClass }: FAQProps) => {
     }));
   };
 
-  if (isLoading) {
-    return <h1>Loading...</h1>;
-  }
-
-  if (isError) {
-    return <h1>Error...</h1>;
-  }
-
   const containerClasses = classNames(containerClass);
   const renderFAQ = data?.map((faq, index) => {
     const isFaqOpen = (isOpen[index] as boolean) ?? false;
@@ -41,30 +33,31 @@ const FAQ = ({ containerClass, subContainerClass }: FAQProps) => {
         {faq?.question?.length > 5 && faq?.answer?.length > 5 && (
           <div
             key={index}
-            className="my-2 w-full overflow-hidden rounded bg-purpy text-white"
+            className="my-2 w-full cursor-pointer overflow-hidden rounded bg-purpy text-white"
+            onClick={() => handleClick(index)}
           >
-            <h2
-              className={`flex cursor-pointer items-center justify-between p-2 text-[20px] font-bold hover:underline ${
-                isFaqOpen ? "text-slate-200 underline" : "text-white"
-              }`}
-              onClick={() => handleClick(index)}
-            >
-              {faq?.question}
+            <div className="flex w-full items-center justify-between gap-[10px] p-4">
+              <h2
+                className={`flex cursor-pointer items-center justify-between text-[20px] font-bold hover:underline ${
+                  isFaqOpen ? "text-slate-200 underline" : "text-white"
+                }`}
+              >
+                {faq?.question}
+              </h2>
               {isFaqOpen ? (
                 <Icon
                   icon="solar:archive-up-minimlistic-broken"
-                  className={`transition-all ${
+                  className={`min-w-[32px] text-[32px] transition-all ${
                     isFaqOpen ? "text-slate-200" : "text-white"
                   }`}
-                  fontSize={32}
                 />
               ) : (
                 <Icon
                   icon="solar:archive-down-minimlistic-broken"
-                  fontSize={32}
+                  className="min-w-[32px] text-[32px]"
                 />
               )}
-            </h2>
+            </div>
             <div
               className={`${
                 isFaqOpen ? "block" : "hidden"
@@ -80,20 +73,31 @@ const FAQ = ({ containerClass, subContainerClass }: FAQProps) => {
 
   return (
     <div className={containerClasses}>
-      <div className={subContainerClass}>
-        <h2 className="text-[40px] font-black">FAQ</h2>
-        <p className="mb-8 text-[20px]">
-          Below you can find questions I received in the previous weeks.
-        </p>
-        {renderFAQ}
-        <InBoundLink
-          to="https://calendy.com/staxy"
-          className="text-[14px] font-light no-underline transition-all hover:opacity-75"
-          outSource
-        >
-          Click here to schedule a call for more...
-        </InBoundLink>
-      </div>
+      {renderFAQ}
+      {!renderFAQ?.length && (
+        <Loaders
+          clones={5}
+          icon={
+            isLoading
+              ? `solar:card-search-broken`
+              : !data?.length
+              ? "solar:card-search-broken"
+              : isError
+              ? "solar:card-error-broken"
+              : ""
+          }
+          minWidth="min-w-[200px]"
+          minHeight="min-h-[100px]"
+          background="bg-slate-900"
+        />
+      )}
+      <InBoundLink
+        to="https://calendy.com/staxy"
+        className="text-[14px] font-light no-underline transition-all hover:opacity-75"
+        outSource
+      >
+        Click here to schedule a call for more...
+      </InBoundLink>
     </div>
   );
 };
