@@ -18,7 +18,7 @@ export default function Home() {
         <title>STAXY by Stefan Stax</title>
         <meta
           name="description"
-          content="Staxy Agency website built and provided by Stefan Stax"
+          content="Staxy Agency designed to fullfil all your E-Learning and Community needs. One stop shop for your business."
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
