@@ -3,11 +3,14 @@
  * for Docker builds.
  */
 await import("./src/env.mjs");
+import mdx from "@next/mdx";
 
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: true,
-
+  images: {
+    domains: ["jhhqlpktefzuwshwfvcq.supabase.co"],
+  },
   /**
    * If you have `experimental: { appDir: true }` set, then you must comment the below `i18n` config
    * out.
@@ -20,4 +23,14 @@ const config = {
   },
 };
 
-export default config;
+const withMDX = mdx({
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+  },
+});
+
+export default withMDX({
+  ...config,
+  pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
+});

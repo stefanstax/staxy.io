@@ -3,15 +3,10 @@
 
 generator client {
     provider = "prisma-client-js"
-    previewFeatures = ["jsonProtocol"]
 }
 
 datasource db {
-    provider = "sqlite"
-    // NOTE: When using mysql or sqlserver, uncomment the @db.Text annotations in model Account below
-    // Further reading:
-    // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
-    // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
+    provider = "postgresql"
     url      = env("DATABASE_URL")
 }
 
@@ -64,4 +59,36 @@ model VerificationToken {
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+model Feature {
+    identifier String @id @unique @default(cuid())
+    title      String
+    image      String
+    extraClass String
+    order      Int    @default(autoincrement())
+}
+
+model Faq {
+    identifier String @id @unique @default(cuid())
+    question   String
+    answer     String
+}
+
+model Step {
+    identifier  String  @id @unique @default(cuid())
+    title       String
+    description String
+    highlight   String
+    mediaSrc    String
+    mediaFirst  Boolean
+    endBlock    Boolean
+    order       Int
+}
+
+model Company {
+    identifier String @id @unique @default(cuid())
+    title      String
+    image      String
+    order      Int    @default(autoincrement())
 }
