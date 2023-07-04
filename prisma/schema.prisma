@@ -92,3 +92,9 @@ model Company {
     image      String
     order      Int    @default(autoincrement())
 }
+
+model Contact {
+    identifier String @id @unique @default(cuid())
+    name       String
+    email      String
+}

@@ -28,7 +28,7 @@ const CompaniesCarousel: React.FC<CompaniesCarouselProps> = ({
   const { data, isLoading, isError } = api.companies.getCompanies.useQuery();
 
   const classes = classNames(
-    "flex justify-center items-center rounded-[20px] bg-[#13131620]"
+    "flex justify-center items-center rounded bg-[#13131620]"
   );
 
   const parentClasses = classNames(className, "w-full");

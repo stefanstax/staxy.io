@@ -10,6 +10,7 @@ import SectionTitle from "~/components/ui/SectionTitle";
 import ListSteps from "~/components/ui/ListSteps";
 import CTA from "~/components/ui/CTA";
 import FAQ from "~/components/ui/FAQ";
+import ContactForm from "~/components/ui/ContactForm";
 
 export default function Home() {
   return (
@@ -112,6 +113,13 @@ export default function Home() {
               subtitle="Enrolment starting on 15/07/2023"
             />
             <ListSteps className="max-w-[600px]" stepClass="my-24 text-beige" />
+          </div>
+          <div className="w-full px-4 py-10">
+            <SectionTitle
+              title="Unlock exclusive content"
+              subtitle="I'll email you in a span of 24h."
+            />
+            <ContactForm />
           </div>
           <CTA
             title="Ready to go live?"

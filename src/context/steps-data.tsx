@@ -1,4 +1,4 @@
-const highlighOdds = "bg-purpy text-white rounded-[20px] drop-shadow-sm p-4";
+const highlighOdds = "bg-purpy text-white rounded drop-shadow-sm p-4";
 
 export const steps = [
   {

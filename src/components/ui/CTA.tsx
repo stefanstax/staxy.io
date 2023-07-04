@@ -28,7 +28,7 @@ const CTA = ({
   );
   const boxClasses = classNames(
     boxClass,
-    `w-full max-w-[600px] rounded-[20px] text-beige drop-shadow-2xl px-4 py-10 mx-auto flex flex-col justify-center items-center`
+    `w-full max-w-[600px] rounded text-beige drop-shadow-2xl px-4 py-10 mx-auto flex flex-col justify-center items-center`
   );
   return (
     <div className={containerClasses}>
@@ -41,7 +41,7 @@ const CTA = ({
           to={link}
           // cta
           ctaOutSource={ctaOutSource}
-          className="byzantine-shadow w-fit min-w-[300px] rounded-[20px] bg-byzantine p-4 text-center text-[30px] uppercase no-underline hover:animate-pulse"
+          className="byzantine-shadow w-fit min-w-[300px] rounded bg-byzantine p-4 text-center text-[30px] uppercase no-underline hover:animate-pulse"
         >
           {label}
         </InBoundLink>

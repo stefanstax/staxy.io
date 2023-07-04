@@ -18,14 +18,14 @@ const FeaturesCarousel = ({ className, options }: FeaturesCarouselProps) => {
   const { data, isLoading, isError } = api.features.getFeatures.useQuery();
 
   const classes = classNames(
-    `group flex flex-col h-full gap-[20px] justify-center items-center rounded-[20px] bg-purpy text-beige p-10 cursor-grab`
+    `group flex flex-col h-full gap-[20px] justify-center items-center rounded bg-purpy text-beige p-10 cursor-grab`
   );
 
   const parentClasses = classNames(className, `w-full my-24`);
 
   const FeatureLabel = ({ label }: FeatureLabelProps) => {
     return (
-      <span className="w-full rounded-[20px] bg-beige p-2 text-center font-black uppercase italic text-purpy">
+      <span className="w-full rounded bg-beige p-2 text-center font-black uppercase italic text-purpy">
         {label}
       </span>
     );

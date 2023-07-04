@@ -30,7 +30,7 @@ const Loaders = ({
         minHeight || "min-h-[100px]"
       } ${
         background || "bg-slate-900"
-      } animate-pulse items-center justify-center rounded-[20px]`}
+      } animate-pulse items-center justify-center rounded`}
     >
       <Icon icon={icon} fontSize={64} color="white" />
     </div>
@@ -44,7 +44,7 @@ const Loaders = ({
             minHeight || "min-h-[100px]"
           } ${
             background || "bg-slate-900"
-          } animate-pulse items-center justify-center rounded-[20px]`}
+          } animate-pulse items-center justify-center rounded`}
         >
           <Icon icon={icon} fontSize={64} color="white" />
         </SplideSlide>
