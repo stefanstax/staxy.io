@@ -42,14 +42,14 @@ const MediaAndText = ({
         <Icon
           icon={mediaSrc || ""}
           fontSize={256}
-          className={`${endBlockImage} mx-auto w-3/12 max-w-[200px] shadow-red-700 drop-shadow-2xl md:w-5/12 ${
+          className={`${endBlockImage} mx-auto w-full max-w-[200px] shadow-red-700 drop-shadow-2xl md:w-3/12 md:w-5/12 ${
             mediaFirst ? "order-0" : "order-1"
           }`}
         />
       )}
       {mediaSrc?.includes("https:") && (
         <Image
-          className={`w-4/12 ${mediaFirst ? "order-0" : "order-1"}`}
+          className={`w-full md:w-4/12 ${mediaFirst ? "order-0" : "order-1"}`}
           width={1080}
           height={1080}
           src={mediaSrc}
@@ -57,7 +57,7 @@ const MediaAndText = ({
         />
       )}
       {/* Content */}
-      <div className={`${endBlockContent} flex flex-col`}>
+      <div className={`${endBlockContent} md:w-fitflex w-full flex-col`}>
         {title && (
           <h3 className="my-4 text-[25px] font-black lg:text-[35px]">
             {title}

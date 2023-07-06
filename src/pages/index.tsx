@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>STAXY by Stefan Stax</title>
+        <title>STAXY | AIO Stop</title>
         <meta
           name="description"
           content="Staxy Agency designed to fullfil all your E-Learning and Community needs. One stop shop for your business."
@@ -34,7 +34,7 @@ export default function Home() {
               ctaMessage={`Only two businesses will enter the pool for the month of July`}
             />
           </div>
-          <div className="mx-auto flex w-full max-w-[1280px] flex-wrap items-center justify-center gap-[10px] py-10">
+          <div className="mx-auto flex w-full max-w-[1280px] flex-wrap items-center justify-center gap-[10px] px-4 py-10">
             <SectionTitle
               className="uppercase"
               subtitle="You've used services from some of these businesses:"
