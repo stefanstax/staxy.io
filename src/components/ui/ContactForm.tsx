@@ -18,7 +18,7 @@ type ErrorMessageProps = {
 };
 
 const ContactForm = ({ className }: ContactFormProps) => {
-  const { mutate } = api.contacts.create.useMutation();
+  const mutation = api.contacts.create.useMutation();
   const {
     register,
     handleSubmit,
@@ -32,7 +32,7 @@ const ContactForm = ({ className }: ContactFormProps) => {
   });
 
   const onSubmit = (data: FormProps) => {
-    mutate({
+    mutation.mutate({
       name: data.name,
       email: data.email,
     });
@@ -52,7 +52,7 @@ const ContactForm = ({ className }: ContactFormProps) => {
   const buttonClasses = classNames(
     `w-full flex justify-center gap-[10px] items-center p-4 rounded font-black uppercase transition-all text-white min-w-[200px] cursor-pointer hover:opacity-75 transition-all`,
     (errors?.email || errors?.name) && `bg-red-500 text-white`,
-    !errors?.email && !errors?.name && `bg-formula text-neutral-900`
+    !errors?.email && !errors?.name && `bg-forest text-neutral-900`
   );
   return (
     <div className={classes}>
@@ -68,7 +68,7 @@ const ContactForm = ({ className }: ContactFormProps) => {
           {...register("name", { required: true })}
         />
         {errors?.name?.type === "required" && (
-          <ErrorMessage message="Name field is required" />
+          <ErrorMessage message="Name field is required." />
         )}
         <input
           type="email"
@@ -77,7 +77,7 @@ const ContactForm = ({ className }: ContactFormProps) => {
           {...register("email", { required: true })}
         />
         {errors?.email?.type === "required" && (
-          <ErrorMessage message="Email field is required" />
+          <ErrorMessage message="Email field is required." />
         )}
         <button type="submit" className={buttonClasses}>
           <Icon
@@ -88,7 +88,7 @@ const ContactForm = ({ className }: ContactFormProps) => {
             }
             fontSize={32}
           />{" "}
-          Subscribe
+          Subscribe me
         </button>
       </form>
     </div>

@@ -62,11 +62,14 @@ model VerificationToken {
 }
 
 model Feature {
-    identifier String @id @unique @default(cuid())
-    title      String
-    image      String
-    extraClass String
-    order      Int    @default(autoincrement())
+    identifier  String  @id @unique @default(cuid())
+    title       String
+    description String?
+    image       String
+    parent      String?
+    category    String?
+    extraClass  String
+    order       Int     @default(autoincrement())
 }
 
 model Faq {
@@ -96,5 +99,5 @@ model Company {
 model Contact {
     identifier String @id @unique @default(cuid())
     name       String
-    email      String
+    email      String @unique
 }

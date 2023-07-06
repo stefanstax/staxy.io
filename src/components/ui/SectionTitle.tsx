@@ -1,21 +1,32 @@
 import classNames from "classnames";
 
 type SectionTitleProps = {
-  title: string;
+  title?: string;
   subtitle?: string;
   className?: string;
+  titleClassName?: string;
+  subtitleClassName?: string;
 };
 
-const SectionTitle = ({ title, subtitle, className }: SectionTitleProps) => {
+const SectionTitle = ({
+  title,
+  subtitle,
+  className,
+  titleClassName,
+  subtitleClassName,
+}: SectionTitleProps) => {
   const classes = classNames(className);
+  const titleClasses = classNames(
+    titleClassName,
+    `w-full text-[35px] font-black uppercase lg:text-[55px] `
+  );
+  const subtitleClasses = classNames(subtitleClassName, `w-full text-[20px]`);
   return (
     <div
-      className={`${classes} flex w-full flex-col items-center justify-center`}
+      className={`${classes} flex w-full flex-col items-start justify-center`}
     >
-      <h2 className="mx-auto px-4 text-center text-[35px] font-black uppercase lg:text-[55px]">
-        {title}
-      </h2>
-      {subtitle && <p className="text-[20px]">{subtitle}</p>}
+      <h2 className={titleClasses}>{title}</h2>
+      {subtitle && <p className={subtitleClasses}>{subtitle}</p>}
     </div>
   );
 };

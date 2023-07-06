@@ -23,6 +23,8 @@ module.exports = {
         white: "#fff",
         whiteShade: "#f9f9f9",
         purpyHover: "#6b20ce",
+        forest: "#0a3524",
+        forestLight: "#2bbf79",
 
         matte: "#131616",
         graphit: "#303249",
