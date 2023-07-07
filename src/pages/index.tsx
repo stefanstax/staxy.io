@@ -1,22 +1,21 @@
 // import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Layout from "~/components/segments/Layout";
-import FeaturesCarousel from "~/components/ui/FeaturesCarousel";
 import HeroBanner from "~/components/ui/HeroBanner";
-import CompaniesCarousel from "~/components/ui/CompaniesCarousel";
-import StaxyPlatformOverview from "~/assets/images/staxy-platform-overview.png";
-import ImageBanner from "~/components/ui/ImageBanner";
 import SectionTitle from "~/components/ui/SectionTitle";
 import ListSteps from "~/components/ui/ListSteps";
 import CTA from "~/components/ui/CTA";
 import FAQ from "~/components/ui/FAQ";
 import ContactForm from "~/components/ui/ContactForm";
+import CompaniesGrid from "~/components/ui/CompaniesGrid";
+import MediaAndText from "~/components/ui/MediaAndText";
+import FeaturesGrid from "~/components/ui/FeaturesGrid";
 
 export default function Home() {
   return (
     <>
       <Head>
-        <title>STAXY by Stefan Stax</title>
+        <title>STAXY | AIO Stop</title>
         <meta
           name="description"
           content="Staxy Agency designed to fullfil all your E-Learning and Community needs. One stop shop for your business."
@@ -25,99 +24,55 @@ export default function Home() {
       </Head>
       <main className="min-h-screen">
         <Layout className="mt-[60px]">
-          <div className="flex min-h-[600px] flex-wrap items-center justify-center gap-[20px] bg-yellow-400">
+          <div className="flex min-h-[600px] flex-wrap items-center justify-center gap-[20px] bg-forest">
             <HeroBanner
-              className="px-4 text-matte"
-              title="Imagine a place"
-              subtitle="Where you'll able to sell courses. Organize Events. Create Groups. Create Forums. Have personalized member profiles. And so much more!"
-              ctaLabel="See if you qualify"
+              className="px-4 text-beige"
+              title="Become the GO-TO Platform for your profession"
+              subtitle={`Move Udemy, SkillShare, Kajabi and all others aside. Own your data. Own your audience. Own your business.`}
+              ctaLabel="Schedule to qualify"
               ctaLink="https://calendly.com/staxy"
-              ctaMessage={`New enrollment starts on 15/07/2023`}
-            />
-            <CompaniesCarousel
-              options={{
-                type: "loop",
-                drag: false,
-                perPage: 2,
-                perMove: 1,
-                arrows: false,
-                pagination: false,
-                lazyLoad: true,
-                autoStart: true,
-                mediaQuery: "min",
-                gap: "2rem",
-                autoScroll: {
-                  pauseOnHover: false,
-                  speed: 1,
-                },
-                breakpoints: {
-                  768: {
-                    perPage: 3,
-                  },
-                  1024: {
-                    perPage: 4,
-                  },
-                  1366: {
-                    perPage: 5,
-                  },
-                  1920: {
-                    perPage: 7,
-                  },
-                },
-              }}
+              ctaMessage={`Only two businesses will enter the pool for the month of July`}
             />
           </div>
-          <div className="bg-byzantine px-4 py-10 text-beige">
+          <div className="mx-auto flex w-full max-w-[1280px] flex-wrap items-center justify-center gap-[10px] px-4 py-10">
             <SectionTitle
-              className="mb-4"
-              title="Platform Overview"
-              subtitle="Gain a small glipse into your future"
+              className="uppercase"
+              subtitle="You've used services from some of these businesses:"
+              subtitleClassName="text-center"
             />
-            <ImageBanner src={StaxyPlatformOverview?.src} />
+            <CompaniesGrid />
           </div>
-          <div className="w-full px-4 py-10">
+          <div className="w-full bg-beige">
+            <div className="mx-auto w-full max-w-[1280px] px-4 py-10 text-forest">
+              <MediaAndText
+                title="You could hire 6 different software agencies for $1.700,00/mo and not own anything or you can use my platform, own everything and get it for $1........"
+                description="Platform I'm offering is like multi platform in one. You'll get the approach exactly how to build courses, sell them, build community, spread your influence. ALL IN ONE PLACE. All that without spending a fortune hiring outside experts. I'm with you from 0 to a 100. You'll even get my WhatsApp number for direct contact."
+                mediaSrc="line-md:check-list-3-twotone"
+                mediaFirst={false}
+              />
+            </div>
+          </div>
+          <div className="mx-auto w-full max-w-[1280px] px-4 py-10">
             <SectionTitle
-              title="Feature Packed"
+              title="Here's what I got for you"
               subtitle="To and above expectations"
             />
-            <FeaturesCarousel
-              options={{
-                perPage: 1,
-                perMove: 1,
-                arrows: false,
-                pagination: false,
-                lazyLoad: true,
-                flickPower: 1,
-                gap: "2rem",
-                padding: "4rem",
-                slideFocus: true,
-                mediaQuery: "min",
-                breakpoints: {
-                  768: {
-                    perPage: 2,
-                  },
-                  1024: {
-                    perPage: 4,
-                  },
-                  1920: {
-                    perPage: 6,
-                  },
-                },
-              }}
-            />
+            <FeaturesGrid />
           </div>
-          <div className="w-full bg-byzantine p-10">
+          <div className="w-full bg-forest px-4 py-20">
             <SectionTitle
-              className="text-beige"
+              className="text-center text-beige"
               title="Enrolment Steps"
-              subtitle="Enrolment starting on 15/07/2023"
+              subtitle="Enrolment starting mid July"
             />
             <ListSteps className="max-w-[600px]" stepClass="my-24 text-beige" />
           </div>
           <div className="w-full px-4 py-10">
             <SectionTitle
-              title="Unlock exclusive content"
-              subtitle="I'll email you in a span of 24h."
+              className="mx-auto max-w-[600px] text-center"
+              title="Not right now?"
+              titleClassName="text-forest"
+              subtitle="Subscribe and I'll deliver curated emails weekly on why owning such a platform will be a profitable investment for your business. Emails will stricly contain how to use features in a profitable way."
             />
             <ContactForm />
           </div>
@@ -129,7 +84,7 @@ export default function Home() {
             link="https://calendly.com/staxy"
             ctaOutSource
           />
-          <div className="mx-auto w-full items-center justify-center bg-gradient-to-b from-white  from-[90%] to-yellow-400 to-[100%] py-40 text-center drop-shadow-2xl">
+          <div className="mx-auto w-full items-center justify-center py-40 text-center drop-shadow-2xl">
             <h2 className="text-[40px] font-black">FAQ</h2>
             <p className="mb-8 text-[20px]">
               Below you can find questions I received in the previous weeks.

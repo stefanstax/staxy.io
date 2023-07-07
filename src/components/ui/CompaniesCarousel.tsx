@@ -79,15 +79,6 @@ const CompaniesCarousel: React.FC<CompaniesCarouselProps> = ({
         <Loaders
           clones={10}
           slider
-          icon={
-            isLoading
-              ? `solar:card-search-broken`
-              : !data?.length
-              ? "solar:card-search-broken"
-              : isError
-              ? "solar:card-error-broken"
-              : ""
-          }
           minWidth="min-w-[200px]"
           minHeight="min-h-[100px]"
           background="bg-slate-900"

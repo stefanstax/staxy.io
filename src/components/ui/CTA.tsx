@@ -24,7 +24,7 @@ const CTA = ({
 }: CTAProps) => {
   const containerClasses = classNames(
     containerClass,
-    `w-full bg-gradient-to-b from-byzantine from-[20%] to-purpy text-center py-40`
+    `w-full bg-gradient-to-b from-forest to-matte text-center py-40`
   );
   const boxClasses = classNames(
     boxClass,
@@ -41,7 +41,7 @@ const CTA = ({
           to={link}
           // cta
           ctaOutSource={ctaOutSource}
-          className="byzantine-shadow w-fit min-w-[300px] rounded bg-byzantine p-4 text-center text-[30px] uppercase no-underline hover:animate-pulse"
+          className="w-fit min-w-[300px] rounded bg-forest p-4 text-center text-[30px] uppercase no-underline transition-all hover:animate-pulse hover:bg-forestLight hover:text-beige"
         >
           {label}
         </InBoundLink>

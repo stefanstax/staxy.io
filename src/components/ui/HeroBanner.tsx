@@ -21,10 +21,7 @@ const HeroBanner = ({
   ctaLabel,
   ctaLink,
   ctaMessage,
-  secondaryLabel,
-  secondaryLink,
   className,
-  outSource,
   ctaOutSource,
 }: HeroBannerProps) => {
   const classes = classNames(className);
@@ -32,7 +29,7 @@ const HeroBanner = ({
   return (
     <div className={`flex w-full items-center justify-center ${classes}`}>
       <div className="mx-auto flex h-full w-full max-w-[800px] flex-wrap items-center justify-center text-center">
-        <h1 className="w-full text-[40px] font-black uppercase lg:text-[85px] lg:leading-[8rem]">
+        <h1 className="w-full text-[40px] font-black uppercase lg:text-[55px]">
           {title}
         </h1>
         <h3 className="text-md mx-auto my-8 w-10/12 lg:text-[30px] lg:leading-[3rem]">
@@ -44,23 +41,13 @@ const HeroBanner = ({
               cta
               to={ctaLink}
               ctaOutSource={ctaOutSource}
-              className="flex min-h-[50px] w-full max-w-[300px] flex-auto items-center justify-center rounded uppercase md:w-fit"
+              className="flex min-h-[50px] w-full max-w-[300px] flex-auto items-center justify-center rounded text-[20px] uppercase md:w-fit"
             >
               {ctaLabel}
             </InBoundLink>
           )}
           {ctaMessage && (
-            <span className="text-[12px] italic">{ctaMessage}</span>
-          )}
-          {secondaryLink && (
-            <InBoundLink
-              secondary
-              to={secondaryLink}
-              outSource={outSource}
-              className="flex min-h-[50px] w-full flex-auto items-center justify-center rounded uppercase md:w-fit"
-            >
-              {secondaryLabel}
-            </InBoundLink>
+            <span className="w-full text-[16px] italic">{ctaMessage}</span>
           )}
         </div>
       </div>

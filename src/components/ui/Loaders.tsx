@@ -1,11 +1,9 @@
-import { Icon } from "@iconify/react";
 import { SplideSlide } from "@splidejs/react-splide";
 import classNames from "classnames";
 import { cloneElement, ReactNode } from "react";
 
 type LoadersProps = {
   clones: number;
-  icon: string;
   minWidth?: string;
   minHeight?: string;
   background?: string;
@@ -15,7 +13,6 @@ type LoadersProps = {
 
 const Loaders = ({
   clones,
-  icon,
   minWidth,
   minHeight,
   background,
@@ -31,11 +28,10 @@ const Loaders = ({
       } ${
         background || "bg-slate-900"
       } animate-pulse items-center justify-center rounded`}
-    >
-      <Icon icon={icon} fontSize={64} color="white" />
-    </div>
+    ></div>
   );
 
+  // todo If inactive by 01/08/2023 - remove logic
   {
     slider &&
       (element = (
@@ -45,9 +41,7 @@ const Loaders = ({
           } ${
             background || "bg-slate-900"
           } animate-pulse items-center justify-center rounded`}
-        >
-          <Icon icon={icon} fontSize={64} color="white" />
-        </SplideSlide>
+        ></SplideSlide>
       ));
   }
 

@@ -4,17 +4,11 @@ import InBoundLink from "../ui/InBoundLink";
 
 const Footer = () => {
   return (
-    <section className="mx-auto w-full bg-racingYellow p-10 text-matte drop-shadow-2xl">
+    <section className="mx-auto w-full bg-forest p-10 text-beige drop-shadow-2xl">
       <div className="mx-auto max-w-[1140px]">
         <div className="flex flex-wrap items-start justify-between gap-[20px]">
           <div className="basis-full lg:basis-2/12">
-            <Image
-              className="invert-[100]"
-              width={125}
-              height={65}
-              src={StaxyLogo}
-              alt=""
-            />
+            <Image width={125} height={65} src={StaxyLogo} alt="" />
             <p className="mt-4 text-[12px]">
               Community - Educational - Event Managment | Revenue 25x in the
               first 6-8 months.

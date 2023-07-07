@@ -33,13 +33,13 @@ const FAQ = ({ containerClass }: FAQProps) => {
         {faq?.question?.length > 5 && faq?.answer?.length > 5 && (
           <div
             key={index}
-            className="my-2 w-full cursor-pointer overflow-hidden rounded bg-purpy text-white"
+            className="my-2 w-full cursor-pointer overflow-hidden rounded bg-forest py-4 text-white"
             onClick={() => handleClick(index)}
           >
-            <div className="flex w-full items-center justify-between gap-[10px] p-4">
+            <div className="flex w-full items-center justify-between gap-[10px] px-4">
               <h2
                 className={`flex cursor-pointer items-center justify-between text-[20px] font-bold hover:underline ${
-                  isFaqOpen ? "text-slate-200 underline" : "text-white"
+                  isFaqOpen ? "text-forestLight underline" : "text-white"
                 }`}
               >
                 {faq?.question}
@@ -48,7 +48,7 @@ const FAQ = ({ containerClass }: FAQProps) => {
                 <Icon
                   icon="solar:archive-up-minimlistic-broken"
                   className={`min-w-[32px] text-[32px] transition-all ${
-                    isFaqOpen ? "text-slate-200" : "text-white"
+                    isFaqOpen ? "text-forestLight" : "text-white"
                   }`}
                 />
               ) : (
@@ -61,7 +61,7 @@ const FAQ = ({ containerClass }: FAQProps) => {
             <div
               className={`${
                 isFaqOpen ? "block" : "hidden"
-              } p-2 py-4 text-[18px] font-[500]`}
+              } p-4 text-[18px] font-[500]`}
             >
               <p>{faq?.answer}</p>
             </div>
@@ -74,22 +74,13 @@ const FAQ = ({ containerClass }: FAQProps) => {
   return (
     <div className={containerClasses}>
       {renderFAQ}
-      {!renderFAQ?.length && (
+      {(isError || isLoading || !renderFAQ?.length) && (
         <Loaders
           clones={3}
-          icon={
-            isLoading
-              ? `solar:card-search-broken`
-              : !data?.length
-              ? "solar:card-search-broken"
-              : isError
-              ? "solar:card-error-broken"
-              : ""
-          }
-          minWidth="min-w-[200px]"
+          minWidth="w-full"
           minHeight="min-h-[100px]"
-          background="bg-slate-900"
-          className="flex flex-col gap-[10px]"
+          background="bg-forest"
+          className="my-4"
         />
       )}
       <InBoundLink
