@@ -71,15 +71,6 @@ const FeaturesCarousel = ({ className, options }: FeaturesCarouselProps) => {
         <Loaders
           clones={10}
           slider
-          icon={
-            isLoading
-              ? `solar:card-search-broken`
-              : !renderFeatures?.length
-              ? "solar:card-search-broken"
-              : isError
-              ? "solar:card-error-broken"
-              : ""
-          }
           minWidth="min-w-[200px]"
           minHeight="min-h-[200px]"
           background="bg-slate-900"

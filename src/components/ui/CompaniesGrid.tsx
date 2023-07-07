@@ -48,21 +48,12 @@ const CompaniesGrid: React.FC<CompaniesGridProps> = ({ className }) => {
   return (
     <div className={parentClasses}>
       {data?.length && <RenderCompanies data={data} classes={classes} />}
-      {!data?.length && (
+      {(isError || isLoading || !data?.length) && (
         <Loaders
           clones={10}
           slider
-          icon={
-            isLoading
-              ? `solar:card-search-broken`
-              : !data?.length
-              ? "solar:card-search-broken"
-              : isError
-              ? "solar:card-error-broken"
-              : ""
-          }
-          minWidth="min-w-[200px]"
-          minHeight="min-h-[200px]"
+          minWidth="min-w-[60px] lg:w-2/12"
+          minHeight="min-h-[60px] lg:min-h-[135px]"
           background="bg-forest"
         />
       )}

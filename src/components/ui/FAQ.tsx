@@ -74,22 +74,13 @@ const FAQ = ({ containerClass }: FAQProps) => {
   return (
     <div className={containerClasses}>
       {renderFAQ}
-      {!renderFAQ?.length && (
+      {(isError || isLoading || !renderFAQ?.length) && (
         <Loaders
           clones={3}
-          icon={
-            isLoading
-              ? `solar:card-search-broken`
-              : !data?.length
-              ? "solar:card-search-broken"
-              : isError
-              ? "solar:card-error-broken"
-              : ""
-          }
-          minWidth="min-w-[200px]"
+          minWidth="w-full"
           minHeight="min-h-[100px]"
-          background="bg-slate-900"
-          className="flex flex-col gap-[10px]"
+          background="bg-forest"
+          className="my-4"
         />
       )}
       <InBoundLink

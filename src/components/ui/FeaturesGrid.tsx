@@ -85,22 +85,13 @@ const FeaturesGrid = ({ className }: FeaturesGridProps) => {
   return (
     <div className={parentClasses}>
       {renderFeatures}
-      {!renderFeatures?.length && (
+      {(isError || isLoading || !renderFeatures?.length) && (
         <Loaders
           clones={10}
           slider
-          icon={
-            isLoading
-              ? `solar:card-search-broken`
-              : !renderFeatures?.length
-              ? "solar:card-search-broken"
-              : isError
-              ? "solar:card-error-broken"
-              : ""
-          }
-          minWidth="min-w-[200px]"
+          minWidth="w-full md:w-[48%] lg:w-[32%]"
           minHeight="min-h-[200px]"
-          background="bg-slate-900"
+          background="bg-forest"
         />
       )}
     </div>

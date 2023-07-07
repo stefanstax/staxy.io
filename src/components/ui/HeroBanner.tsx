@@ -41,7 +41,7 @@ const HeroBanner = ({
               cta
               to={ctaLink}
               ctaOutSource={ctaOutSource}
-              className="flex min-h-[50px] w-full max-w-[300px] flex-auto items-center justify-center rounded uppercase md:w-fit"
+              className="flex min-h-[50px] w-full max-w-[300px] flex-auto items-center justify-center rounded text-[20px] uppercase md:w-fit"
             >
               {ctaLabel}
             </InBoundLink>

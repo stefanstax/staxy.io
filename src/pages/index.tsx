@@ -59,7 +59,7 @@ export default function Home() {
             />
             <FeaturesGrid />
           </div>
-          <div className="w-full bg-forest p-10">
+          <div className="w-full bg-forest px-4 py-20">
             <SectionTitle
               className="text-center text-beige"
               title="Enrolment Steps"

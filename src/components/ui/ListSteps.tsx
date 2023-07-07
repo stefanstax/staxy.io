@@ -14,49 +14,6 @@ const ListSteps = ({ stepClass, className }: ListStepsProps) => {
   const classes = classNames(className, `mx-auto`);
   const stepClasses = classNames(stepClass);
 
-  if (isLoading) {
-    return (
-      <div className="mx-auto my-8 flex w-full max-w-[968px] flex-wrap items-center justify-center gap-[20px]">
-        <Loaders
-          clones={4}
-          icon="solar:card-search-broken"
-          minWidth="min-w-[200px]"
-          minHeight="min-h-[200px]"
-          background="bg-blue-400"
-        />
-      </div>
-    );
-  }
-
-  if (!data?.length) {
-    return (
-      <div className="mx-auto my-8 flex w-full max-w-[968px] flex-wrap items-center justify-center gap-[20px]">
-        <Loaders
-          clones={4}
-          icon="solar:card-search-broken"
-          minWidth="min-w-[200px]"
-          minHeight="min-h-[200px]"
-          background="bg-slate-900"
-          className="w-5/12"
-        />
-      </div>
-    );
-  }
-
-  if (isError) {
-    return (
-      <div className="mx-auto my-8 flex w-full max-w-[968px] flex-wrap items-center justify-center gap-[20px]">
-        <Loaders
-          clones={4}
-          icon="solar:folder-error-broken"
-          minWidth="200"
-          minHeight="min-h-[200px]"
-          background="bg-red-400"
-        />
-      </div>
-    );
-  }
-
   const renderSteps = data
     ?.sort((a, b) => a.order - b.order)
     ?.map((step) => {
@@ -87,7 +44,7 @@ const ListSteps = ({ stepClass, className }: ListStepsProps) => {
           key={identifier}
           className={`${endBlockContainer || ""} ${stepClasses || ""} ${
             highlight || ""
-          } my-12 flex w-full flex-wrap items-center justify-between gap-[40px] px-4`}
+          } my-12 flex w-full flex-wrap items-center justify-between gap-[40px]`}
         >
           {/* Media */}
           {mediaSrc && (
@@ -110,7 +67,20 @@ const ListSteps = ({ stepClass, className }: ListStepsProps) => {
       );
     });
 
-  return <div className={classes}>{renderSteps}</div>;
+  return (
+    <div className={classes}>
+      {renderSteps}
+      {(isError || isLoading || !renderSteps?.length) && (
+        <Loaders
+          clones={4}
+          minWidth="w-full"
+          minHeight="min-h-[200px]"
+          className="my-4"
+          background="bg-forestLight"
+        />
+      )}
+    </div>
+  );
 };
 
 export default ListSteps;

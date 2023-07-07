@@ -2,6 +2,8 @@ import { Icon } from "@iconify/react";
 import classNames from "classnames";
 import { useForm } from "react-hook-form";
 import { api } from "~/utils/api";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 type ContactFormProps = {
   className?: string;
@@ -32,10 +34,45 @@ const ContactForm = ({ className }: ContactFormProps) => {
   });
 
   const onSubmit = (data: FormProps) => {
-    mutation.mutate({
-      name: data.name,
-      email: data.email,
-    });
+    mutation.mutate(
+      {
+        name: data.name,
+        email: data.email,
+      },
+      {
+        onSuccess: () => {
+          toast.success("You've successfully subscribed to the email list.", {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            rtl: false,
+            pauseOnFocusLoss: false,
+            draggable: false,
+            pauseOnHover: false,
+            delay: 1,
+            theme: "dark",
+          });
+        },
+        onError: () => {
+          toast.error(
+            "There might be a problem in connection right now, please try again a bit later.",
+            {
+              position: "bottom-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: false,
+              rtl: false,
+              pauseOnFocusLoss: false,
+              draggable: false,
+              pauseOnHover: false,
+              delay: 1,
+              theme: "dark",
+            }
+          );
+        },
+      }
+    );
     reset();
   };
 
@@ -65,10 +102,13 @@ const ContactForm = ({ className }: ContactFormProps) => {
           type="text"
           className={inputClasses}
           placeholder="Name..."
-          {...register("name", { required: true })}
+          {...register("name", { required: true, pattern: /^[a-zA-Z]+$/ })}
         />
         {errors?.name?.type === "required" && (
           <ErrorMessage message="Name field is required." />
+        )}
+        {errors?.name?.type === "pattern" && (
+          <ErrorMessage message="Please include only letters." />
         )}
         <input
           type="email"
@@ -91,6 +131,7 @@ const ContactForm = ({ className }: ContactFormProps) => {
           Subscribe me
         </button>
       </form>
+      <ToastContainer />
     </div>
   );
 };
