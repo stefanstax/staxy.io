@@ -6,15 +6,9 @@ await import("./src/env.mjs");
 import mdx from "@next/mdx";
 
 /** @type {import("next").NextConfig} */
-/** @property {CONVERTKIT_KEY} string */
-/** @property {CONVERTKIT_URL} string */
 
 const config = {
   reactStrictMode: true,
-  env: {
-    CONVERTKIT_KEY: process.env.CONVERTKIT_KEY,
-    CONVERTKIT_URL: process.env.CONVERTKIT_URL,
-  },
   images: {
     domains: ["jhhqlpktefzuwshwfvcq.supabase.co"],
   },
