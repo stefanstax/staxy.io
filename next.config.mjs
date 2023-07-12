@@ -6,6 +6,9 @@ await import("./src/env.mjs");
 import mdx from "@next/mdx";
 
 /** @type {import("next").NextConfig} */
+/** @property {CONVERTKIT_KEY} string */
+/** @property {CONVERTKIT_URL} string */
+
 const config = {
   reactStrictMode: true,
   env: {
