@@ -74,7 +74,7 @@ export default function Home() {
               titleClassName="text-forest"
               subtitle="Subscribe and I'll deliver curated emails weekly on why owning such a platform will be a profitable investment for your business. Emails will stricly contain how to use features in a profitable way."
             />
-            <ContactForm />
+            <ContactForm formId="5358730" />
           </div>
           <CTA
             title="Ready to go live?"

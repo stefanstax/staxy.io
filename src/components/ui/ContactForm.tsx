@@ -1,12 +1,12 @@
 import { Icon } from "@iconify/react";
 import classNames from "classnames";
 import { useForm } from "react-hook-form";
-import { api } from "~/utils/api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 type ContactFormProps = {
   className?: string;
+  formId: string;
 };
 
 type FormProps = {
@@ -19,8 +19,9 @@ type ErrorMessageProps = {
   message: string;
 };
 
-const ContactForm = ({ className }: ContactFormProps) => {
-  const mutation = api.contacts.create.useMutation();
+const ContactForm = ({ className, formId }: ContactFormProps) => {
+  const BASE_URL = process.env.CONVERTKIT_URL;
+  const API_KEY = process.env.CONVERTKIT_KEY;
   const {
     register,
     handleSubmit,
@@ -33,47 +34,54 @@ const ContactForm = ({ className }: ContactFormProps) => {
     },
   });
 
-  const onSubmit = (data: FormProps) => {
-    mutation.mutate(
-      {
-        name: data.name,
-        email: data.email,
-      },
-      {
-        onSuccess: () => {
-          toast.success("You've successfully subscribed to the email list.", {
-            position: "bottom-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: false,
-            rtl: false,
-            pauseOnFocusLoss: false,
-            draggable: false,
-            pauseOnHover: false,
-            delay: 1,
-            theme: "dark",
-          });
-        },
-        onError: () => {
-          toast.error(
-            "There might be a problem in connection right now, please try again a bit later.",
-            {
-              position: "bottom-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: false,
-              rtl: false,
-              pauseOnFocusLoss: false,
-              draggable: false,
-              pauseOnHover: false,
-              delay: 1,
-              theme: "dark",
-            }
-          );
-        },
+  const onSubmit = async (data: FormProps) => {
+    const url = [BASE_URL, "forms", formId, "subscribe"].join("/");
+    const headers = new Headers({
+      "Content-Type": "application/json; charset=utf-8",
+    });
+    const body = JSON.stringify({
+      api_key: API_KEY,
+      first_name: data?.name,
+      email: data?.email,
+    });
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers,
+        mode: "cors",
+        cache: "no-cache",
+        body,
+      });
+
+      // Check if the response status is between 200 and 299
+      if (response.ok) {
+        toast.success("You're on the waitlist!", {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: false,
+          progress: undefined,
+          theme: "dark",
+        });
+        reset();
+      } else {
+        throw new Error(response.statusText);
       }
-    );
-    reset();
+    } catch (error) {
+      toast.error("Oopsie, something happened. Try again later.", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
   };
 
   const ErrorMessage = (props: ErrorMessageProps) => {
