@@ -8,6 +8,10 @@ import mdx from "@next/mdx";
 /** @type {import("next").NextConfig} */
 const config = {
   reactStrictMode: true,
+  env: {
+    CONVERTKIT_KEY: process.env.CONVERTKIT_KEY,
+    CONVERTKIT_URL: process.env.CONVERTKIT_URL,
+  },
   images: {
     domains: ["jhhqlpktefzuwshwfvcq.supabase.co"],
   },
