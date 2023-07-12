@@ -23,7 +23,7 @@ export const env = createEnv({
     // Add `.min(1) on ID and SECRET if you want to make sure they're not empty
     GITHUB_ID: z.string(),
     GITHUB_SECRET: z.string(),
-    CONVERTKIT_KEY: z.string(),
+    NEXT_PUBLIC_CONVERTKIT_KEY: z.string(),
   },
 
   /**
@@ -46,7 +46,7 @@ export const env = createEnv({
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     GITHUB_ID: process.env.GITHUB_ID,
     GITHUB_SECRET: process.env.GITHUB_SECRET,
-    CONVERTKIT_KEY: process.env.CONVERTKIT_KEY,
+    NEXT_PUBLIC_CONVERTKIT_KEY: process.env.NEXT_PUBLIC_CONVERTKIT_KEY,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation.

@@ -20,8 +20,8 @@ type ErrorMessageProps = {
 };
 
 const ContactForm = ({ className, formId }: ContactFormProps) => {
-  const BASE_URL = process.env.CONVERTKIT_URL;
-  const API_KEY = process.env.CONVERTKIT_KEY;
+  const BASE_URL = process.env.NEXT_PUBLIC_CONVERTKIT_URL;
+  const API_KEY = process.env.NEXT_PUBLIC_CONVERTKIT_KEY;
   const {
     register,
     handleSubmit,
