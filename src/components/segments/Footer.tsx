@@ -26,11 +26,12 @@ const Footer = () => {
           </div>
           <div className="flex basis-full flex-col items-start justify-start lg:basis-6/12">
             <h3 className="text-2xl font-black">Scheduling</h3>
-            <InBoundLink footerLink outSource to="https://calendly.com/staxy">
-              Schedule a Zoom Meeting
-            </InBoundLink>
-            <InBoundLink footerLink outSource to="https://calendly.com/staxy">
-              Schedule a Google Meet Meeting
+            <InBoundLink
+              footerLink
+              outSource
+              to="https://tidycal.com/staxy/platform-chat"
+            >
+              Schedule a 90 minute meeting
             </InBoundLink>
             <InBoundLink footerLink outSource to="mailto:contact@staxy.io">
               Send an Email

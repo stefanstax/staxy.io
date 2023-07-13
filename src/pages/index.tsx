@@ -30,24 +30,26 @@ export default function Home() {
               title="Become the GO-TO Platform for your profession"
               subtitle={`Move Udemy, SkillShare, Kajabi and all others aside. Own your data. Own your audience. Own your business.`}
               ctaLabel="Schedule to qualify"
-              ctaLink="https://calendly.com/staxy"
+              ctaOutSource
+              ctaLink="https://tidycal.com/staxy/platform-chat"
               ctaMessage={`Only two businesses will enter the pool for the month of July`}
             />
           </div>
           <div className="mx-auto flex w-full max-w-[1280px] flex-wrap items-center justify-center gap-[10px] px-4 py-10">
             <SectionTitle
               className="uppercase"
-              subtitle="You've used services from some of these businesses:"
+              subtitle="Big names which have started with this platform:"
               subtitleClassName="text-center"
             />
             <CompaniesGrid />
           </div>
-          <div className="w-full bg-beige">
+          <div className="w-full bg-beige" id="pitch">
             <div className="mx-auto w-full max-w-[1280px] px-4 py-10 text-forest">
+              <SectionTitle title="You know that..." />
               <MediaAndText
-                title="You could hire 6 different software agencies for $1.700,00/mo and not own anything or you can use my platform, own everything and get it for $1........"
-                description="Platform I'm offering is like multi platform in one. You'll get the approach exactly how to build courses, sell them, build community, spread your influence. ALL IN ONE PLACE. All that without spending a fortune hiring outside experts. I'm with you from 0 to a 100. You'll even get my WhatsApp number for direct contact."
-                mediaSrc="line-md:check-list-3-twotone"
+                className="items-center justify-center"
+                title="You could hire 6 different software agencies or tools and spend over $1.700,00/mo meanwhile you own NOTHING."
+                description="Platform I'm offering is like multi platform in one. You'll get the approach exactly how to build courses, sell them, build community, spread your influence. ALL IN ONE PLACE. All that without spending a fortune hiring outside experts. I'm with you from 0 to a 100. I do not do this for anyone. I will provide you with my personal WhatsApp number."
                 mediaFirst={false}
               />
             </div>
@@ -67,10 +69,10 @@ export default function Home() {
             />
             <ListSteps className="max-w-[600px]" stepClass="my-24 text-beige" />
           </div>
-          <div className="w-full px-4 py-10">
+          <div className="w-full px-4 py-10" id="contact">
             <SectionTitle
               className="mx-auto max-w-[600px] text-center"
-              title="Not right now?"
+              title="Understand WHY"
               titleClassName="text-forest"
               subtitle="Subscribe and I'll deliver curated emails weekly on why owning such a platform will be a profitable investment for your business. Emails will stricly contain how to use features in a profitable way."
             />
@@ -81,7 +83,7 @@ export default function Home() {
             description="Scheduling the meeting does not secure your project. Please bring your A game to the meeting."
             message="first meeting is free."
             label="Reserve a seat"
-            link="https://calendly.com/staxy"
+            link="https://tidycal.com/staxy/platform-chat"
             ctaOutSource
           />
           <div className="mx-auto w-full items-center justify-center py-40 text-center drop-shadow-2xl">
