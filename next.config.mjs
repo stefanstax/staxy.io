@@ -6,6 +6,7 @@ await import("./src/env.mjs");
 import mdx from "@next/mdx";
 
 /** @type {import("next").NextConfig} */
+
 const config = {
   reactStrictMode: true,
   images: {

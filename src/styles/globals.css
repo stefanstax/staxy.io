@@ -56,6 +56,11 @@
     font-weight: 500;
 }
 
+.staxy__mdx a:hover {
+    opacity: 0.75;
+    transition: all .5s ease-in-out;
+}
+
 @font-face {
     font-family: "Staxy";
     src: url("../assets//fonts/Staxy-ExtraLight.woff2");

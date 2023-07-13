@@ -4,11 +4,11 @@ import { Icon } from "@iconify/react";
 import Image from "next/image";
 
 type MediaAndTextProps = {
-  title?: string;
-  description?: string;
+  title: string;
+  description: string;
   url?: string;
   label?: string;
-  className?: string;
+  className: string;
   mediaSrc?: string;
   mediaFirst?: boolean;
   endBlock?: boolean;
@@ -27,7 +27,11 @@ const MediaAndText = ({
   const classes = classNames(className, `mx-auto`);
   const endBlockImage = classNames(endBlock && `mx-auto`);
   const endBlockContent = classNames(
-    endBlock ? `w-full justify-center items-center` : `w-7/12 md:w-5/12`
+    endBlock
+      ? `w-full justify-center items-center`
+      : !mediaSrc
+      ? "w-full md:w-7/12"
+      : `w-7/12 md:w-5/12`
   );
   const endBlockContainer = classNames(
     endBlock ? `justify-between items-center` : `justify-center items-center`
@@ -35,10 +39,10 @@ const MediaAndText = ({
 
   return (
     <div
-      className={`${classes} ${endBlockContainer} my-12 flex w-full flex-wrap items-center justify-between gap-[40px] px-4`}
+      className={`${classes} ${endBlockContainer} my-12 flex w-fit flex-wrap px-4`}
     >
       {/* Media */}
-      {!mediaSrc?.includes("https:") && (
+      {!mediaSrc?.includes("https:") && mediaSrc && (
         <Icon
           icon={mediaSrc || ""}
           fontSize={256}
@@ -57,7 +61,7 @@ const MediaAndText = ({
         />
       )}
       {/* Content */}
-      <div className={`${endBlockContent} md:w-fitflex w-full flex-col`}>
+      <div className={`${endBlockContent} flex flex-col`}>
         {title && (
           <h3 className="my-4 text-[25px] font-black lg:text-[35px]">
             {title}
