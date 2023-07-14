@@ -84,7 +84,7 @@ const FAQ = ({ containerClass }: FAQProps) => {
         />
       )}
       <InBoundLink
-        to="https://calendy.com/staxy"
+        to="https://tidycal.com/staxy/platform-chat"
         className="text-[14px] font-bold no-underline transition-all hover:opacity-75"
         outSource
       >
