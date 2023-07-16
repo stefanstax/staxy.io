@@ -1,11 +1,9 @@
 import Image from "next/image";
 import StaxyLogo from "../../assets/images/staxy-logo.png";
 import InBoundLink from "../ui/InBoundLink";
-import TrustPilot from "../../assets/images/trustpilot-logo.png";
 import MasterCard from "../../assets/images/mastercard-logo.png";
 import VisaCard from "../../assets/images/visa-logo.png";
 import AmericanCard from "../../assets/images/american-logo.png";
-import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -28,6 +26,13 @@ const Footer = () => {
             <InBoundLink footerLink to="/legal/terms-and-conditions">
               Terms and Conditions
             </InBoundLink>
+            <InBoundLink
+              outSource
+              footerLink
+              to="https://www.trustpilot.com/review/staxy.io"
+            >
+              See our reviews on TrustPilot
+            </InBoundLink>
           </div>
           <div className="flex basis-full flex-col items-start justify-start lg:basis-6/12">
             <h3 className="text-2xl font-black">Scheduling</h3>
@@ -45,21 +50,15 @@ const Footer = () => {
               Send WhatsApp message
             </InBoundLink>
           </div>
+          <div className="flex w-full flex-wrap items-center justify-start">
+            <Image src={MasterCard} alt="" width={75} height={75} />
+            <Image src={VisaCard} alt="" width={75} height={75} />
+            <Image src={AmericanCard} alt="" width={75} height={75} />
+          </div>
           <div className="my-8 flex basis-full flex-col gap-[20px]">
             <span>Brought online with ❤️ from Belgrade.</span>
             <span>This site does not track you.</span>
             <span>MIT © 2023 - </span>
-          </div>
-          <div className="flex w-full flex-wrap items-center justify-start">
-            <InBoundLink
-              outSource
-              to="https://www.trustpilot.com/review/staxy.io"
-            >
-              <Image src={TrustPilot} alt="" width={200} height={200} />
-            </InBoundLink>
-            <Image src={MasterCard} alt="" width={75} height={75} />
-            <Image src={VisaCard} alt="" width={75} height={75} />
-            <Image src={AmericanCard} alt="" width={75} height={75} />
           </div>
         </div>
       </div>
