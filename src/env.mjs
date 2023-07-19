@@ -8,6 +8,7 @@ export const env = createEnv({
    */
   server: {
     DATABASE_URL_DEV: z.string().url(),
+    DATABASE_URL: z.string().url(),
     NODE_ENV: z.enum(["development", "local", "production"]),
     NEXTAUTH_SECRET:
       process.env.NODE_ENV === "production"
@@ -41,6 +42,7 @@ export const env = createEnv({
    */
   runtimeEnv: {
     DATABASE_URL_DEV: process.env.DATABASE_URL_DEV,
+    DATABASE_URL: process.env.DATABASE_URL,
     NODE_ENV: process.env.NODE_ENV,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
