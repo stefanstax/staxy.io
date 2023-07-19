@@ -9,23 +9,31 @@ export const featureRouter = createTRPCRouter({
     return await ctx.prisma.feature.findMany();
   }),
 
-  // createFeature: publicProcedure
-  //   .input(
-  //     z.object({
-  //       title: z.string(),
-  //       image: z.string(),
-  //       extraClass: z.string(),
-  //     })
-  //   )
-  //   .mutation(async ({ ctx, input }) => {
-  //     return await ctx.prisma.feature.create({
-  //       data: {
-  //         title: input.title,
-  //         image: input.image,
-  //         extraClass: input.extraClass,
-  //       },
-  //     });
-  //   }),
+  createFeature: publicProcedure
+    .input(
+      z.object({
+        image: z.string(),
+        title: z.string(),
+        description: z.string(),
+        category: z.string(),
+        extraClass: z.string(),
+        parent: z.string(),
+        order: z.number(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      return await ctx.prisma.feature.create({
+        data: {
+          image: input.image,
+          title: input.title,
+          description: input.description,
+          category: input.category,
+          extraClass: input.extraClass,
+          parent: input.parent,
+          order: input.order,
+        },
+      });
+    }),
 
   // deleteFeature: publicProcedure.mutation(async ({ ctx }) => {
   //   return await ctx.prisma.feature.deleteMany({});
@@ -42,14 +50,14 @@ export const featureRouter = createTRPCRouter({
   //     });
   //   }),
 
-  // getFeatureById: publicProcedure
-  //   .input(z.object({ featureId: z.number() }))
-  //   .query(async ({ ctx, input }) => {
-  //     const { featureId } = input;
-  //     return await ctx.prisma.feature.findUnique({
-  //       where: {
-  //         id: featureId,
-  //       },
-  //     });
-  //   }),
+  getFeatureById: publicProcedure
+    .input(z.object({ featureId: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const { featureId } = input;
+      return await ctx.prisma.feature.findUnique({
+        where: {
+          identifier: featureId,
+        },
+      });
+    }),
 });
