@@ -1,38 +1,25 @@
 import classNames from "classnames";
-import { useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Layout from "~/components/segments/Layout";
 import { api } from "~/utils/api";
 import { ToastContainer, toast } from "react-toastify";
 
-type FeatureData = {
-  title: string;
-  description: string;
-  category: string;
-  extraClass: string;
-  identifier: string;
-  order: number;
-  parent: string | null;
-};
-
 const Features = () => {
   const { handleSubmit, reset, register } = useForm();
+  const { mutate } = api.features.createFeature.useMutation();
 
-  const mutation = api.features.createFeature.useMutation();
-
-  const onSubmit = (data) => {
-    console.log("Data to be sent for create is:", data);
-
-    mutation.mutate({
-      image: data?.image,
-      title: data?.title,
-      description: data?.description,
-      category: data?.category,
-      extraClass: data?.extraClass,
-      parent: data?.parent,
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    mutate({
+      image: data?.image as string,
+      title: data?.title as string,
+      description: data?.description as string,
+      category: data?.category as string,
+      extraClass: data?.extraClass as string,
+      parent: data?.parent as string,
       order: Number(data?.order),
     });
 
-    toast.success("You're on the waitlist!", {
+    toast.success(`Data has been sent to DB`, {
       position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -60,6 +47,7 @@ const Features = () => {
           Feature Creation in progress
         </h1>
         <form
+          // eslint-disable-next-line @typescript-eslint/no-misused-promises
           onSubmit={handleSubmit(onSubmit)}
           className="flex w-full flex-wrap items-center justify-start gap-[20px]"
         >

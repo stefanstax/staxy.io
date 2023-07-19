@@ -1,32 +1,21 @@
 import classNames from "classnames";
 import { useRouter } from "next/router";
 import React from "react";
-import { useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Layout from "~/components/segments/Layout";
-import Input from "~/components/ui/Input";
 import { api } from "~/utils/api";
 
-type FeatureData = {
-  title: string;
-  description: string;
-  category: string;
-  extraClass: string;
-  identifier: string;
-  order: number;
-  parent: string | null;
-};
-
 const Features = () => {
-  const { handleSubmit, reset, register } = useForm();
+  const { handleSubmit, register } = useForm();
   const router = useRouter();
   const { id } = router.query;
+  const pageId = id as string;
 
   const { data } = api.features.getFeatureById.useQuery({
-    featureId: id,
+    featureId: pageId,
   });
 
-  const onSubmit = (data, event) => {
-    event?.preventDefault();
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log("Data to be sent is:", data);
   };
 
@@ -46,6 +35,7 @@ const Features = () => {
           <span className="text-[20px]">#{data?.identifier}</span>
         </h1>
         <form
+          // eslint-disable-next-line @typescript-eslint/no-misused-promises
           onSubmit={handleSubmit(onSubmit)}
           className="flex w-full flex-wrap items-center justify-start gap-[20px]"
         >
@@ -63,7 +53,7 @@ const Features = () => {
           />
           <input
             {...register("description")}
-            defaultValue={data?.description}
+            defaultValue={data?.description as string}
             placeholder="Feature description is..."
             className={inputClasses}
           />
@@ -79,7 +69,7 @@ const Features = () => {
           />
           <input
             {...register("parent")}
-            defaultValue={data?.parent}
+            defaultValue={data?.parent as string}
             placeholder="Feature parent is..."
             className={inputClasses}
           />
