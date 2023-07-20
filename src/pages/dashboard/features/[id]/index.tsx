@@ -1,22 +1,59 @@
+import { useEffect } from "react";
 import classNames from "classnames";
-import { useRouter } from "next/router";
-import React from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Layout from "~/components/segments/Layout";
 import { api } from "~/utils/api";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const Features = () => {
-  const { handleSubmit, register } = useForm();
+import { useRouter } from "next/router";
+
+const FeatureUpdate = () => {
   const router = useRouter();
+  // ? Acquire current post's id
   const { id } = router.query;
-  const pageId = id as string;
-
+  // ? Grab data using current id
   const { data } = api.features.getFeatureById.useQuery({
-    featureId: pageId,
+    identifier: id as string,
   });
 
+  const { handleSubmit, register, setValue } = useForm();
+
+  // * Work-around for un-touched fields not getting API data via hook form
+  useEffect(() => {
+    setValue("image", data?.image);
+    setValue("title", data?.title);
+    setValue("description", data?.description);
+    setValue("category", data?.category);
+    setValue("parent", data?.parent);
+    setValue("extraClass", data?.extraClass);
+    console.log(data);
+  }, [data]);
+
+  // ? Use update mutation
+  const mutation = api.features.updateFeature.useMutation();
+
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log("Data to be sent is:", data);
+    mutation.mutate({
+      identifier: id as string,
+      image: data?.image as string,
+      title: data?.title as string,
+      description: data?.description as string,
+      category: data?.category as string,
+      extraClass: data?.extraClass as string,
+      parent: data?.parent as string,
+    });
+
+    toast.success(`Data has been updated`, {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: "dark",
+    });
   };
 
   const inputClasses = classNames(
@@ -27,12 +64,13 @@ const Features = () => {
     `w-fit min-w-[200px] p-4 text-slate-50 drop-shadow-md uppercase rounded bg-gradient-to-r from-slate-900 to-neutral-900 font-black hover:cursor-pointer hover:from-neutral-900 hover:to-slate-900 transition-all hover:opacity-[75%]`
   );
 
+  const pickedParent = data?.parent;
+
   return (
     <Layout>
       <div className="mx-auto my-48 flex w-full max-w-[1280px] flex-wrap items-center justify-center gap-[20px] px-4">
         <h1 className="w-full text-[40px] font-black uppercase underline">
-          Feature: {data?.title}{" "}
-          <span className="text-[20px]">#{data?.identifier}</span>
+          Feature Update in progress
         </h1>
         <form
           // eslint-disable-next-line @typescript-eslint/no-misused-promises
@@ -40,54 +78,66 @@ const Features = () => {
           className="flex w-full flex-wrap items-center justify-start gap-[20px]"
         >
           <input
-            {...register("icon")}
-            defaultValue={data?.image}
+            {...register("image")}
             placeholder="Feature Icon is..."
             className={inputClasses}
+            defaultValue={data?.image}
           />
           <input
             {...register("title")}
-            defaultValue={data?.title}
             placeholder="Feature title is..."
             className={inputClasses}
+            defaultValue={data?.title}
           />
           <input
             {...register("description")}
-            defaultValue={data?.description as string}
             placeholder="Feature description is..."
             className={inputClasses}
+            defaultValue={data?.description}
           />
-          <select {...register("category")} className={inputClasses}>
+          <select
+            {...register("category")}
+            defaultValue={data?.category as string}
+            className={inputClasses}
+          >
             <option value="core">Core</option>
             <option value="module">Module</option>
           </select>
           <input
             {...register("extraClass")}
-            defaultValue={data?.extraClass}
             placeholder="Feature extra class is..."
             className={inputClasses}
+            defaultValue={data?.extraClass}
           />
-          <input
+          <select
             {...register("parent")}
-            defaultValue={data?.parent as string}
             placeholder="Feature parent is..."
             className={inputClasses}
-          />
-          <input
-            {...register("order")}
-            defaultValue={data?.order}
-            placeholder="Feature order number is..."
-            className={inputClasses}
-            min={0}
-            type="number"
-          />
+          >
+            <option value="">
+              Ignore this field if feature has no parent (options inside)
+            </option>
+            <option
+              selected={pickedParent === "e-learning" ? true : false}
+              value="e-learning"
+            >
+              E-Learning
+            </option>
+            <option
+              selected={pickedParent === "events" ? true : false}
+              value="events"
+            >
+              Events
+            </option>
+          </select>
           <button className={buttonClasses} type="submit">
             Update feature {data?.title}
           </button>
         </form>
+        <ToastContainer />
       </div>
     </Layout>
   );
 };
 
-export default Features;
+export default FeatureUpdate;

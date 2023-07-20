@@ -3,33 +3,49 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Layout from "~/components/segments/Layout";
 import { api } from "~/utils/api";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const Features = () => {
+const FeatureCreate = () => {
   const { handleSubmit, reset, register } = useForm();
-  const { mutate } = api.features.createFeature.useMutation();
+  const mutation = api.features.createFeature.useMutation();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    mutate({
+    console.log(mutation, mutation.isSuccess, mutation.isError);
+
+    mutation.mutate({
       image: data?.image as string,
       title: data?.title as string,
       description: data?.description as string,
       category: data?.category as string,
       extraClass: data?.extraClass as string,
       parent: data?.parent as string,
-      order: Number(data?.order),
     });
 
-    toast.success(`Data has been sent to DB`, {
-      position: "bottom-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: false,
-      progress: undefined,
-      theme: "dark",
-    });
-    reset();
+    mutation.isSuccess &&
+      toast.success(`Data has been sent to DB`, {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "dark",
+      });
+
+    mutation.isError &&
+      toast.error(`There's been an issue with the update`, {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "dark",
+      });
+
+    mutation.isSuccess && reset();
   };
 
   const inputClasses = classNames(
@@ -86,13 +102,7 @@ const Features = () => {
             <option value="e-learning">E-Learning</option>
             <option value="events">Events</option>
           </select>
-          <input
-            {...register("order")}
-            placeholder="Feature order number is..."
-            className={inputClasses}
-            min={0}
-            type="number"
-          />
+
           <button className={buttonClasses} type="submit">
             Create feature
           </button>
@@ -103,4 +113,4 @@ const Features = () => {
   );
 };
 
-export default Features;
+export default FeatureCreate;
