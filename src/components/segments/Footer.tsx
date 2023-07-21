@@ -4,6 +4,7 @@ import InBoundLink from "../ui/InBoundLink";
 import MasterCard from "../../assets/images/mastercard-logo.png";
 import VisaCard from "../../assets/images/visa-logo.png";
 import AmericanCard from "../../assets/images/american-logo.png";
+import { Routes } from "../constants";
 
 const Footer = () => {
   return (
@@ -48,6 +49,12 @@ const Footer = () => {
             </InBoundLink>
             <InBoundLink footerLink outSource to="https://wa.me/+381691920124">
               Send WhatsApp message
+            </InBoundLink>
+          </div>
+          <div className="flex basis-full flex-col items-start justify-start lg:basis-6/12">
+            <h3 className="text-2xl font-black">Admin</h3>
+            <InBoundLink footerLink to={Routes.FEATURES_LIST}>
+              Go to Features List
             </InBoundLink>
           </div>
           <div className="flex w-full flex-wrap items-center justify-start">

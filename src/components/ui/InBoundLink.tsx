@@ -6,6 +6,7 @@ type InBoundLinkProps = {
   className?: string;
   children?: ReactNode;
   cta?: boolean;
+  primary?: boolean;
   secondary?: boolean;
   currentPath?: string;
   footerLink?: boolean;
@@ -26,6 +27,7 @@ const InBoundLink = ({
   activeClassName,
   outSource,
   ctaOutSource,
+  primary,
 }: InBoundLinkProps): JSX.Element => {
   const classes = classNames(
     className,
@@ -33,7 +35,11 @@ const InBoundLink = ({
     `font-black p-2 rounded underline transition-all cursor-pointer hover:bg-white hover:text-forest`,
     currentPath === to && activeClassName,
     cta && !secondary && `bg-forestLight text-white`,
-    secondary && !cta && `bg-purpy text-white`
+    secondary && !cta && `bg-purpy text-white`,
+    primary &&
+      !secondary &&
+      !cta &&
+      `rounded hover:opacity-[75%] bg-forestLight hover:bg-white hover:text-forest font-black uppercase transition-all p-2 flex cursor-pointer drop-shadow-md no-underline`
   );
   return (
     <Link

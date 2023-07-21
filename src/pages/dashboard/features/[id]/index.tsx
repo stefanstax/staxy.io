@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
 import Loaders from "~/components/ui/Loaders";
 import Button from "~/components/ui/Button";
+import ErrorMessage from "~/components/ui/ErrorMessage";
 
 const FeatureUpdate = () => {
   const router = useRouter();
@@ -19,7 +20,12 @@ const FeatureUpdate = () => {
     identifier: id as string,
   });
 
-  const { handleSubmit, register, setValue } = useForm();
+  const {
+    handleSubmit,
+    register,
+    setValue,
+    formState: { errors },
+  } = useForm();
 
   // * Work-around for un-touched fields not getting API data via hook form
   useEffect(() => {
@@ -65,7 +71,7 @@ const FeatureUpdate = () => {
   return (
     <Layout>
       <div className="mx-auto my-48 flex w-full max-w-[1280px] flex-wrap items-start justify-start gap-[20px] px-4">
-        <h1 className="w-fit rounded bg-forest p-2 text-[40px] font-black uppercase text-forestLight drop-shadow-md">
+        <h1 className="w-full rounded bg-forest p-2 text-[40px] font-black uppercase text-forestLight drop-shadow-md">
           Record data: {data?.title}
         </h1>
         {data && (
@@ -76,29 +82,60 @@ const FeatureUpdate = () => {
           >
             <p className="font-black uppercase">Basic</p>
             <input
-              {...register("image")}
-              placeholder="Feature Icon is..."
+              {...register("image", {
+                required: true,
+                pattern: /^[a-zA-Z-:]+$/,
+              })}
+              placeholder="Icon is..."
               className={inputClasses}
               defaultValue={data?.image}
             />
+            <ErrorMessage>
+              {errors?.image?.type === "required" &&
+                "Image is a required field."}
+              {errors?.image?.type === "pattern" &&
+                "Image accepts: lowercase, uppercase, dash and a colon"}
+            </ErrorMessage>
             <input
-              {...register("title")}
-              placeholder="Feature title is..."
+              {...register("title", {
+                required: true,
+                pattern: /^[a-zA-Z-:]+$/,
+              })}
+              placeholder="Title is..."
               className={inputClasses}
               defaultValue={data?.title}
             />
+            <ErrorMessage>
+              {errors?.title?.type === "required" &&
+                "Title is a required field."}
+              {errors?.title?.type === "pattern" &&
+                "Title accepts: lowercase, uppercase, dash and a colon"}
+            </ErrorMessage>
             <input
-              {...register("description")}
-              placeholder="Feature description is..."
+              {...register("description", {
+                required: true,
+                pattern: /^[a-zA-Z .?0-8',-]+$/,
+              })}
+              placeholder="Description is..."
               className={inputClasses}
               defaultValue={data?.description}
             />
+            <ErrorMessage>
+              {errors?.description?.type === "required" &&
+                "Description is a required field."}
+              {errors?.description?.type === "pattern" &&
+                "Description accepts: lowercase, uppercase, dash, comma, question mark, hyphen"}
+            </ErrorMessage>
             <input
-              {...register("extraClass")}
-              placeholder="Feature extra class is..."
+              {...register("extraClass", { pattern: /^[a-zA-Z-: ]+$/ })}
+              placeholder="Extra class is..."
               className={inputClasses}
               defaultValue={data?.extraClass}
             />
+            <ErrorMessage>
+              {errors?.extraClass?.type === "pattern" &&
+                `Please visit https://tailwindcss.com for guidance on styling classes.`}
+            </ErrorMessage>
             <p className="font-black uppercase">Relational</p>
             <select
               {...register("category")}
@@ -110,7 +147,7 @@ const FeatureUpdate = () => {
             </select>
             <select
               {...register("parent")}
-              placeholder="Feature parent is..."
+              placeholder="Parent module?"
               className={inputClasses}
               defaultValue={data?.parent || ""}
             >

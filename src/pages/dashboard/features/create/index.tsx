@@ -6,8 +6,12 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Button from "~/components/ui/Button";
 import ErrorMessage from "~/components/ui/ErrorMessage";
+import { useSession } from "next-auth/react";
 
 const FeatureCreate = () => {
+  const session = useSession();
+  console.log(session);
+
   const {
     handleSubmit,
     reset,
@@ -47,7 +51,7 @@ const FeatureCreate = () => {
   return (
     <Layout>
       <div className="mx-auto my-48 flex w-full max-w-[1280px] flex-wrap items-start justify-start gap-[20px] px-4">
-        <h1 className="w-fit rounded bg-forest p-2 text-[40px] font-black uppercase text-forestLight drop-shadow-md">
+        <h1 className="w-full rounded bg-forest p-2 text-[40px] font-black uppercase text-forestLight drop-shadow-md">
           Feature creation
         </h1>
         <form
@@ -63,8 +67,6 @@ const FeatureCreate = () => {
           />
           <ErrorMessage>
             {errors?.image?.type === "required" && "Image is required."}
-          </ErrorMessage>
-          <ErrorMessage>
             {errors?.image?.type === "pattern" &&
               "Image characters allowed: lowercase uppercase dash colon."}
           </ErrorMessage>
@@ -75,8 +77,6 @@ const FeatureCreate = () => {
           />
           <ErrorMessage>
             {errors?.title?.type === "required" && "title is required."}
-          </ErrorMessage>
-          <ErrorMessage>
             {errors?.title?.type === "pattern" &&
               "title characters allowed: lowercase uppercase space."}
           </ErrorMessage>
@@ -91,8 +91,6 @@ const FeatureCreate = () => {
           <ErrorMessage>
             {errors?.description?.type === "required" &&
               "description is required."}
-          </ErrorMessage>
-          <ErrorMessage>
             {errors?.description?.type === "pattern" &&
               "description characters allowed: lowercase uppercase space."}
           </ErrorMessage>

@@ -1,4 +1,3 @@
-// import { signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Layout from "~/components/segments/Layout";
 import HeroBanner from "~/components/ui/HeroBanner";
@@ -10,6 +9,7 @@ import ContactForm from "~/components/ui/ContactForm";
 import CompaniesGrid from "~/components/ui/CompaniesGrid";
 import MediaAndText from "~/components/ui/MediaAndText";
 import FeaturesGrid from "~/components/ui/FeaturesGrid";
+import SignIn from "~/components/ui/Signin";
 
 export default function Home() {
   return (
@@ -24,6 +24,7 @@ export default function Home() {
       </Head>
       <main className="min-h-screen">
         <Layout className="mt-[60px]">
+          <SignIn />
           <div className="flex min-h-[600px] flex-wrap items-center justify-center gap-[20px] bg-forest">
             <HeroBanner
               className="px-4 text-beige"
@@ -98,27 +99,3 @@ export default function Home() {
     </>
   );
 }
-
-// function AuthShowcase() {
-//   const { data: sessionData } = useSession();
-
-//   const { data: secretMessage } = api.example.getSecretMessage.useQuery(
-//     undefined, // no input
-//     { enabled: sessionData?.user !== undefined }
-//   );
-
-//   return (
-//     <div className="flex flex-col items-center justify-center gap-4">
-//       <p className="text-center text-2xl text-white">
-//         {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
-//         {secretMessage && <span> - {secretMessage}</span>}
-//       </p>
-//       <button
-//         className="rounded-full bg-white/10 px-10 py-3 font-semibold text-white no-underline transition hover:bg-white/20"
-//         onClick={sessionData ? () => void signOut() : () => void signIn()}
-//       >
-//         {sessionData ? "Sign out" : "Sign in"}
-//       </button>
-//     </div>
-//   );
-// }
