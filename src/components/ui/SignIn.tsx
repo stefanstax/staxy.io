@@ -1,48 +1,45 @@
 import { signIn, useSession } from "next-auth/react";
-import React, { useEffect } from "react";
-import { useRouter } from "next/router";
-import Image from "next/image";
-import { Routes } from "../constants";
-import InBoundLink from "./InBoundLink";
 import Button from "./Button";
+import classNames from "classnames";
 
-const SignIn = () => {
+type SignInProps = {
+  className: string;
+};
+const SignIn = ({ className }: SignInProps) => {
   const { data: session } = useSession();
-  const router = useRouter();
+  const classes = classNames(className, `flex items-center justify-center`);
 
-  useEffect(() => {
-    if (session) {
-      void router.push(Routes.HOME);
-    }
-  }, [session, router]);
-
-  return (
-    <div className="flex h-screen items-center justify-center">
-      <div className="flex flex-col items-center gap-8 sm:flex-row sm:gap-20">
-        <div className="flex flex-col items-start gap-3">
-          <div className="flex items-center gap-1">
-            <InBoundLink to={Routes.HOME} className="text-sm opacity-50">
-              Back
-            </InBoundLink>
-          </div>
-
-          <div className="flex flex-col items-center gap-3">
-            <Image
-              src="/logo.svg"
-              alt="Logo"
-              width={60}
-              height={110}
-              className="object-contain"
-              priority
-            />
-            <h1 className="text-sm">Log in or sign up</h1>
-          </div>
-        </div>
-        <div className="flex flex-col gap-4">
+  const AuthenticationState = () => {
+    if (!session) {
+      return (
+        <div className="flex flex-wrap gap-[20px]">
           <Button onClick={() => void signIn("github")} className="shadow-lg">
             Continue with GitHub
           </Button>
+          <Button onClick={() => void signIn("google")} className="shadow-lg">
+            Continue with Google
+          </Button>
         </div>
+      );
+    }
+
+    if (session) {
+      return <h4 className="font-[600]">Welcome {session.user.name}</h4>;
+    }
+  };
+
+  return (
+    <div className={classes}>
+      <div className="flex flex-col items-start gap-[20px]">
+        <p className="font-black">
+          Currently we&apos;re providing GitHub as main signin option. If you
+          would like to receive another provider please write to our email
+          contact@staxy.io
+        </p>
+        <AuthenticationState />
+        <span className="rounded bg-orange-200 p-1 text-orange-800">
+          Staxy will never have access to your most sensitive data.
+        </span>
       </div>
     </div>
   );

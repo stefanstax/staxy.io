@@ -1,4 +1,5 @@
 import { Icon } from "@iconify/react";
+import { useSession } from "next-auth/react";
 import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -10,6 +11,9 @@ import Loaders from "~/components/ui/Loaders";
 import { api } from "~/utils/api";
 
 const FeaturesList = () => {
+  const { data: session } = useSession();
+  console.log(session);
+
   const { data } = api.features.getFeatures.useQuery();
   const mutation = api.features.deleteFeatureById.useMutation();
 
@@ -57,7 +61,7 @@ const FeaturesList = () => {
           <div className="flex w-full items-center justify-center gap-[5px]">
             <InBoundLink
               className="flex w-6/12 items-center justify-center gap-[10px] rounded-none rounded-bl rounded-tr bg-forestLight uppercase no-underline"
-              to={`${Routes.FEATURES_EDIT + `/${identifier}`}`}
+              to={`${Routes.FEATURES_EDIT + `${identifier}`}`}
             >
               <Icon icon="solar:pen-new-square-broken" fontSize={20} /> Edit
             </InBoundLink>

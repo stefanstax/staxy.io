@@ -5,8 +5,10 @@ import MasterCard from "../../assets/images/mastercard-logo.png";
 import VisaCard from "../../assets/images/visa-logo.png";
 import AmericanCard from "../../assets/images/american-logo.png";
 import { Routes } from "../constants";
+import { useSession } from "next-auth/react";
 
 const Footer = () => {
+  const { data: session } = useSession();
   return (
     <section className="mx-auto w-full bg-forest p-10 text-beige drop-shadow-2xl">
       <div className="mx-auto max-w-[1140px]">
@@ -51,12 +53,14 @@ const Footer = () => {
               Send WhatsApp message
             </InBoundLink>
           </div>
-          <div className="flex basis-full flex-col items-start justify-start lg:basis-6/12">
-            <h3 className="text-2xl font-black">Admin</h3>
-            <InBoundLink footerLink to={Routes.FEATURES_LIST}>
-              Go to Features List
-            </InBoundLink>
-          </div>
+          {session?.user?.email === "stefanstaxbusiness@gmail.com" && (
+            <div className="flex basis-full flex-col items-start justify-start lg:basis-6/12">
+              <h3 className="text-2xl font-black">Admin</h3>
+              <InBoundLink footerLink to={Routes.FEATURES_LIST}>
+                Go to Features List
+              </InBoundLink>
+            </div>
+          )}
           <div className="flex w-full flex-wrap items-center justify-start">
             <Image src={MasterCard} alt="" width={75} height={75} />
             <Image src={VisaCard} alt="" width={75} height={75} />
