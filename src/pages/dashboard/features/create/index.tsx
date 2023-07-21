@@ -1,17 +1,22 @@
 import classNames from "classnames";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { type FieldValues, type SubmitHandler, useForm } from "react-hook-form";
 import Layout from "~/components/segments/Layout";
 import { api } from "~/utils/api";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Button from "~/components/ui/Button";
+import ErrorMessage from "~/components/ui/ErrorMessage";
 
 const FeatureCreate = () => {
-  const { handleSubmit, reset, register } = useForm();
+  const {
+    handleSubmit,
+    reset,
+    register,
+    formState: { errors },
+  } = useForm();
   const mutation = api.features.createFeature.useMutation();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(mutation, mutation.isSuccess, mutation.isError);
-
     mutation.mutate({
       image: data?.image as string,
       title: data?.title as string,
@@ -21,91 +26,103 @@ const FeatureCreate = () => {
       parent: data?.parent as string,
     });
 
-    mutation.isSuccess &&
-      toast.success(`Data has been sent to DB`, {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: false,
-        progress: undefined,
-        theme: "dark",
-      });
+    toast.success(`Data has been sent to DB`, {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: "dark",
+    });
 
-    mutation.isError &&
-      toast.error(`There's been an issue with the update`, {
-        position: "bottom-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: false,
-        progress: undefined,
-        theme: "dark",
-      });
-
-    mutation.isSuccess && reset();
+    reset();
   };
 
   const inputClasses = classNames(
-    `w-full p-4 bg-slate-50 rounded drop-shadow-md placeholder:text-slate-700 cursor-pointer`
-  );
-
-  const buttonClasses = classNames(
-    `w-fit min-w-[200px] p-4 text-slate-50 drop-shadow-md uppercase rounded bg-gradient-to-r from-slate-900 to-neutral-900 font-black hover:cursor-pointer hover:from-neutral-900 hover:to-slate-900 transition-all hover:opacity-[75%]`
+    `w-full p-4 bg-slate-200 font-[600] rounded drop-shadow-md placeholder:text-slate-700 cursor-pointer`
   );
 
   return (
     <Layout>
-      <div className="mx-auto my-48 flex w-full max-w-[1280px] flex-wrap items-center justify-center gap-[20px] px-4">
-        <h1 className="w-full text-[40px] font-black uppercase underline">
-          Feature Creation in progress
+      <div className="mx-auto my-48 flex w-full max-w-[1280px] flex-wrap items-start justify-start gap-[20px] px-4">
+        <h1 className="w-fit rounded bg-forest p-2 text-[40px] font-black uppercase text-forestLight drop-shadow-md">
+          Feature creation
         </h1>
         <form
           // eslint-disable-next-line @typescript-eslint/no-misused-promises
           onSubmit={handleSubmit(onSubmit)}
           className="flex w-full flex-wrap items-center justify-start gap-[20px]"
         >
+          <p className="font-black uppercase">Basic</p>
           <input
-            {...register("image")}
+            {...register("image", { required: true, pattern: /^[a-zA-Z-:]+$/ })}
             placeholder="Feature Icon is..."
             className={inputClasses}
           />
+          <ErrorMessage>
+            {errors?.image?.type === "required" && "Image is required."}
+          </ErrorMessage>
+          <ErrorMessage>
+            {errors?.image?.type === "pattern" &&
+              "Image characters allowed: lowercase uppercase dash colon."}
+          </ErrorMessage>
           <input
-            {...register("title")}
-            placeholder="Feature title is..."
+            {...register("title", { required: true, pattern: /^[a-zA-Z .]+$/ })}
+            placeholder="Title is..."
             className={inputClasses}
           />
+          <ErrorMessage>
+            {errors?.title?.type === "required" && "title is required."}
+          </ErrorMessage>
+          <ErrorMessage>
+            {errors?.title?.type === "pattern" &&
+              "title characters allowed: lowercase uppercase space."}
+          </ErrorMessage>
           <input
-            {...register("description")}
-            placeholder="Feature description is..."
+            {...register("description", {
+              required: true,
+              pattern: /^[a-zA-Z .?0-8',]+$/,
+            })}
+            placeholder="Description is..."
             className={inputClasses}
           />
+          <ErrorMessage>
+            {errors?.description?.type === "required" &&
+              "description is required."}
+          </ErrorMessage>
+          <ErrorMessage>
+            {errors?.description?.type === "pattern" &&
+              "description characters allowed: lowercase uppercase space."}
+          </ErrorMessage>
+          <input
+            {...register("extraClass", { pattern: /^[a-zA-Z-: ]+$/ })}
+            placeholder="Extra classes..."
+            className={inputClasses}
+          />
+          <ErrorMessage>
+            {errors?.extraClass?.type === "pattern" &&
+              `Please visit https://tailwindcss.com for guidance on styling classes.`}
+          </ErrorMessage>
+          <p className="font-black uppercase">Relational</p>
           <select {...register("category")} className={inputClasses}>
             <option value="core">Core</option>
             <option value="module">Module</option>
           </select>
-          <input
-            {...register("extraClass")}
-            placeholder="Feature extra class is..."
-            className={inputClasses}
-          />
           <select
             {...register("parent")}
-            placeholder="Feature parent is..."
+            placeholder="Parent module?"
             className={inputClasses}
+            defaultValue=""
           >
-            <option defaultChecked value="">
-              Ignore this field if feature has no parent (options inside)
+            <option value="">
+              Parent module (options) - leave blank if none
             </option>
             <option value="e-learning">E-Learning</option>
             <option value="events">Events</option>
           </select>
-
-          <button className={buttonClasses} type="submit">
-            Create feature
-          </button>
+          <Button>Create a feature</Button>
         </form>
       </div>
       <ToastContainer />

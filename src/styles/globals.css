@@ -8,6 +8,10 @@
     }
 }
 
+.error__message:empty {
+    display: none;
+}
+
 .textByzantine {
     color: #0a3524!important;
 }

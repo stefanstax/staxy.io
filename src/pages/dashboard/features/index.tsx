@@ -1,9 +1,11 @@
 import { Icon } from "@iconify/react";
-import React, { useEffect } from "react";
+import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Layout from "~/components/segments/Layout";
+import Button from "~/components/ui/Button";
 import InBoundLink from "~/components/ui/InBoundLink";
+import Loaders from "~/components/ui/Loaders";
 import { api } from "~/utils/api";
 
 const FeaturesList = () => {
@@ -32,7 +34,7 @@ const FeaturesList = () => {
   const renderFeatures = data
     ?.sort((a, b) => a.order - b.order)
     ?.map((feature) => {
-      const { identifier, title } = feature;
+      const { identifier, title, order } = feature;
       const numberOfFields = Object.keys(feature).length;
       return (
         <div
@@ -46,6 +48,7 @@ const FeaturesList = () => {
             <h4 className="w-full px-4">
               Title: <span className="font-black uppercase">{title}</span>
             </h4>
+            <p className="w-full gap-[5px] px-4">Number in dataset: #{order}</p>
             <p className="w-full gap-[5px] px-4">
               Number of registered fields: {numberOfFields}
             </p>
@@ -57,12 +60,12 @@ const FeaturesList = () => {
             >
               <Icon icon="solar:pen-new-square-broken" fontSize={20} /> Edit
             </InBoundLink>
-            <span
+            <Button
               onClick={() => handleDelete(identifier, title)}
-              className="flex w-6/12 cursor-pointer items-center justify-center gap-[10px] rounded-none rounded-br rounded-tl bg-forestLight p-2 font-black uppercase transition-all hover:bg-red-700"
+              actionDelete
             >
               <Icon icon="solar:trash-bin-2-broken" fontSize={20} /> Delete
-            </span>
+            </Button>
           </div>
         </div>
       );
@@ -74,6 +77,14 @@ const FeaturesList = () => {
           List of all features
         </h1>
         {renderFeatures}
+        {!renderFeatures?.length && (
+          <Loaders
+            clones={renderFeatures?.length || 6}
+            minWidth="w-full lg:w-[32%]"
+            minHeight="min-h-[150px]"
+            background="bg-forest"
+          />
+        )}
       </div>
       <ToastContainer />
     </Layout>
