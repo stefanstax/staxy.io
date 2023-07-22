@@ -32,7 +32,7 @@ const InBoundLink = ({
   const classes = classNames(
     className,
     footerLink && `font-medium py-2 px-0`,
-    `font-black p-2 rounded underline transition-all cursor-pointer hover:bg-white hover:text-forest`,
+    `font-black p-2 rounded underline transition-all cursor-pointer hover:bg-white hover:text-forest hover:opacity-[75%]`,
     currentPath === to && activeClassName,
     cta && !secondary && `bg-forestLight text-white`,
     secondary && !cta && `bg-purpy text-white`,

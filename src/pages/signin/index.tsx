@@ -5,7 +5,7 @@ import SignIn from "~/components/ui/SignIn";
 const SignInPage = () => {
   return (
     <Layout>
-      <SignIn className="mx-auto max-w-[600px] py-40" />
+      <SignIn className="mx-auto max-w-[600px] px-4 py-40" />
     </Layout>
   );
 };
