@@ -9,9 +9,6 @@ import ErrorMessage from "~/components/ui/ErrorMessage";
 import { useSession } from "next-auth/react";
 
 const FeatureCreate = () => {
-  const session = useSession();
-  console.log(session);
-
   const {
     handleSubmit,
     reset,

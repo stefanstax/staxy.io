@@ -5,6 +5,7 @@ import { stepRouter } from "./routers/stepsRouter";
 import { faqRouter } from "./routers/faqsRouter";
 import { companyRouter } from "./routers/companiesRouter";
 import { contactRouter } from "./routers/contactRouter";
+import { restrictedPathRouter } from "./routers/restrictedPaths";
 
 /**
  * This is the primary router for your server.
@@ -18,6 +19,7 @@ export const appRouter = createTRPCRouter({
   faqs: faqRouter,
   companies: companyRouter,
   contacts: contactRouter,
+  restrictedPaths: restrictedPathRouter,
 });
 
 // export type definition of API

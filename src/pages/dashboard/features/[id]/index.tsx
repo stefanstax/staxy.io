@@ -155,7 +155,7 @@ const FeatureUpdate = () => {
               <option value="e-learning">E-Learning</option>
               <option value="events">Events</option>
             </select>
-            <Button>Update feature {data?.title}</Button>
+            <Button>Update feature</Button>
           </form>
         )}
         {!dataLength && (

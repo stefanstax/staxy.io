@@ -1,6 +1,6 @@
-import { signIn, useSession } from "next-auth/react";
-import Button from "./Button";
+import { useSession } from "next-auth/react";
 import classNames from "classnames";
+import SocialLogin from "./SocialLogin";
 
 type SignInProps = {
   className: string;
@@ -13,12 +13,8 @@ const SignIn = ({ className }: SignInProps) => {
     if (!session) {
       return (
         <div className="flex flex-wrap gap-[20px]">
-          <Button onClick={() => void signIn("github")} className="shadow-lg">
-            Continue with GitHub
-          </Button>
-          <Button onClick={() => void signIn("google")} className="shadow-lg">
-            Continue with Google
-          </Button>
+          <SocialLogin provider="github" message="Continue with GitHub" />
+          <SocialLogin provider="google" message="Continue with Google" />
         </div>
       );
     }

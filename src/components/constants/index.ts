@@ -6,4 +6,7 @@ export const Routes = {
   FEATURES_CREATE: "/dashboard/features/create",
   FEATURES_LIST: `/dashboard/features/`,
   FEATURES_EDIT: `/dashboard/features/`,
+  FAQ_CREATE: "/dashboard/faq/create",
+  FAQ_LIST: "/dashboard/faq/",
+  FAQ_EDIT: "/dashboard/faq/",
 };

@@ -104,3 +104,9 @@ model Contact {
     name       String
     email      String @unique
 }
+
+model RestrictedPath {
+    identifier String  @id @unique @default(cuid())
+    path       String
+    locked     Boolean @default(false)
+}

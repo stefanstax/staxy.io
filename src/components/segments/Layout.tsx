@@ -2,7 +2,7 @@ import classNames from "classnames";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
 import { type ReactNode } from "react";
-import { useSession } from "next-auth/react";
+import RouteBlocker from "./RouteBlocker";
 
 interface LayoutProps {
   className?: string;
@@ -10,15 +10,15 @@ interface LayoutProps {
 }
 
 const Layout = ({ className, children }: LayoutProps): JSX.Element => {
-  const { data: session } = useSession();
-
   const classes = classNames(className);
   return (
-    <section className={classes}>
-      <Navigation />
-      {children}
-      <Footer />
-    </section>
+    <RouteBlocker>
+      <section className={classes}>
+        <Navigation />
+        {children}
+        <Footer />
+      </section>
+    </RouteBlocker>
   );
 };
 
