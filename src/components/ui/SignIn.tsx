@@ -35,7 +35,7 @@ const SignIn = ({ className }: SignInProps) => {
         </p>
         <AuthenticationState />
         {session?.user?.email && (
-          <Button onClick={() => signOut()}>Sign Out</Button>
+          <Button onClick={() => void signOut()}>Sign Out</Button>
         )}
         <span className="rounded bg-orange-200 p-1 text-orange-800">
           Staxy will never have access to your most sensitive data.
