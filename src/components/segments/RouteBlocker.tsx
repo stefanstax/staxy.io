@@ -22,15 +22,18 @@ const RouteBlocker = ({ children }: RouteBlockerProps) => {
     }
   });
 
+  const currentlyOnRestricted = lockedPaths.some((path) =>
+    window.location.pathname.includes(path)
+  );
+
   useEffect(() => {
     if (
-      session &&
       session?.user?.email !== process.env.NEXT_PUBLIC_RESTRICT_EMAIL &&
-      lockedPaths.some((path) => window.location.pathname.includes(path))
+      currentlyOnRestricted
     ) {
-      void router.push("/signin");
+      void router.push("/");
     }
-  }, [session]);
+  }, [session, lockedPaths]);
 
   return <main className="min-h-screen scroll-smooth">{children}</main>;
 };

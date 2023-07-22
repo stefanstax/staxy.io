@@ -1,5 +1,4 @@
 import { Icon } from "@iconify/react";
-import { useSession } from "next-auth/react";
 import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -11,9 +10,6 @@ import Loaders from "~/components/ui/Loaders";
 import { api } from "~/utils/api";
 
 const FeaturesList = () => {
-  const { data: session } = useSession();
-  console.log(session);
-
   const { data } = api.features.getFeatures.useQuery();
   const mutation = api.features.deleteFeatureById.useMutation();
 
