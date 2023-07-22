@@ -1,6 +1,7 @@
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import classNames from "classnames";
 import SocialLogin from "./SocialLogin";
+import Button from "./Button";
 
 type SignInProps = {
   className: string;
@@ -33,6 +34,9 @@ const SignIn = ({ className }: SignInProps) => {
           contact@staxy.io
         </p>
         <AuthenticationState />
+        {session?.user?.email && (
+          <Button onClick={() => signOut()}>Sign Out</Button>
+        )}
         <span className="rounded bg-orange-200 p-1 text-orange-800">
           Staxy will never have access to your most sensitive data.
         </span>
