@@ -25,7 +25,7 @@ const RouteBlocker = ({ children }: RouteBlockerProps) => {
   useEffect(() => {
     if (
       session &&
-      session?.user?.email === process.env.NEXT_PUBLIC_RESTRICT_EMAIL &&
+      session?.user?.email !== process.env.NEXT_PUBLIC_RESTRICT_EMAIL &&
       lockedPaths.some((path) => window.location.pathname.includes(path))
     ) {
       void router.push("/signin");
