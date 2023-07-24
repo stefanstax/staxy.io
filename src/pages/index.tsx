@@ -5,10 +5,10 @@ import ListSteps from "~/components/ui/ListSteps";
 import CTA from "~/components/ui/CTA";
 import FAQ from "~/components/ui/FAQ";
 import ContactForm from "~/components/ui/ContactForm";
-import CompaniesGrid from "~/components/ui/CompaniesGrid";
 import MediaAndText from "~/components/ui/MediaAndText";
 import FeaturesGrid from "~/components/ui/FeaturesGrid";
 import Container from "~/components/ui/Container";
+import CompaniesCarousel from "~/components/ui/CompaniesCarousel";
 
 export default function Home() {
   return (
@@ -21,16 +21,15 @@ export default function Home() {
           ctaLabel="Schedule to qualify"
           ctaOutSource
           ctaLink="https://tidycal.com/staxy/platform-chat"
-          ctaMessage={`Only two businesses will enter the pool for the month of July`}
+          ctaMessage={`Only two businesses will enter the pool for the month of August`}
         />
       </Container>
       <Container className="mx-auto flex w-full max-w-[1280px] flex-wrap items-center justify-center gap-[10px] px-4 py-10">
         <SectionTitle
           className="uppercase"
-          subtitle="Big names which have started with this platform:"
-          subtitleClassName="text-center"
+          title="They were in your shoes..."
         />
-        <CompaniesGrid />
+        <CompaniesCarousel />
       </Container>
       <Container className="w-full bg-beige" id="pitch">
         <div className="mx-auto w-full max-w-[1280px] snap-none px-4 py-10 text-forest">
@@ -54,7 +53,7 @@ export default function Home() {
         <SectionTitle
           className="text-center text-beige"
           title="Enrolment Steps"
-          subtitle="Enrolment starting mid July"
+          subtitle="Enrolment starting mid August"
         />
         <ListSteps className="max-w-[600px]" stepClass="my-24 text-beige" />
       </Container>

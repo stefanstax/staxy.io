@@ -75,7 +75,7 @@ const ListSteps = ({ stepClass, className }: ListStepsProps) => {
         isLoading={isLoading}
         isError={isError}
         loaderElementWidth="min-w-full"
-        loaderElementHeight="min-h-[100px]"
+        loaderElementHeight="min-h-[250px]"
       />
     </div>
   );

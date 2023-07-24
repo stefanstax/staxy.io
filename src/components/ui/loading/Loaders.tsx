@@ -27,7 +27,7 @@ const Loaders = ({
     <div
       className={`${classes} flex ${loaderElementWidth || "min-w-[100px]"} ${
         loaderElementHeight || "min-h-[100px]"
-      } items-center justify-center gap-[10px] rounded border border-[1px] border-solid ${
+      } items-center justify-center rounded border border-[1px] border-solid ${
         colorScheme || "border-forestLight text-forestLight"
       }`}
     >
@@ -44,7 +44,7 @@ const Loaders = ({
             loaderElementWidth || "min-w-[100px]"
           } ${
             loaderElementHeight || "min-h-[100px]"
-          } items-center justify-center gap-[10px] rounded border border-[1px] border-solid border-forestLight ${
+          } items-center justify-center rounded border border-[1px] border-solid border-forestLight ${
             colorScheme || "border-forestLight text-forestLight"
           }`}
         >

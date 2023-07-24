@@ -6,31 +6,35 @@ type LoadingEditViewProps = {
   isLoading: boolean;
   isError: boolean;
   clones: number;
+  loaderElementWidth: string;
+  loaderElementHeight: string;
 };
 
 const LoadingEditView = ({
   isLoading,
   isError,
   clones,
+  loaderElementWidth,
+  loaderElementHeight,
 }: LoadingEditViewProps) => {
   return (
     <>
       {isLoading && (
         <Loaders
           clones={clones || 2}
-          loaderElementWidth="min-w-full"
-          loaderElementHeight="min-h-[60px]"
+          loaderElementWidth={loaderElementWidth}
+          loaderElementHeight={loaderElementHeight}
           contentScheme={
             <Icon icon="solar:clock-square-broken" fontSize={32} />
           }
-          colorScheme="border-blue-600 text-blue-600"
+          colorScheme="border-blue-800 text-blue-800"
         />
       )}
       {isError && (
         <Loaders
           clones={clones || 2}
-          loaderElementWidth="min-w-full"
-          loaderElementHeight="min-h-[60px]"
+          loaderElementWidth={loaderElementWidth}
+          loaderElementHeight={loaderElementHeight}
           contentScheme={
             <Icon icon="solar:clock-square-broken" fontSize={32} />
           }

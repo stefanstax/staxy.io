@@ -27,22 +27,21 @@ const CompaniesCarousel: React.FC<CompaniesCarouselProps> = ({
   const { data, isLoading, isError } = api.companies.getCompanies.useQuery();
 
   const classes = classNames(
-    "flex justify-center items-center rounded bg-[#13131620]"
+    "flex flex-col gap-[10px] justify-start items-start"
   );
 
-  const parentClasses = classNames(className, "w-full");
+  const parentClasses = classNames(className, "w-full my-8");
 
   // If options are missing use default options
   if (!options) {
     options = {
-      type: "loop",
       arrows: false,
       pagination: false,
       perPage: 1,
       perMove: 1,
       interval: 1500,
+      snap: true,
       lazyLoad: true,
-      gap: "2rem",
       slideFocus: true,
       mediaQuery: "min",
     };
@@ -53,7 +52,10 @@ const CompaniesCarousel: React.FC<CompaniesCarouselProps> = ({
       <>
         {data?.map((company: CompanyProps) => (
           <SplideSlide key={company.title} className={classes}>
-            <Image width={100} height={100} src={company.image} alt="" />
+            <Image width={300} height={300} src={company.image} alt="" />
+            <h4 className="bottom-0 w-full max-w-[300px] rounded-[15px] border-[4px] border-solid border-forest p-4 text-center text-[20px] font-black text-forest">
+              {company?.title}
+            </h4>
           </SplideSlide>
         ))}
       </>
@@ -67,15 +69,13 @@ const CompaniesCarousel: React.FC<CompaniesCarouselProps> = ({
         ...options,
         breakpoints: {
           640: {
+            gap: "2rem",
             perPage: 1,
           },
           768: {
             perPage: 2,
           },
           968: {
-            perPage: 3,
-          },
-          1600: {
             perPage: 4,
           },
         },
@@ -88,8 +88,8 @@ const CompaniesCarousel: React.FC<CompaniesCarouselProps> = ({
         component={<RenderCompanies data={data} classes={classes} />}
         isLoading={isLoading}
         isError={isError}
-        loaderElementWidth="min-w-[200px]"
-        loaderElementHeight="min-h-[100px]"
+        loaderElementWidth="min-w-[300px]"
+        loaderElementHeight="min-h-[300px]"
       />
     </Splide>
   );

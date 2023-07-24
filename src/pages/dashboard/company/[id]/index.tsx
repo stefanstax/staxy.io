@@ -11,12 +11,12 @@ import Button from "~/components/ui/Button";
 import ErrorMessage from "~/components/ui/ErrorMessage";
 import LoadingEditView from "~/components/ui/loading/LoadingEditView";
 
-const FaqUpdate = () => {
+const FeatureUpdate = () => {
   const router = useRouter();
   // ? Acquire current post's id
   const { id } = router.query;
   // ? Grab data using current id
-  const { data, isLoading, isError } = api.faqs.getFaqById.useQuery({
+  const { data, isLoading, isError } = api.companies.getCompany.useQuery({
     identifier: id as string,
   });
 
@@ -29,20 +29,21 @@ const FaqUpdate = () => {
 
   // * Work-around for un-touched fields not getting API data via hook form
   useEffect(() => {
-    setValue("question", data?.question);
-    setValue("answer", data?.answer);
+    setValue("image", data?.image);
+    setValue("title", data?.title);
   }, [data]);
 
   // ? Use update mutation
-  const mutation = api.faqs.updateFaqById.useMutation();
+  const mutation = api.companies.updateCompany.useMutation();
+
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     mutation.mutate({
       identifier: id as string,
-      question: data?.question as string,
-      answer: data?.answer as string,
+      image: data?.image as string,
+      title: data?.title as string,
     });
 
-    toast.success(`Data has been updated for ${data?.question as string}`, {
+    toast.success(`Data has been updated for ${data?.title as string}`, {
       position: "bottom-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -68,55 +69,56 @@ const FaqUpdate = () => {
           loaderElementWidth="min-w-full"
           loaderElementHeight="min-h-[400px]"
         />
-        {data ? (
+        {data && (
           <>
+            {" "}
             <h1 className="w-full rounded bg-forest p-2 text-[40px] font-black uppercase text-forestLight drop-shadow-md">
-              Record data: {data?.question}
+              Record data: {data?.title}
             </h1>
-
             <form
               // eslint-disable-next-line @typescript-eslint/no-misused-promises
               onSubmit={handleSubmit(onSubmit)}
               className="flex w-full flex-col items-start justify-start gap-[20px]"
             >
+              <p className="font-black uppercase">Basic</p>
               <input
-                {...register("question", {
+                {...register("image", {
                   required: true,
-                  pattern: /^[a-zA-Z',:.$?! 0-9 -]+$/,
+                  pattern: /^[a-zA-Z:=./?%&_0-9 -]+$/,
                 })}
-                placeholder="Icon is..."
+                placeholder="Client Image is..."
                 className={inputClasses}
-                defaultValue={data?.question}
+                defaultValue={data?.image}
               />
               <ErrorMessage>
-                {errors?.question?.type === "required" &&
-                  "Question is a required field."}
-                {errors?.question?.type === "pattern" &&
-                  "Question accepts: lowercase, uppercase, dash and a colon"}
+                {errors?.image?.type === "required" &&
+                  "Image is a required field."}
+                {errors?.image?.type === "pattern" &&
+                  "Image accepts: lowercase, uppercase, dash and a colon"}
               </ErrorMessage>
               <input
-                {...register("answer", {
+                {...register("title", {
                   required: true,
-                  pattern: /^[a-zA-Z',:.$?! 0-9 -]+$/,
+                  pattern: /^[a-zA-Z-: ]+$/,
                 })}
-                placeholder="Answer is..."
+                placeholder="Client Name is..."
                 className={inputClasses}
-                defaultValue={data?.answer}
+                defaultValue={data?.title}
               />
               <ErrorMessage>
-                {errors?.answer?.type === "required" &&
-                  "Answer is a required field."}
-                {errors?.answer?.type === "pattern" &&
-                  "Answer accepts: lowercase, uppercase, dash and a colon"}
+                {errors?.title?.type === "required" &&
+                  "Title is a required field."}
+                {errors?.title?.type === "pattern" &&
+                  "Title accepts: lowercase, uppercase, dash and a colon"}
               </ErrorMessage>
-              <Button>Update FAQ</Button>
+              <Button>Update Company Client</Button>
             </form>
           </>
-        ) : null}
+        )}
         <ToastContainer />
       </div>
     </Layout>
   );
 };
 
-export default FaqUpdate;
+export default FeatureUpdate;

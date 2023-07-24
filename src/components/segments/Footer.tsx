@@ -62,6 +62,9 @@ const Footer = () => {
               <InBoundLink footerLink to={Routes.FAQ_LIST}>
                 Go to FAQ List
               </InBoundLink>
+              <InBoundLink footerLink to={Routes.COMPANY_LIST}>
+                Go to Company List
+              </InBoundLink>
             </div>
           )}
           <div className="flex w-full flex-wrap items-center justify-start">

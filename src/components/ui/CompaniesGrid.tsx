@@ -24,7 +24,7 @@ const CompaniesGrid: React.FC<CompaniesGridProps> = ({ className }) => {
 
   const parentClasses = classNames(
     className,
-    "w-full flex justify-center items-center gap-[20px] flex-wrap"
+    "w-full flex justify-center items-center flex-wrap"
   );
 
   const RenderCompanies: React.FC<Props> = ({ data, classes }) => {
@@ -51,6 +51,7 @@ const CompaniesGrid: React.FC<CompaniesGridProps> = ({ className }) => {
     <div className={parentClasses}>
       <LoadingStates
         data={data}
+        positionMiddle
         component={<RenderCompanies data={data} classes={classes} />}
         isLoading={isLoading}
         isError={isError}

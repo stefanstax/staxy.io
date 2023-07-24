@@ -9,4 +9,7 @@ export const Routes = {
   FAQ_CREATE: "/dashboard/faq/create",
   FAQ_LIST: "/dashboard/faq/",
   FAQ_EDIT: "/dashboard/faq/",
+  COMPANY_CREATE: "/dashboard/company/create",
+  COMPANY_LIST: "/dashboard/company/",
+  COMPANY_EDIT: "/dashboard/company/",
 };

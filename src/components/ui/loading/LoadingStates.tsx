@@ -2,6 +2,7 @@ import React from "react";
 import Loaders from "./Loaders";
 import { type ReactNode } from "react";
 import { Icon } from "@iconify/react";
+import classNames from "classnames";
 
 type LoadingStatesProps = {
   data: string[] | null | object[] | undefined;
@@ -11,6 +12,8 @@ type LoadingStatesProps = {
   loaderElementWidth: string;
   loaderElementHeight: string;
   slider?: boolean;
+  className?: string;
+  positionMiddle?: boolean;
 };
 
 const LoadingStates = ({
@@ -21,7 +24,10 @@ const LoadingStates = ({
   loaderElementWidth,
   loaderElementHeight,
   slider,
+  className,
+  positionMiddle,
 }: LoadingStatesProps) => {
+  const classes = classNames(className, positionMiddle && `mx-auto`);
   return (
     <>
       {data?.length && !isLoading && component ? component : null}
@@ -63,9 +69,10 @@ const LoadingStates = ({
           )}
         </>
       ) : (
-        <div className="my-8 flex w-full flex-wrap items-start items-center justify-start justify-center gap-[10px]">
+        <div className="my-8 flex w-full flex-wrap gap-[10px]">
           {data?.length && isLoading ? (
             <Loaders
+              className={classes}
               clones={5}
               loaderElementWidth={loaderElementWidth}
               loaderElementHeight={loaderElementHeight}
@@ -77,6 +84,7 @@ const LoadingStates = ({
           ) : null}
           {!data?.length && isError ? (
             <Loaders
+              className={classes}
               clones={5}
               loaderElementWidth={loaderElementWidth}
               loaderElementHeight={loaderElementHeight}
@@ -88,13 +96,12 @@ const LoadingStates = ({
           ) : null}
           {!data?.length && (
             <Loaders
+              className={classes}
               slider={slider}
               clones={5}
               loaderElementWidth={loaderElementWidth}
               loaderElementHeight={loaderElementHeight}
-              contentScheme={
-                <Icon icon="solar:clock-square-broken" fontSize={32} />
-              }
+              contentScheme="Staxy hasn't shared this data yet."
             />
           )}
         </div>

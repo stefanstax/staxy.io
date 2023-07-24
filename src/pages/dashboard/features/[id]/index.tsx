@@ -70,95 +70,102 @@ const FeatureUpdate = () => {
   return (
     <Layout>
       <div className="mx-auto my-48 flex w-full max-w-[1280px] flex-wrap items-start justify-start gap-[20px] px-4">
-        <h1 className="w-full rounded bg-forest p-2 text-[40px] font-black uppercase text-forestLight drop-shadow-md">
-          Record data: {data?.title}
-        </h1>
-        <LoadingEditView clones={8} isLoading={isLoading} isError={isError} />
+        <LoadingEditView
+          clones={1}
+          isLoading={isLoading}
+          isError={isError}
+          loaderElementWidth="min-w-full"
+          loaderElementHeight="min-h-[400px]"
+        />
         {data && (
-          <form
-            // eslint-disable-next-line @typescript-eslint/no-misused-promises
-            onSubmit={handleSubmit(onSubmit)}
-            className="flex w-full flex-wrap items-center justify-start gap-[20px]"
-          >
-            <p className="font-black uppercase">Basic</p>
-            <input
-              {...register("image", {
-                required: true,
-                pattern: /^[a-zA-Z-:]+$/,
-              })}
-              placeholder="Icon is..."
-              className={inputClasses}
-              defaultValue={data?.image}
-            />
-            <ErrorMessage>
-              {errors?.image?.type === "required" &&
-                "Image is a required field."}
-              {errors?.image?.type === "pattern" &&
-                "Image accepts: lowercase, uppercase, dash and a colon"}
-            </ErrorMessage>
-            <input
-              {...register("title", {
-                required: true,
-                pattern: /^[a-zA-Z-:]+$/,
-              })}
-              placeholder="Title is..."
-              className={inputClasses}
-              defaultValue={data?.title}
-            />
-            <ErrorMessage>
-              {errors?.title?.type === "required" &&
-                "Title is a required field."}
-              {errors?.title?.type === "pattern" &&
-                "Title accepts: lowercase, uppercase, dash and a colon"}
-            </ErrorMessage>
-            <input
-              {...register("description", {
-                required: true,
-                pattern: /^[a-zA-Z .?0-8',-]+$/,
-              })}
-              placeholder="Description is..."
-              className={inputClasses}
-              defaultValue={data?.description}
-            />
-            <ErrorMessage>
-              {errors?.description?.type === "required" &&
-                "Description is a required field."}
-              {errors?.description?.type === "pattern" &&
-                "Description accepts: lowercase, uppercase, dash, comma, question mark, hyphen"}
-            </ErrorMessage>
-            <input
-              {...register("extraClass", { pattern: /^[a-zA-Z-: ]+$/ })}
-              placeholder="Extra class is..."
-              className={inputClasses}
-              defaultValue={data?.extraClass}
-            />
-            <ErrorMessage>
-              {errors?.extraClass?.type === "pattern" &&
-                `Please visit https://tailwindcss.com for guidance on styling classes.`}
-            </ErrorMessage>
-            <p className="font-black uppercase">Relational</p>
-            <select
-              {...register("category")}
-              defaultValue={data?.category as string}
-              className={inputClasses}
+          <>
+            <h1 className="w-full rounded bg-forest p-2 text-[40px] font-black uppercase text-forestLight drop-shadow-md">
+              Record data: {data?.title}
+            </h1>
+            <form
+              // eslint-disable-next-line @typescript-eslint/no-misused-promises
+              onSubmit={handleSubmit(onSubmit)}
+              className="flex w-full flex-wrap items-center justify-start gap-[20px]"
             >
-              <option value="core">Core</option>
-              <option value="module">Module</option>
-            </select>
-            <select
-              {...register("parent")}
-              placeholder="Parent module?"
-              className={inputClasses}
-              defaultValue={data?.parent || ""}
-            >
-              <option value="">Feature has no parent (options)</option>
-              <option value="e-learning">E-Learning</option>
-              <option value="events">Events</option>
-            </select>
-            <Button>Update feature</Button>
-          </form>
+              <p className="font-black uppercase">Basic</p>
+              <input
+                {...register("image", {
+                  required: true,
+                  pattern: /^[a-zA-Z-:]+$/,
+                })}
+                placeholder="Icon is..."
+                className={inputClasses}
+                defaultValue={data?.image}
+              />
+              <ErrorMessage>
+                {errors?.image?.type === "required" &&
+                  "Image is a required field."}
+                {errors?.image?.type === "pattern" &&
+                  "Image accepts: lowercase, uppercase, dash and a colon"}
+              </ErrorMessage>
+              <input
+                {...register("title", {
+                  required: true,
+                  pattern: /^[a-zA-Z-:]+$/,
+                })}
+                placeholder="Title is..."
+                className={inputClasses}
+                defaultValue={data?.title}
+              />
+              <ErrorMessage>
+                {errors?.title?.type === "required" &&
+                  "Title is a required field."}
+                {errors?.title?.type === "pattern" &&
+                  "Title accepts: lowercase, uppercase, dash and a colon"}
+              </ErrorMessage>
+              <input
+                {...register("description", {
+                  required: true,
+                  pattern: /^[a-zA-Z .?0-8',-]+$/,
+                })}
+                placeholder="Description is..."
+                className={inputClasses}
+                defaultValue={data?.description}
+              />
+              <ErrorMessage>
+                {errors?.description?.type === "required" &&
+                  "Description is a required field."}
+                {errors?.description?.type === "pattern" &&
+                  "Description accepts: lowercase, uppercase, dash, comma, question mark, hyphen"}
+              </ErrorMessage>
+              <input
+                {...register("extraClass", { pattern: /^[a-zA-Z-: ]+$/ })}
+                placeholder="Extra class is..."
+                className={inputClasses}
+                defaultValue={data?.extraClass}
+              />
+              <ErrorMessage>
+                {errors?.extraClass?.type === "pattern" &&
+                  `Please visit https://tailwindcss.com for guidance on styling classes.`}
+              </ErrorMessage>
+              <p className="font-black uppercase">Relational</p>
+              <select
+                {...register("category")}
+                defaultValue={data?.category as string}
+                className={inputClasses}
+              >
+                <option value="core">Core</option>
+                <option value="module">Module</option>
+              </select>
+              <select
+                {...register("parent")}
+                placeholder="Parent module?"
+                className={inputClasses}
+                defaultValue={data?.parent || ""}
+              >
+                <option value="">Feature has no parent (options)</option>
+                <option value="e-learning">E-Learning</option>
+                <option value="events">Events</option>
+              </select>
+              <Button>Update feature</Button>
+            </form>
+          </>
         )}
-
         <ToastContainer />
       </div>
     </Layout>
