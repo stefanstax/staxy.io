@@ -1,7 +1,7 @@
 import { signOut, useSession } from "next-auth/react";
 import classNames from "classnames";
 import SocialLogin from "./SocialLogin";
-import Button from "./Button";
+import Button from "../Button";
 import Image from "next/image";
 import StaxyLogo from "~/assets/images/staxy-logo.png";
 

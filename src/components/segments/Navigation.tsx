@@ -19,7 +19,11 @@ const Navigation = () => {
         />
       </InBoundLink>
       {!session?.user?.image && (
-        <InBoundLink to="/signin" primary>
+        <InBoundLink
+          to="/signin"
+          primary
+          className="absolute right-5 rounded-full"
+        >
           <Icon
             icon="solar:login-3-bold-duotone"
             className="ml-auto cursor-pointer transition-all hover:opacity-[75%]"

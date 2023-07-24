@@ -13,7 +13,7 @@ import Container from "~/components/ui/Container";
 export default function Home() {
   return (
     <Layout className="mt-[60px]">
-      <div className="flex min-h-[600px] flex-wrap items-center justify-center gap-[20px] bg-forest">
+      <Container className="flex min-h-[600px] flex-wrap items-center justify-center gap-[20px] bg-forest">
         <HeroBanner
           className="px-4 text-beige"
           title="Become the GO-TO Platform for your profession"
@@ -23,7 +23,7 @@ export default function Home() {
           ctaLink="https://tidycal.com/staxy/platform-chat"
           ctaMessage={`Only two businesses will enter the pool for the month of July`}
         />
-      </div>
+      </Container>
       <Container className="mx-auto flex w-full max-w-[1280px] flex-wrap items-center justify-center gap-[10px] px-4 py-10">
         <SectionTitle
           className="uppercase"

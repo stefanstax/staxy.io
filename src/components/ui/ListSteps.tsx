@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
 import classNames from "classnames";
 import { api } from "~/utils/api";
-import Loaders from "./Loaders";
+import LoadingStates from "./loading/LoadingStates";
 
 type ListStepsProps = {
   className: string;
@@ -69,16 +69,14 @@ const ListSteps = ({ stepClass, className }: ListStepsProps) => {
 
   return (
     <div className={classes}>
-      {renderSteps}
-      {(isError || isLoading || !renderSteps?.length) && (
-        <Loaders
-          clones={4}
-          minWidth="w-full"
-          minHeight="min-h-[200px]"
-          className="my-4"
-          background="bg-forestLight"
-        />
-      )}
+      <LoadingStates
+        data={data}
+        component={renderSteps}
+        isLoading={isLoading}
+        isError={isError}
+        loaderElementWidth="min-w-full"
+        loaderElementHeight="min-h-[100px]"
+      />
     </div>
   );
 };

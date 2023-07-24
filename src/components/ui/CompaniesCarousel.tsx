@@ -1,10 +1,9 @@
 import classNames from "classnames";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css/core";
-import { AutoScroll } from "@splidejs/splide-extension-auto-scroll";
 import { api } from "~/utils/api";
 import Image from "next/image";
-import Loaders from "./Loaders";
+import LoadingStates from "./loading/LoadingStates";
 
 type CompaniesCarouselProps = {
   options?: object;
@@ -37,20 +36,15 @@ const CompaniesCarousel: React.FC<CompaniesCarouselProps> = ({
   if (!options) {
     options = {
       type: "loop",
-      perPage: 6,
-      perMove: 1,
       arrows: false,
       pagination: false,
-      autoplay: "playing",
+      perPage: 1,
+      perMove: 1,
       interval: 1500,
       lazyLoad: true,
       gap: "2rem",
       slideFocus: true,
-      breakpoints: {
-        640: {
-          perPage: 1,
-        },
-      },
+      mediaQuery: "min",
     };
   }
 
@@ -71,19 +65,32 @@ const CompaniesCarousel: React.FC<CompaniesCarouselProps> = ({
       className={parentClasses}
       options={{
         ...options,
+        breakpoints: {
+          640: {
+            perPage: 1,
+          },
+          768: {
+            perPage: 2,
+          },
+          968: {
+            perPage: 3,
+          },
+          1600: {
+            perPage: 4,
+          },
+        },
       }}
-      extensions={{ AutoScroll }}
+      // extensions={{ AutoScroll }}
     >
-      {data?.length && <RenderCompanies data={data} classes={classes} />}
-      {!data?.length && (
-        <Loaders
-          clones={10}
-          slider
-          minWidth="min-w-[200px]"
-          minHeight="min-h-[100px]"
-          background="bg-slate-900"
-        />
-      )}
+      <LoadingStates
+        slider
+        data={data}
+        component={<RenderCompanies data={data} classes={classes} />}
+        isLoading={isLoading}
+        isError={isError}
+        loaderElementWidth="min-w-[200px]"
+        loaderElementHeight="min-h-[100px]"
+      />
     </Splide>
   );
 };

@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { Icon } from "@iconify/react";
 import { api } from "~/utils/api";
-import Loaders from "./Loaders";
+import LoadingStates from "./loading/LoadingStates";
 
 type FeaturesGridProps = {
   className?: string;
@@ -84,16 +84,14 @@ const FeaturesGrid = ({ className }: FeaturesGridProps) => {
 
   return (
     <div className={parentClasses}>
-      {renderFeatures}
-      {(isError || isLoading || !renderFeatures?.length) && (
-        <Loaders
-          clones={10}
-          slider
-          minWidth="w-full md:w-[48%] lg:w-[32%]"
-          minHeight="min-h-[200px]"
-          background="bg-forest"
-        />
-      )}
+      <LoadingStates
+        data={data}
+        isLoading={isLoading}
+        isError={isError}
+        component={renderFeatures}
+        loaderElementWidth="min-w-full lg:min-w-[32.2%]"
+        loaderElementHeight="min-h-[452px]"
+      />
     </div>
   );
 };

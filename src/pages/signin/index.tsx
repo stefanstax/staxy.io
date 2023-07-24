@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "~/components/segments/Layout";
-import SignIn from "~/components/ui/SignIn";
+import SignIn from "~/components/ui/auth/SignIn";
 
 const SignInPage = () => {
   return (

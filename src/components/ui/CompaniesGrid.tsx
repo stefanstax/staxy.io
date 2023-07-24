@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { api } from "~/utils/api";
 import Image from "next/image";
-import Loaders from "./Loaders";
+import LoadingStates from "./loading/LoadingStates";
 
 type CompaniesGridProps = {
   className?: string;
@@ -45,18 +45,18 @@ const CompaniesGrid: React.FC<CompaniesGridProps> = ({ className }) => {
     );
   };
 
+  console.log(data?.length);
+
   return (
     <div className={parentClasses}>
-      {data?.length && <RenderCompanies data={data} classes={classes} />}
-      {(isError || isLoading || !data?.length) && (
-        <Loaders
-          clones={10}
-          slider
-          minWidth="min-w-[60px] lg:w-2/12"
-          minHeight="min-h-[60px] lg:min-h-[135px]"
-          background="bg-forest"
-        />
-      )}
+      <LoadingStates
+        data={data}
+        component={<RenderCompanies data={data} classes={classes} />}
+        isLoading={isLoading}
+        isError={isError}
+        loaderElementWidth="min-w-full lg:min-w-[200px]"
+        loaderElementHeight="min-h-[100px]"
+      />
     </div>
   );
 };
