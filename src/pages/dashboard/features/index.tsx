@@ -6,11 +6,11 @@ import { Routes } from "~/components/constants";
 import Layout from "~/components/segments/Layout";
 import Button from "~/components/ui/Button";
 import InBoundLink from "~/components/ui/InBoundLink";
-import Loaders from "~/components/ui/Loaders";
+import LoadingStates from "~/components/ui/loading/LoadingStates";
 import { api } from "~/utils/api";
 
 const FeaturesList = () => {
-  const { data } = api.features.getFeatures.useQuery();
+  const { data, isLoading, isError } = api.features.getFeatures.useQuery();
   const mutation = api.features.deleteFeatureById.useMutation();
 
   const handleDelete = (identifier: string, title: string) => {
@@ -80,15 +80,14 @@ const FeaturesList = () => {
         <InBoundLink primary to={Routes.FEATURES_CREATE} className="w-full p-4">
           Create A Feature
         </InBoundLink>
-        {renderFeatures}
-        {!renderFeatures?.length && (
-          <Loaders
-            clones={renderFeatures?.length || 6}
-            minWidth="w-full lg:w-[32%]"
-            minHeight="min-h-[150px]"
-            background="bg-forest"
-          />
-        )}
+        <LoadingStates
+          data={data}
+          component={renderFeatures}
+          isLoading={isLoading}
+          isError={isError}
+          loaderElementWidth="min-w-full lg:min-w-[32%]"
+          loaderElementHeight="min-h-[200px]"
+        />
       </div>
       <ToastContainer />
     </Layout>

@@ -7,7 +7,7 @@ type LoadingStatesProps = {
   data: string[] | null | object[] | undefined;
   isLoading: boolean;
   isError: boolean;
-  component: ReactNode;
+  component?: ReactNode;
   loaderElementWidth: string;
   loaderElementHeight: string;
   slider?: boolean;
@@ -24,7 +24,7 @@ const LoadingStates = ({
 }: LoadingStatesProps) => {
   return (
     <>
-      {data?.length && !isLoading ? component : null}
+      {data?.length && !isLoading && component ? component : null}
 
       {slider ? (
         <>

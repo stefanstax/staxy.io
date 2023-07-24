@@ -6,11 +6,11 @@ import { Routes } from "~/components/constants";
 import Layout from "~/components/segments/Layout";
 import Button from "~/components/ui/Button";
 import InBoundLink from "~/components/ui/InBoundLink";
-import Loaders from "~/components/ui/Loaders";
+import LoadingStates from "~/components/ui/loading/LoadingStates";
 import { api } from "~/utils/api";
 
 const FaqList = () => {
-  const { data } = api.faqs.getFaqs.useQuery();
+  const { data, isLoading, isError } = api.faqs.getFaqs.useQuery();
   const mutation = api.faqs.deleteFaqById.useMutation();
 
   const handleDelete = (identifier: string, question: string) => {
@@ -78,15 +78,14 @@ const FaqList = () => {
         <InBoundLink primary to={Routes.FAQ_CREATE} className="w-full p-4">
           Create An FAQ
         </InBoundLink>
-        {renderFaqs}
-        {!renderFaqs?.length && (
-          <Loaders
-            clones={renderFaqs?.length || 6}
-            minWidth="w-full lg:w-[32%]"
-            minHeight="min-h-[150px]"
-            background="bg-forest"
-          />
-        )}
+        <LoadingStates
+          data={data}
+          component={renderFaqs}
+          isLoading={isLoading}
+          isError={isError}
+          loaderElementWidth="min-w-full lg:min-w-[32%]"
+          loaderElementHeight="min-h-[200px]"
+        />
       </div>
       <ToastContainer />
     </Layout>

@@ -7,16 +7,16 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { useRouter } from "next/router";
-import Loaders from "~/components/ui/Loaders";
 import Button from "~/components/ui/Button";
 import ErrorMessage from "~/components/ui/ErrorMessage";
+import LoadingEditView from "~/components/ui/loading/LoadingEditView";
 
 const FeatureUpdate = () => {
   const router = useRouter();
   // ? Acquire current post's id
   const { id } = router.query;
   // ? Grab data using current id
-  const { data } = api.features.getFeatureById.useQuery({
+  const { data, isLoading, isError } = api.features.getFeatureById.useQuery({
     identifier: id as string,
   });
 
@@ -39,7 +39,6 @@ const FeatureUpdate = () => {
 
   // ? Use update mutation
   const mutation = api.features.updateFeature.useMutation();
-  const dataLength = Object.keys(data ?? 0).length;
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     mutation.mutate({
@@ -74,6 +73,7 @@ const FeatureUpdate = () => {
         <h1 className="w-full rounded bg-forest p-2 text-[40px] font-black uppercase text-forestLight drop-shadow-md">
           Record data: {data?.title}
         </h1>
+        <LoadingEditView clones={8} isLoading={isLoading} isError={isError} />
         {data && (
           <form
             // eslint-disable-next-line @typescript-eslint/no-misused-promises
@@ -158,15 +158,7 @@ const FeatureUpdate = () => {
             <Button>Update feature</Button>
           </form>
         )}
-        {!dataLength && (
-          <Loaders
-            clones={6}
-            minWidth="w-full"
-            minHeight="min-h-[60px]"
-            background="bg-slate-50"
-            className="w-full cursor-pointer rounded p-10 drop-shadow-md"
-          />
-        )}
+
         <ToastContainer />
       </div>
     </Layout>
