@@ -65,7 +65,7 @@ const FaqUpdate = () => {
         <h1 className="w-full rounded bg-forest p-2 text-[40px] font-black uppercase text-forestLight drop-shadow-md">
           Record data: {data?.question}
         </h1>
-        <LoadingEditView isLoading={isLoading} isError={isError} />
+        <LoadingEditView clones={2} isLoading={isLoading} isError={isError} />
         {data && (
           <form
             // eslint-disable-next-line @typescript-eslint/no-misused-promises

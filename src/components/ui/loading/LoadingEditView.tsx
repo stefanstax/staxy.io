@@ -17,7 +17,7 @@ const LoadingEditView = ({
     <>
       {isLoading && (
         <Loaders
-          clones={clones}
+          clones={clones || 2}
           loaderElementWidth="min-w-full"
           loaderElementHeight="min-h-[60px]"
           contentScheme={
@@ -28,7 +28,7 @@ const LoadingEditView = ({
       )}
       {isError && (
         <Loaders
-          clones={clones}
+          clones={clones || 2}
           loaderElementWidth="min-w-full"
           loaderElementHeight="min-h-[60px]"
           contentScheme={
