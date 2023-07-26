@@ -18,7 +18,8 @@ type Props = {
 };
 
 const CompaniesGrid: React.FC<CompaniesGridProps> = ({ className }) => {
-  const { data, isLoading, isError } = api.companies.getCompanies.useQuery();
+  const { data, isLoading, isError, isSuccess, isFetched } =
+    api.companies.getCompanies.useQuery();
 
   const classes = classNames("flex justify-center items-center w-2/12");
 
@@ -55,6 +56,8 @@ const CompaniesGrid: React.FC<CompaniesGridProps> = ({ className }) => {
         component={<RenderCompanies data={data} classes={classes} />}
         isLoading={isLoading}
         isError={isError}
+        isSuccess={isSuccess}
+        isFetched={isFetched}
         loaderElementWidth="min-w-full lg:min-w-[200px]"
         loaderElementHeight="min-h-[100px]"
       />
