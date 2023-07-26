@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import Button from "~/components/ui/Button";
 import ErrorMessage from "~/components/ui/ErrorMessage";
 import LoadingEditView from "~/components/ui/loading/LoadingEditView";
+import PageBack from "~/components/ui/PageBack";
 
 const FeatureUpdate = () => {
   const router = useRouter();
@@ -70,6 +71,7 @@ const FeatureUpdate = () => {
   return (
     <Layout>
       <div className="mx-auto my-48 flex w-full max-w-[1280px] flex-wrap items-start justify-start gap-[20px] px-4">
+        <PageBack />
         <LoadingEditView
           clones={1}
           isLoading={isLoading}

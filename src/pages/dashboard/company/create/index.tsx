@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Button from "~/components/ui/Button";
 import ErrorMessage from "~/components/ui/ErrorMessage";
+import PageBack from "~/components/ui/PageBack";
 
 const CompanyCreate = () => {
   const {
@@ -43,6 +44,7 @@ const CompanyCreate = () => {
   return (
     <Layout>
       <div className="mx-auto my-48 flex w-full max-w-[1280px] flex-wrap items-start justify-start gap-[20px] px-4">
+        <PageBack />
         <h1 className="w-full rounded bg-forest p-2 text-[40px] font-black uppercase text-forestLight drop-shadow-md">
           Company Client Creation
         </h1>

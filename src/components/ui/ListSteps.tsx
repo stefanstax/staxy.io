@@ -9,7 +9,8 @@ type ListStepsProps = {
 };
 
 const ListSteps = ({ stepClass, className }: ListStepsProps) => {
-  const { data, isLoading, isError } = api.steps.getSteps.useQuery();
+  const { data, isLoading, isError, isSuccess, isFetched } =
+    api.steps.getSteps.useQuery();
 
   const classes = classNames(className, `mx-auto`);
   const stepClasses = classNames(stepClass);
@@ -74,6 +75,8 @@ const ListSteps = ({ stepClass, className }: ListStepsProps) => {
         component={renderSteps}
         isLoading={isLoading}
         isError={isError}
+        isSuccess={isSuccess}
+        isFetched={isFetched}
         loaderElementWidth="min-w-full"
         loaderElementHeight="min-h-[250px]"
       />

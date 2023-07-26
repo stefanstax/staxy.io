@@ -6,11 +6,13 @@ import { Routes } from "~/components/constants";
 import Layout from "~/components/segments/Layout";
 import Button from "~/components/ui/Button";
 import InBoundLink from "~/components/ui/InBoundLink";
+import PageBack from "~/components/ui/PageBack";
 import LoadingStates from "~/components/ui/loading/LoadingStates";
 import { api } from "~/utils/api";
 
 const FeaturesList = () => {
-  const { data, isLoading, isError } = api.features.getFeatures.useQuery();
+  const { data, isLoading, isError, isSuccess, isFetched } =
+    api.features.getFeatures.useQuery();
   const mutation = api.features.deleteFeatureById.useMutation();
 
   const handleDelete = (identifier: string, title: string) => {
@@ -74,6 +76,7 @@ const FeaturesList = () => {
   return (
     <Layout>
       <div className="mx-auto my-48 flex w-full max-w-[1280px] flex-wrap items-center justify-start gap-[20px] px-4">
+        <PageBack />
         <h1 className="w-full rounded bg-forest p-2 text-[40px] font-black uppercase text-forestLight drop-shadow-md">
           Records list
         </h1>
@@ -85,6 +88,8 @@ const FeaturesList = () => {
           component={renderFeatures}
           isLoading={isLoading}
           isError={isError}
+          isSuccess={isSuccess}
+          isFetched={isFetched}
           loaderElementWidth="min-w-full lg:min-w-[32%]"
           loaderElementHeight="min-h-[200px]"
         />

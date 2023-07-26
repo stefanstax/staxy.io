@@ -24,10 +24,11 @@ const CompaniesCarousel: React.FC<CompaniesCarouselProps> = ({
   options,
   className,
 }) => {
-  const { data, isLoading, isError } = api.companies.getCompanies.useQuery();
+  const { data, isLoading, isError, isSuccess, isFetched } =
+    api.companies.getCompanies.useQuery();
 
   const classes = classNames(
-    "flex flex-col gap-[10px] justify-start items-start"
+    "w-full flex flex-col gap-[10px] justify-start items-start"
   );
 
   const parentClasses = classNames(className, "w-full my-8");
@@ -39,7 +40,8 @@ const CompaniesCarousel: React.FC<CompaniesCarouselProps> = ({
       pagination: false,
       perPage: 1,
       perMove: 1,
-      interval: 1500,
+      gap: "2rem",
+      padding: "0px",
       snap: true,
       lazyLoad: true,
       slideFocus: true,
@@ -52,8 +54,8 @@ const CompaniesCarousel: React.FC<CompaniesCarouselProps> = ({
       <>
         {data?.map((company: CompanyProps) => (
           <SplideSlide key={company.title} className={classes}>
-            <Image width={300} height={300} src={company.image} alt="" />
-            <h4 className="bottom-0 w-full max-w-[300px] rounded-[15px] border-[4px] border-solid border-forest p-4 text-center text-[20px] font-black text-forest">
+            <Image width={500} height={500} src={company.image} alt="" />
+            <h4 className="bottom-0 w-full rounded-[15px] border-[4px] border-solid border-forest p-4 text-center text-[20px] font-black text-forest lg:max-w-[300px]">
               {company?.title}
             </h4>
           </SplideSlide>
@@ -69,11 +71,10 @@ const CompaniesCarousel: React.FC<CompaniesCarouselProps> = ({
         ...options,
         breakpoints: {
           640: {
-            gap: "2rem",
-            perPage: 1,
+            perPage: 2,
           },
           768: {
-            perPage: 2,
+            perPage: 3,
           },
           968: {
             perPage: 4,
@@ -88,8 +89,11 @@ const CompaniesCarousel: React.FC<CompaniesCarouselProps> = ({
         component={<RenderCompanies data={data} classes={classes} />}
         isLoading={isLoading}
         isError={isError}
+        isSuccess={isSuccess}
+        isFetched={isFetched}
         loaderElementWidth="min-w-[300px]"
         loaderElementHeight="min-h-[300px]"
+        className="gap-[10px]"
       />
     </Splide>
   );

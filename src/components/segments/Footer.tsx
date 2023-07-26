@@ -49,9 +49,6 @@ const Footer = () => {
             <InBoundLink footerLink outSource to="mailto:contact@staxy.io">
               Send an Email
             </InBoundLink>
-            <InBoundLink footerLink outSource to="https://wa.me/+381691920124">
-              Send WhatsApp message
-            </InBoundLink>
           </div>
           {session?.user?.email === "stefanstaxbusiness@gmail.com" && (
             <div className="flex basis-full flex-col items-start justify-start lg:basis-6/12">

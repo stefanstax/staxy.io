@@ -15,7 +15,8 @@ type FeatureLabelProps = {
 };
 
 const FeaturesCarousel = ({ className, options }: FeaturesCarouselProps) => {
-  const { data, isLoading, isError } = api.features.getFeatures.useQuery();
+  const { data, isLoading, isError, isSuccess, isFetched } =
+    api.features.getFeatures.useQuery();
 
   const classes = classNames(
     `group border border-solid border-[1px] border-forest flex flex-col h-full gap-[20px] justify-center items-center rounded bg-transparent text-forest p-10 cursor-grab`
@@ -70,6 +71,8 @@ const FeaturesCarousel = ({ className, options }: FeaturesCarouselProps) => {
         data={data}
         isLoading={isLoading}
         isError={isError}
+        isSuccess={isSuccess}
+        isFetched={isFetched}
         component={renderFeatures}
         loaderElementWidth="min-w-full lg:min-w-[32.2%]"
         loaderElementHeight="min-h-[452px]"

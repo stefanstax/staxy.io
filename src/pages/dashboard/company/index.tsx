@@ -4,11 +4,13 @@ import "react-toastify/dist/ReactToastify.css";
 import { Routes } from "~/components/constants";
 import Layout from "~/components/segments/Layout";
 import InBoundLink from "~/components/ui/InBoundLink";
+import PageBack from "~/components/ui/PageBack";
 import LoadingStates from "~/components/ui/loading/LoadingStates";
 import { api } from "~/utils/api";
 
 const CompaniesList = () => {
-  const { data, isLoading, isError } = api.companies.getCompanies.useQuery();
+  const { data, isLoading, isError, isSuccess, isFetched } =
+    api.companies.getCompanies.useQuery();
 
   const renderCompanies = data
     ?.sort((a, b) => a.order - b.order)
@@ -46,6 +48,7 @@ const CompaniesList = () => {
   return (
     <Layout>
       <div className="mx-auto my-48 flex w-full max-w-[1280px] flex-wrap items-center justify-start gap-[20px] px-4">
+        <PageBack />
         <h1 className="w-full rounded bg-forest p-2 text-[40px] font-black uppercase text-forestLight drop-shadow-md">
           Records list
         </h1>
@@ -57,6 +60,8 @@ const CompaniesList = () => {
           component={renderCompanies}
           isLoading={isLoading}
           isError={isError}
+          isSuccess={isSuccess}
+          isFetched={isFetched}
           loaderElementWidth="min-w-full lg:min-w-[32%]"
           loaderElementHeight="min-h-[200px]"
         />

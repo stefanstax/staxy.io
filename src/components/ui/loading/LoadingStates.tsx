@@ -8,6 +8,8 @@ type LoadingStatesProps = {
   data: string[] | null | object[] | undefined;
   isLoading: boolean;
   isError: boolean;
+  isSuccess: boolean;
+  isFetched: boolean;
   component?: ReactNode;
   loaderElementWidth: string;
   loaderElementHeight: string;
@@ -18,8 +20,10 @@ type LoadingStatesProps = {
 
 const LoadingStates = ({
   data,
-  isLoading,
   isError,
+  isSuccess,
+  isFetched,
+  isLoading,
   component,
   loaderElementWidth,
   loaderElementHeight,
@@ -28,13 +32,16 @@ const LoadingStates = ({
   positionMiddle,
 }: LoadingStatesProps) => {
   const classes = classNames(className, positionMiddle && `mx-auto`);
+  const dataFetchLoading = isSuccess && isFetched && isLoading && !isError;
+  const dataFetchSuccess = isSuccess && isFetched;
+  const dataFetchFailed = isError;
   return (
     <>
-      {data?.length && !isLoading && component ? component : null}
+      {data?.length && dataFetchSuccess && component ? component : null}
 
       {slider ? (
         <>
-          {data?.length && isLoading ? (
+          {data?.length && dataFetchLoading ? (
             <Loaders
               clones={5}
               loaderElementWidth={loaderElementWidth}
@@ -45,7 +52,7 @@ const LoadingStates = ({
               }
             />
           ) : null}
-          {!data?.length && isError ? (
+          {dataFetchFailed ? (
             <Loaders
               clones={5}
               loaderElementWidth={loaderElementWidth}
@@ -56,7 +63,7 @@ const LoadingStates = ({
               }
             />
           ) : null}
-          {!data?.length && (
+          {!data?.length && !dataFetchFailed ? (
             <Loaders
               slider={slider}
               clones={5}
@@ -66,11 +73,11 @@ const LoadingStates = ({
                 <Icon icon="solar:clock-square-broken" fontSize={32} />
               }
             />
-          )}
+          ) : null}
         </>
       ) : (
         <div className="my-8 flex w-full flex-wrap gap-[10px]">
-          {data?.length && isLoading ? (
+          {data?.length && dataFetchLoading ? (
             <Loaders
               className={classes}
               clones={5}
@@ -82,7 +89,7 @@ const LoadingStates = ({
               }
             />
           ) : null}
-          {!data?.length && isError ? (
+          {dataFetchFailed ? (
             <Loaders
               className={classes}
               clones={5}
@@ -94,7 +101,7 @@ const LoadingStates = ({
               }
             />
           ) : null}
-          {!data?.length && (
+          {!data?.length && !dataFetchFailed ? (
             <Loaders
               className={classes}
               slider={slider}
@@ -103,7 +110,7 @@ const LoadingStates = ({
               loaderElementHeight={loaderElementHeight}
               contentScheme="Staxy hasn't shared this data yet."
             />
-          )}
+          ) : null}
         </div>
       )}
     </>

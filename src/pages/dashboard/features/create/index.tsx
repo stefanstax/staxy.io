@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Button from "~/components/ui/Button";
 import ErrorMessage from "~/components/ui/ErrorMessage";
 import { useSession } from "next-auth/react";
+import PageBack from "~/components/ui/PageBack";
 
 const FeatureCreate = () => {
   const {
@@ -48,6 +49,7 @@ const FeatureCreate = () => {
   return (
     <Layout>
       <div className="mx-auto my-48 flex w-full max-w-[1280px] flex-wrap items-start justify-start gap-[20px] px-4">
+        <PageBack />
         <h1 className="w-full rounded bg-forest p-2 text-[40px] font-black uppercase text-forestLight drop-shadow-md">
           Feature creation
         </h1>
