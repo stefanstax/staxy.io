@@ -21,12 +21,10 @@ export const env = createEnv({
       process.env.VERCEL ? z.string().min(1) : z.string().url()
     ),
     // Add `.min(1) on ID and SECRET if you want to make sure they're not empty
-    GITHUB_ID: z.string(),
-    GITHUB_SECRET: z.string(),
-    GOOGLE_CLIENT_ID: z.string(),
-    GOOGLE_CLIENT_SECRET: z.string(),
     NEXT_PUBLIC_CONVERTKIT_KEY: z.string(),
-    NEXT_PUBLIC_RESTRICT_EMAIL: z.string(),
+    NEXT_PUBLIC_RESTRICT_USER_ID: z.string(),
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: z.string(),
+    CLERK_SECRET_KEY: z.string(),
   },
 
   /**
@@ -47,12 +45,11 @@ export const env = createEnv({
     NODE_ENV: process.env.NODE_ENV,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
-    GITHUB_ID: process.env.GITHUB_ID,
-    GITHUB_SECRET: process.env.GITHUB_SECRET,
-    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
-    GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
     NEXT_PUBLIC_CONVERTKIT_KEY: process.env.NEXT_PUBLIC_CONVERTKIT_KEY,
-    NEXT_PUBLIC_RESTRICT_EMAIL: process.env.NEXT_PUBLIC_RESTRICT_EMAIL,
+    NEXT_PUBLIC_RESTRICT_USER_ID: process.env.NEXT_PUBLIC_RESTRICT_USER_ID,
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:
+      process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
+    CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation.

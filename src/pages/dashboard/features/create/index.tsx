@@ -6,7 +6,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Button from "~/components/ui/Button";
 import ErrorMessage from "~/components/ui/ErrorMessage";
-import { useSession } from "next-auth/react";
 import PageBack from "~/components/ui/PageBack";
 
 const FeatureCreate = () => {

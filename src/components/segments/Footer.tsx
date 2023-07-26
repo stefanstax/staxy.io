@@ -5,10 +5,11 @@ import MasterCard from "../../assets/images/mastercard-logo.png";
 import VisaCard from "../../assets/images/visa-logo.png";
 import AmericanCard from "../../assets/images/american-logo.png";
 import { Routes } from "../constants";
-import { useSession } from "next-auth/react";
+import { useAuth } from "@clerk/nextjs";
 
 const Footer = () => {
-  const { data: session } = useSession();
+  const { userId } = useAuth();
+
   return (
     <section className="mx-auto w-full bg-forest p-10 text-beige drop-shadow-2xl">
       <div className="mx-auto max-w-[1140px]">
@@ -50,7 +51,7 @@ const Footer = () => {
               Send an Email
             </InBoundLink>
           </div>
-          {session?.user?.email === "stefanstaxbusiness@gmail.com" && (
+          {userId === process.env.NEXT_PUBLIC_RESTRICT_USER_ID && (
             <div className="flex basis-full flex-col items-start justify-start lg:basis-6/12">
               <h3 className="text-2xl font-black">Admin</h3>
               <InBoundLink footerLink to={Routes.FEATURES_LIST}>

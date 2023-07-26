@@ -1,4 +1,4 @@
-import { useSession } from "next-auth/react";
+import { useAuth } from "@clerk/nextjs";
 import { useRouter } from "next/router";
 import { type ReactNode, useEffect } from "react";
 import { api } from "~/utils/api";
@@ -8,7 +8,8 @@ type RouteBlockerProps = {
 };
 
 const RouteBlocker = ({ children }: RouteBlockerProps) => {
-  const { data: session } = useSession();
+  const { userId } = useAuth();
+
   const router = useRouter();
 
   const { data } = api.restrictedPaths.getRestrictedPaths.useQuery();
@@ -28,12 +29,12 @@ const RouteBlocker = ({ children }: RouteBlockerProps) => {
 
   useEffect(() => {
     if (
-      session?.user?.email !== process.env.NEXT_PUBLIC_RESTRICT_EMAIL &&
+      userId !== process.env.NEXT_PUBLIC_RESTRICT_USER_ID &&
       currentlyOnRestricted
     ) {
       void router.push("/");
     }
-  }, [session, lockedPaths]);
+  }, [userId, lockedPaths]);
 
   return <main className="min-h-screen scroll-smooth">{children}</main>;
 };

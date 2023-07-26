@@ -2,11 +2,12 @@ import React from "react";
 import Image from "next/image";
 import StaxyLogo from "../../assets/images/staxy-logo.png";
 import InBoundLink from "../ui/InBoundLink";
-import { Icon } from "@iconify/react";
-import { useSession } from "next-auth/react";
+import { SignInButton, UserButton, useAuth } from "@clerk/nextjs";
 
 const Navigation = () => {
-  const { data: session } = useSession();
+  const { userId } = useAuth();
+  console.log(userId);
+
   return (
     <nav className="fixed left-0 top-0 z-[999] flex max-h-[60px] min-h-[60px] w-full items-center justify-center bg-forest drop-shadow-2xl">
       <InBoundLink to="/">
@@ -18,30 +19,9 @@ const Navigation = () => {
           alt=""
         />
       </InBoundLink>
-      {!session?.user?.image && (
-        <InBoundLink
-          to="/signin"
-          primary
-          className="absolute right-5 rounded-full"
-        >
-          <Icon
-            icon="solar:login-3-bold-duotone"
-            className="ml-auto cursor-pointer transition-all hover:opacity-[75%]"
-            fontSize={32}
-          />
-        </InBoundLink>
-      )}
-      {session?.user?.image && (
-        <InBoundLink className="absolute right-5 rounded-full" to="/signin">
-          <Image
-            className="rounded-full"
-            src={session?.user?.image}
-            alt=""
-            width={35}
-            height={35}
-          />
-        </InBoundLink>
-      )}
+      <div className="absolute right-5 rounded-full text-white">
+        {userId ? <UserButton afterSignOutUrl="/" /> : <SignInButton />}
+      </div>
     </nav>
   );
 };
