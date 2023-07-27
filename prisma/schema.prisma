@@ -85,7 +85,7 @@ model Step {
   mediaSrc    String
   mediaFirst  Boolean
   endBlock    Boolean
-  order       Int
+  order       Int     @unique @default(autoincrement())
 }
 
 model Company {

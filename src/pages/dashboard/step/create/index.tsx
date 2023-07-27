@@ -1,5 +1,10 @@
 import classNames from "classnames";
-import { type FieldValues, type SubmitHandler, useForm } from "react-hook-form";
+import {
+  type FieldValues,
+  type SubmitHandler,
+  useForm,
+  Controller,
+} from "react-hook-form";
 import Layout from "~/components/segments/Layout";
 import { api } from "~/utils/api";
 import { ToastContainer, toast } from "react-toastify";
@@ -7,24 +12,28 @@ import "react-toastify/dist/ReactToastify.css";
 import Button from "~/components/ui/Button";
 import ErrorMessage from "~/components/ui/ErrorMessage";
 import PageBack from "~/components/ui/PageBack";
+import Switch from "~/components/ui/Switch";
 
-const FeatureCreate = () => {
+const StepCreate = () => {
   const {
     handleSubmit,
     reset,
     register,
+    control,
     formState: { errors },
   } = useForm();
-  const mutation = api.features.createFeature.useMutation();
+
+  const mutation = api.steps.createStep.useMutation();
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     mutation.mutate({
-      image: data?.image as string,
       title: data?.title as string,
       description: data?.description as string,
-      category: data?.category as string,
-      extraClass: data?.extraClass as string,
-      parent: data?.parent as string,
+      highlight: data?.highlight as string,
+      mediaSrc: data?.mediaSrc as string,
+      mediaFirst: data?.mediaFirst as boolean,
+      endBlock: data?.endBlock as boolean,
+      order: Number(data?.order),
     });
 
     toast.success(`Data has been sent to DB`, {
@@ -55,21 +64,26 @@ const FeatureCreate = () => {
         <form
           // eslint-disable-next-line @typescript-eslint/no-misused-promises
           onSubmit={handleSubmit(onSubmit)}
-          className="flex w-full flex-wrap items-center justify-start gap-[20px]"
+          className="flex w-full flex-col items-start justify-start gap-[20px]"
         >
-          <p className="w-full font-black uppercase">Basic</p>
           <input
-            {...register("image", { required: true, pattern: /^[a-zA-Z-:]+$/ })}
-            placeholder="Feature Icon is..."
+            {...register("mediaSrc", {
+              required: true,
+              pattern: /^[a-zA-Z-:]+$/,
+            })}
+            placeholder="Step icon is..."
             className={inputClasses}
           />
           <ErrorMessage>
-            {errors?.image?.type === "required" && "Image is required."}
-            {errors?.image?.type === "pattern" &&
-              "Image characters allowed: lowercase uppercase dash colon."}
+            {errors?.mediaSrc?.type === "required" && "Icon is required."}
+            {errors?.mediaSrc?.type === "pattern" &&
+              "Icon characters allowed: lowercase uppercase dash colon."}
           </ErrorMessage>
           <input
-            {...register("title", { required: true, pattern: /^[a-zA-Z .]+$/ })}
+            {...register("title", {
+              required: true,
+              pattern: /^[a-zA-Z .]+$/,
+            })}
             placeholder="Title is..."
             className={inputClasses}
           />
@@ -93,32 +107,59 @@ const FeatureCreate = () => {
               "description characters allowed: lowercase uppercase space."}
           </ErrorMessage>
           <input
-            {...register("extraClass", { pattern: /^[a-zA-Z-: ]+$/ })}
-            placeholder="Extra classes..."
+            type="number"
+            {...register("order", {
+              required: true,
+              pattern: /^[0-9]+$/,
+            })}
+            placeholder="Order is..."
             className={inputClasses}
           />
           <ErrorMessage>
-            {errors?.extraClass?.type === "pattern" &&
+            {errors?.order?.type === "required" && "order is required."}
+            {errors?.order?.type === "pattern" &&
+              "order characters allowed: numbers"}
+          </ErrorMessage>
+          <p className="font-black">Optional</p>
+          <input
+            {...register("highlight", {
+              required: false,
+              pattern: /^[a-zA-Z-: ]+$/,
+            })}
+            placeholder="Highlight classes are..."
+            className={inputClasses}
+          />
+          <ErrorMessage>
+            {errors?.highlight?.type === "pattern" &&
               `Please visit https://tailwindcss.com for guidance on styling classes.`}
           </ErrorMessage>
-          <p className="w-full font-black uppercase">Relational</p>
-          <select {...register("category")} className={inputClasses}>
-            <option value="core">Core</option>
-            <option value="module">Module</option>
-          </select>
-          <select
-            {...register("parent")}
-            placeholder="Parent module?"
-            className={inputClasses}
-            defaultValue=""
-          >
-            <option value="">
-              Parent module (options) - leave blank if none
-            </option>
-            <option value="e-learning">E-Learning</option>
-            <option value="events">Events</option>
-          </select>
-          <Button>Create a feature</Button>
+          <Controller
+            name="mediaFirst"
+            control={control}
+            defaultValue={false}
+            render={({ field: { value, onChange } }) => (
+              <Switch
+                label="mediaFirst"
+                className={inputClasses}
+                value={value as boolean}
+                onChange={onChange}
+              />
+            )}
+          />
+          <Controller
+            name="endBlock"
+            control={control}
+            defaultValue={false}
+            render={({ field: { value, onChange } }) => (
+              <Switch
+                label="endBlock"
+                className={inputClasses}
+                value={value as boolean}
+                onChange={onChange}
+              />
+            )}
+          />
+          <Button>Create a step</Button>
         </form>
       </div>
       <ToastContainer />
@@ -126,4 +167,4 @@ const FeatureCreate = () => {
   );
 };
 
-export default FeatureCreate;
+export default StepCreate;

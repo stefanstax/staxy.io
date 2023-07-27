@@ -9,47 +9,86 @@ export const stepRouter = createTRPCRouter({
     return await ctx.prisma.step.findMany();
   }),
 
-  // createFeature: publicProcedure
-  //   .input(
-  //     z.object({
-  //       title: z.string(),
-  //       image: z.string(),
-  //       extraClass: z.string(),
-  //     })
-  //   )
-  //   .mutation(async ({ ctx, input }) => {
-  //     return await ctx.prisma.feature.create({
-  //       data: {
-  //         title: input.title,
-  //         image: input.image,
-  //         extraClass: input.extraClass,
-  //       },
-  //     });
-  //   }),
+  createStep: publicProcedure
+    .input(
+      z.object({
+        title: z.string(),
+        description: z.string(),
+        highlight: z.string(),
+        mediaSrc: z.string(),
+        mediaFirst: z.boolean(),
+        endBlock: z.boolean(),
+        order: z.number(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      return await ctx.prisma.step.create({
+        data: {
+          title: input.title,
+          description: input.description,
+          highlight: input.highlight,
+          mediaSrc: input.mediaSrc,
+          mediaFirst: input.mediaFirst,
+          endBlock: input.endBlock,
+          order: input.order,
+        },
+      });
+    }),
 
-  // deleteFeature: publicProcedure.mutation(async ({ ctx }) => {
-  //   return await ctx.prisma.feature.deleteMany({});
-  // }),
+  editStep: publicProcedure
+    .input(
+      z.object({
+        identifier: z.string(),
+        title: z.string(),
+        description: z.string(),
+        highlight: z.string(),
+        mediaSrc: z.string(),
+        mediaFirst: z.boolean(),
+        endBlock: z.boolean(),
+        order: z.number(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const { identifier } = input;
+      return await ctx.prisma.step.update({
+        where: {
+          identifier,
+        },
+        data: {
+          title: input.title,
+          description: input.description,
+          highlight: input.highlight,
+          mediaSrc: input.mediaSrc,
+          mediaFirst: input.mediaFirst,
+          endBlock: input.endBlock,
+          order: input.order,
+        },
+      });
+    }),
 
-  // deleteFeatureById: publicProcedure
-  //   .input(z.object({ featureId: z.number() }))
-  //   .mutation(async ({ ctx, input }) => {
-  //     const { featureId } = input;
-  //     return await ctx.prisma.feature.delete({
-  //       where: {
-  //         id: featureId,
-  //       },
-  //     });
-  //   }),
+  deleteStep: publicProcedure
+    .input(
+      z.object({
+        identifier: z.string(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const { identifier } = input;
+      return await ctx.prisma.step.delete({
+        where: {
+          identifier,
+        },
+      });
+    }),
 
-  // getFeatureById: publicProcedure
-  //   .input(z.object({ featureId: z.number() }))
-  //   .query(async ({ ctx, input }) => {
-  //     const { featureId } = input;
-  //     return await ctx.prisma.feature.findUnique({
-  //       where: {
-  //         id: featureId,
-  //       },
-  //     });
-  //   }),
+  getStep: publicProcedure
+    .input(z.object({ identifier: z.string() }))
+    .query(async ({ ctx, input }) => {
+      const { identifier } = input;
+      return await ctx.prisma.step.findUnique({
+        where: {
+          identifier,
+        },
+      });
+    }),
 });

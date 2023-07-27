@@ -12,4 +12,7 @@ export const Routes = {
   COMPANY_CREATE: "/dashboard/company/create",
   COMPANY_LIST: "/dashboard/company/",
   COMPANY_EDIT: "/dashboard/company/",
+  STEP_CREATE: "/dashboard/step/create",
+  STEP_LIST: "/dashboard/step/",
+  STEP_EDIT: "/dashboard/step/",
 };

@@ -34,7 +34,7 @@ const RouteBlocker = ({ children }: RouteBlockerProps) => {
     ) {
       void router.push("/");
     }
-  }, [userId, lockedPaths]);
+  }, [userId]);
 
   return <main className="min-h-screen scroll-smooth">{children}</main>;
 };

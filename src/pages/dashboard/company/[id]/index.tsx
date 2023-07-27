@@ -82,7 +82,7 @@ const FeatureUpdate = () => {
               onSubmit={handleSubmit(onSubmit)}
               className="flex w-full flex-col items-start justify-start gap-[20px]"
             >
-              <p className="font-black uppercase">Basic</p>
+              <p className="w-full font-black uppercase">Basic</p>
               <input
                 {...register("image", {
                   required: true,

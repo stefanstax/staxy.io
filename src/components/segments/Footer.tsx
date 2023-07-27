@@ -55,13 +55,16 @@ const Footer = () => {
             <div className="flex basis-full flex-col items-start justify-start lg:basis-6/12">
               <h3 className="text-2xl font-black">Admin</h3>
               <InBoundLink footerLink to={Routes.FEATURES_LIST}>
-                Go to Features List
+                Go to Feature List
               </InBoundLink>
               <InBoundLink footerLink to={Routes.FAQ_LIST}>
                 Go to FAQ List
               </InBoundLink>
               <InBoundLink footerLink to={Routes.COMPANY_LIST}>
                 Go to Company List
+              </InBoundLink>
+              <InBoundLink footerLink to={Routes.STEP_LIST}>
+                Go to Step List
               </InBoundLink>
             </div>
           )}
