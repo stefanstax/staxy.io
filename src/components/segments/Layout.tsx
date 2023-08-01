@@ -3,6 +3,7 @@ import Navigation from "./Navigation";
 import Footer from "./Footer";
 import { type ReactNode } from "react";
 import RouteBlocker from "./RouteBlocker";
+import { ToastContainer } from "react-toastify";
 
 interface LayoutProps {
   className?: string;
@@ -18,6 +19,7 @@ const Layout = ({ className, children }: LayoutProps): JSX.Element => {
         {children}
         <Footer />
       </section>
+      <ToastContainer />
     </RouteBlocker>
   );
 };

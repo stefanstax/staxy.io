@@ -92,7 +92,7 @@ const ContactForm = ({ className, formId }: ContactFormProps) => {
 
   const classes = classNames(className);
   const inputClasses = classNames(
-    `w-full p-4 rounded bg-slate-200 drop-shadow-md font-black placeholder:font-[500]`
+    `w-full p-4 rounded border border-forest font-black placeholder:font-[500]`
   );
   const buttonClasses = classNames(
     `w-full flex justify-center gap-[10px] items-center p-4 rounded font-black uppercase transition-all text-white min-w-[200px] cursor-pointer hover:opacity-75 transition-all`,

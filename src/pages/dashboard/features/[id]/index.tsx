@@ -11,6 +11,7 @@ import Button from "~/components/ui/Button";
 import ErrorMessage from "~/components/ui/ErrorMessage";
 import LoadingEditView from "~/components/ui/loading/LoadingEditView";
 import PageBack from "~/components/ui/PageBack";
+import FormSection from "~/components/ui/forms/components/FormSection";
 
 const FeatureUpdate = () => {
   const router = useRouter();
@@ -65,7 +66,7 @@ const FeatureUpdate = () => {
   };
 
   const inputClasses = classNames(
-    `w-full p-4 bg-slate-200 font-[600] rounded drop-shadow-md placeholder:text-slate-700 cursor-pointer`
+    `w-full p-4 border border-forest font-[600] rounded placeholder:text-slate-700 cursor-pointer`
   );
 
   return (
@@ -89,7 +90,7 @@ const FeatureUpdate = () => {
               onSubmit={handleSubmit(onSubmit)}
               className="flex w-full flex-wrap items-center justify-start gap-[20px]"
             >
-              <p className="w-full font-black uppercase">Basic</p>
+              <FormSection label="Basic" />
               <input
                 {...register("image", {
                   required: true,
@@ -145,7 +146,7 @@ const FeatureUpdate = () => {
                 {errors?.extraClass?.type === "pattern" &&
                   `Please visit https://tailwindcss.com for guidance on styling classes.`}
               </ErrorMessage>
-              <p className="w-full font-black uppercase">Relational</p>
+              <FormSection label="Relational" />
               <select
                 {...register("category")}
                 defaultValue={data?.category as string}

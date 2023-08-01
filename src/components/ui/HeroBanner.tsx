@@ -32,7 +32,7 @@ const HeroBanner = ({
         <h1 className="w-full text-[40px] font-black uppercase lg:text-[55px]">
           {title}
         </h1>
-        <h3 className="text-md mx-auto my-8 w-10/12 lg:text-[30px] lg:leading-[3rem]">
+        <h3 className="text-md mx-auto my-8 w-10/12 text-[20px] md:text-[30px] lg:leading-[3rem]">
           {subtitle}
         </h3>
         <div className="flex w-full flex-wrap items-center justify-center gap-[20px]">

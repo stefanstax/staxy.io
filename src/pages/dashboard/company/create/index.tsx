@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Button from "~/components/ui/Button";
 import ErrorMessage from "~/components/ui/ErrorMessage";
 import PageBack from "~/components/ui/PageBack";
+import FormSection from "~/components/ui/forms/components/FormSection";
 
 const CompanyCreate = () => {
   const {
@@ -38,7 +39,7 @@ const CompanyCreate = () => {
   };
 
   const inputClasses = classNames(
-    `w-full p-4 bg-slate-200 font-[600] rounded drop-shadow-md placeholder:text-slate-700 cursor-pointer`
+    `w-full p-4 border border-forest font-[600] rounded placeholder:text-slate-700 cursor-pointer`
   );
 
   return (
@@ -53,6 +54,7 @@ const CompanyCreate = () => {
           onSubmit={handleSubmit(onSubmit)}
           className="flex w-full flex-col items-start justify-start gap-[20px]"
         >
+          <FormSection label="Basic" />
           <input
             {...register("image", {
               required: true,

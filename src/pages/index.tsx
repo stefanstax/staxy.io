@@ -13,7 +13,7 @@ import CompaniesCarousel from "~/components/ui/CompaniesCarousel";
 export default function Home() {
   return (
     <Layout className="mt-[60px]">
-      <Container className="flex min-h-[600px] flex-wrap items-center justify-center gap-[20px] bg-forest">
+      <Container className="flex h-screen flex-wrap items-center justify-center gap-[20px] bg-forest">
         <HeroBanner
           className="px-4 text-beige"
           title="Become the GO-TO Platform for your profession"
@@ -26,14 +26,14 @@ export default function Home() {
       </Container>
       <Container className="mx-auto flex w-full max-w-[1280px] flex-wrap items-center justify-center gap-[10px] px-4 py-10">
         <SectionTitle
-          className="uppercase"
-          title="They were in your shoes..."
+          title="Learn from people who started here"
+          subtitle="You have an opportunity to grow as one of the mentioned businesses below. Your committment is the part which will decide that. Staxy has the tools, and tools without comittment is just that.. a tool."
         />
         <CompaniesCarousel />
       </Container>
-      <Container className="w-full bg-beige" id="pitch">
-        <div className="mx-auto w-full max-w-[1280px] snap-none px-4 py-10 text-forest">
-          <SectionTitle title="You know that..." />
+      <Container className="w-full bg-beige">
+        <div className="mx-auto w-full max-w-[1280px] px-4 py-10 text-forest">
+          <SectionTitle title="You know that..." titleClassName="text-center" />
           <MediaAndText
             className="items-center justify-center"
             title="You could hire 6 different software agencies or tools and spend over $1.700,00/mo meanwhile you own NOTHING."

@@ -15,7 +15,7 @@ const Input = ({ inputLabel, pattern, required }: InputProps) => {
     formState: { errors },
   } = useForm();
   const inputClasses = classNames(
-    `w-full p-4 bg-slate-50 rounded drop-shadow-md placeholder:text-slate-700 cursor-pointer`
+    `w-full p-4 bg-slate-50 rounded placeholder:text-slate-700 cursor-pointer`
   );
 
   return (

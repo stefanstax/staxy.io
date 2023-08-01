@@ -106,3 +106,25 @@ model RestrictedPath {
   path       String
   locked     Boolean @default(false)
 }
+
+model Project {
+  identifier          String    @id @unique @default(cuid())
+  domain              String
+  country             String
+  description         String
+  category            String
+  budget              String
+  users               String
+  team_size           String
+  payment_weekly      Boolean?
+  payment_monthly     Boolean?
+  payment_lifetime    Boolean?
+  module_education    Boolean?
+  module_commerce     Boolean?
+  module_events       Boolean?
+  module_forms        Boolean?
+  revenue_expectation String
+  return_expectation  String
+  email               String
+  created_at          DateTime? @default(now())
+}
