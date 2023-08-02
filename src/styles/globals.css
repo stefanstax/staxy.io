@@ -3,72 +3,78 @@
 @tailwind utilities;
 
 @media (min-width: 768px) {
-    .glass-angle {
-        transform: perspective(1200px) translateX(0px) translateY(-18.4728px) scale(0.969212) rotate(0deg) rotateX(6.15759deg) rotateY(0deg) translateZ(0px);
-    }
+  .glass-angle {
+    transform: perspective(1200px) translateX(0px) translateY(-18.4728px)
+      scale(0.969212) rotate(0deg) rotateX(6.15759deg) rotateY(0deg)
+      translateZ(0px);
+  }
 }
 
 .error__message:empty {
-    display: none;
+  display: none;
 }
 
 .textByzantine {
-    color: #0a3524!important;
+  color: #0a3524 !important;
 }
 
 .textPurpy {
-    color: #8B91DE!important;
+  color: #8b91de !important;
 }
 
 .bgSlateLight {
-    background-color: #F8FAFC!important;
+  background-color: #f8fafc !important;
 }
 
 .rounded20 {
-    border-radius: 20px!important;
+  border-radius: 20px !important;
 }
 
 .staxy__mdx h1 {
-    font-size: 50px;
-    font-weight: 900;
-    text-align: center;
-    margin-bottom: 5rem;
+  font-size: 50px;
+  text-align: center;
+  margin-bottom: 5rem;
 }
 
 .staxy__mdx h3 {
-    font-size: 20px;
-    line-height: 44px;
-    font-weight: bold;
+  font-size: 20px;
+  line-height: 44px;
 }
 
 .staxy__mdx p {
-    margin: 1rem 0;
+  margin: 1rem 0;
 }
 
 .staxy__mdx ul {
-    padding: 0rem 1rem;
+  padding: 0rem 1rem;
 }
 
 .staxy__mdx ul li {
-    list-style-type: circle;
-    margin: 0.5rem 0px;
+  list-style-type: circle;
+  margin: 0.5rem 0px;
 }
 
 .staxy__mdx a {
-    color: #4555b5;
-    text-decoration: underline;
-    font-weight: 500;
+  color: #4555b5;
+  text-decoration: underline;
+  font-weight: 500;
 }
 
 .staxy__mdx a:hover {
-    opacity: 0.75;
-    transition: all .5s ease-in-out;
+  opacity: 0.75;
+  transition: all 0.5s ease-in-out;
 }
 
 @font-face {
     font-family: "Staxy";
     src: url("../assets//fonts/Staxy-ExtraLight.woff2");
     font-weight: 200;
+    display: swap;
+}
+@font-face {
+    font-family: "Staxy";
+    src: url("../assets//fonts/Staxy-Light.woff2");
+    font-weight: 300;
     display: swap;
 }
 @font-face {
@@ -96,6 +102,25 @@
     display: swap;
   }
 
-  html * {
-      font-family: "Staxy", sans-serif!important;
-  }
+
+h1 {
+  font-weight: 900 !important;
+}
+
+h2 {
+  font-weight: 800 !important;
+}
+
+h3,
+h4,
+h5 {
+  font-weight: 600 !important;
+}
+
+h6 {
+  font-weight: 500 !important;
+}
+
+html * {
+  font-family: "Staxy", sans-serif!important;
+}

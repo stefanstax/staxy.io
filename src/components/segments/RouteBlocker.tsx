@@ -30,6 +30,14 @@ const RouteBlocker = ({ children }: RouteBlockerProps) => {
   useEffect(() => {
     if (
       userId !== process.env.NEXT_PUBLIC_RESTRICT_USER_ID &&
+      currentlyOnRestricted &&
+      router.pathname === "/"
+    ) {
+      void router.push("/maintenance");
+    } else if (router.pathname === "/login" && !userId) {
+      return;
+    } else if (
+      userId !== process.env.NEXT_PUBLIC_RESTRICT_USER_ID &&
       currentlyOnRestricted
     ) {
       void router.push("/");

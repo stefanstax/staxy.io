@@ -14,6 +14,7 @@ type InBoundLinkProps = {
   activeClassName?: string;
   outSource?: boolean;
   ctaOutSource?: boolean;
+  inline?: boolean;
 };
 
 const InBoundLink = ({
@@ -28,9 +29,12 @@ const InBoundLink = ({
   outSource,
   ctaOutSource,
   primary,
+  inline,
 }: InBoundLinkProps): JSX.Element => {
   const classes = classNames(
     className,
+    inline &&
+      `hover:bg-[transparent!important] hover:text-[white!important] hover:opacity-[75%!important] font-[300] px-1 pr-0`,
     footerLink && `font-medium py-2 px-0`,
     `font-black p-2 rounded underline transition-all cursor-pointer hover:bg-white hover:text-forest hover:opacity-[75%]`,
     currentPath === to && activeClassName,

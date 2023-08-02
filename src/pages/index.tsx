@@ -54,6 +54,7 @@ export default function Home() {
           className="text-center text-beige"
           title="Enrolment Steps"
           subtitle="Enrolment starting mid August"
+          subtitleClassName="mx-auto"
         />
         <ListSteps className="max-w-[600px]" stepClass="my-24 text-beige" />
       </Container>
