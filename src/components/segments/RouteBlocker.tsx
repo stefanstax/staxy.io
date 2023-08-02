@@ -29,14 +29,14 @@ const RouteBlocker = ({ children }: RouteBlockerProps) => {
 
   useEffect(() => {
     if (
-      userId !== process.env.NEXT_PUBLIC_RESTRICT_USER_ID &&
+      (userId !== process.env.NEXT_PUBLIC_RESTRICT_USER_ID || !userId) &&
       currentlyOnRestricted &&
-      router.pathname?.includes("/") &&
-      router.pathname !== "/login"
+      router?.pathname?.includes("/") &&
+      router?.pathname !== "/login"
     ) {
       void router.push("/maintenance");
     }
-  }, [userId]);
+  }, [userId, router, currentlyOnRestricted]);
 
   return <main className="min-h-screen scroll-smooth">{children}</main>;
 };
