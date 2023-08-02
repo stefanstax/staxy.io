@@ -115,7 +115,6 @@ model Project {
   category            String
   budget              String
   users               String
-  team_size           String
   payment_weekly      Boolean?
   payment_monthly     Boolean?
   payment_lifetime    Boolean?
@@ -127,4 +126,5 @@ model Project {
   return_expectation  String
   email               String
   created_at          DateTime? @default(now())
+  team_size           String
 }
