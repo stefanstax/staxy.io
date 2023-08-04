@@ -13,7 +13,7 @@ import CompaniesCarousel from "~/components/ui/CompaniesCarousel";
 export default function Home() {
   return (
     <Layout className="mt-[60px]">
-      <Container className="flex h-screen flex-wrap items-center justify-center gap-[20px] bg-forest">
+      <Container className="flex min-h-[800px] flex-wrap items-center justify-center gap-[20px] bg-forest">
         <HeroBanner
           className="px-4 text-beige"
           title="Become the GO-TO Platform for your profession"
@@ -27,7 +27,7 @@ export default function Home() {
       <Container className="mx-auto flex w-full max-w-[1280px] flex-wrap items-center justify-center gap-[10px] px-4 py-10">
         <SectionTitle
           title="Learn from people who started here"
-          subtitle="You have an opportunity to grow as one of the mentioned businesses below. Your committment is the part which will decide that. Staxy has the tools, and tools without comittment is just that.. a tool."
+          subtitle="You have an opportunity to grow as one of the mentioned businesses below. Your commitment is the part which will decide where this platform will go."
         />
         <CompaniesCarousel />
       </Container>
