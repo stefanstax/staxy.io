@@ -68,7 +68,7 @@ model Feature {
   parent      String?
   category    String?
   extraClass  String
-  order       Int     @default(autoincrement())
+  order       Int     @unique @default(autoincrement())
 }
 
 model Faq {
