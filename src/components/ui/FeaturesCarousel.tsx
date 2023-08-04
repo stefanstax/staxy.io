@@ -3,7 +3,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css/core";
 import { Icon } from "@iconify/react";
 import { api } from "~/utils/api";
-import Loaders from "./Loaders";
+import LoadingStates from "./loading/LoadingStates";
 
 type FeaturesCarouselProps = {
   options?: object;
@@ -15,17 +15,18 @@ type FeatureLabelProps = {
 };
 
 const FeaturesCarousel = ({ className, options }: FeaturesCarouselProps) => {
-  const { data, isLoading, isError } = api.features.getFeatures.useQuery();
+  const { data, isLoading, isError, isSuccess } =
+    api.features.getFeatures.useQuery();
 
   const classes = classNames(
-    `group flex flex-col h-full gap-[20px] justify-center items-center rounded bg-purpy text-beige p-10 cursor-grab`
+    `group border border-solid border-[1px] border-forest flex flex-col h-full gap-[20px] justify-center items-center rounded bg-transparent text-forest p-10 cursor-grab`
   );
 
   const parentClasses = classNames(className, `w-full my-24`);
 
   const FeatureLabel = ({ label }: FeatureLabelProps) => {
     return (
-      <span className="w-full rounded bg-beige p-2 text-center font-black uppercase italic text-purpy">
+      <span className="w-full rounded bg-forest p-2 text-center font-black uppercase italic text-forestLight">
         {label}
       </span>
     );
@@ -66,16 +67,15 @@ const FeaturesCarousel = ({ className, options }: FeaturesCarouselProps) => {
         ...options,
       }}
     >
-      {renderFeatures}
-      {!renderFeatures?.length && (
-        <Loaders
-          clones={10}
-          slider
-          minWidth="min-w-[200px]"
-          minHeight="min-h-[200px]"
-          background="bg-slate-900"
-        />
-      )}
+      <LoadingStates
+        data={data}
+        isLoading={isLoading}
+        isError={isError}
+        isSuccess={isSuccess}
+        component={renderFeatures}
+        loaderElementWidth="min-w-full lg:min-w-[32.2%]"
+        loaderElementHeight="min-h-[452px]"
+      />
     </Splide>
   );
 };

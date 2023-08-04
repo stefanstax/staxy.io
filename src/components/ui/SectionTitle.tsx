@@ -18,9 +18,12 @@ const SectionTitle = ({
   const classes = classNames(className);
   const titleClasses = classNames(
     titleClassName,
-    `w-full text-[35px] font-black uppercase lg:text-[55px] `
+    `w-full text-[35px] font-black lg:text-[50px] `
   );
-  const subtitleClasses = classNames(subtitleClassName, `w-full text-[20px]`);
+  const subtitleClasses = classNames(
+    subtitleClassName,
+    `w-full text-[20px] max-w-[900px]`
+  );
   return (
     <div
       className={`${classes} flex w-full flex-col items-start justify-center`}

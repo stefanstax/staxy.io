@@ -1,0 +1,18 @@
+export const Routes = {
+  HOME: "/",
+  TERMS: "/terms-and-conditions",
+  PRIVACY: "/privacy-policy",
+  SIGNIN: "/sign-in",
+  FEATURES_CREATE: "/dashboard/features/create",
+  FEATURES_LIST: `/dashboard/features/`,
+  FEATURES_EDIT: `/dashboard/features/`,
+  FAQ_CREATE: "/dashboard/faq/create",
+  FAQ_LIST: "/dashboard/faq/",
+  FAQ_EDIT: "/dashboard/faq/",
+  COMPANY_CREATE: "/dashboard/company/create",
+  COMPANY_LIST: "/dashboard/company/",
+  COMPANY_EDIT: "/dashboard/company/",
+  STEP_CREATE: "/dashboard/step/create",
+  STEP_LIST: "/dashboard/step/",
+  STEP_EDIT: "/dashboard/step/",
+};

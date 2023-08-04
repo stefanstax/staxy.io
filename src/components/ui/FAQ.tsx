@@ -3,7 +3,7 @@ import { useState } from "react";
 import InBoundLink from "./InBoundLink";
 import { api } from "~/utils/api";
 import { Icon } from "@iconify/react";
-import Loaders from "./Loaders";
+import LoadingStates from "./loading/LoadingStates";
 
 type FAQProps = {
   containerClass?: string;
@@ -15,7 +15,7 @@ type IsOpenState = {
 
 const FAQ = ({ containerClass }: FAQProps) => {
   const [isOpen, setIsOpen] = useState<IsOpenState>({});
-  const { data, isLoading, isError } = api.faqs.getFaqs.useQuery();
+  const { data, isLoading, isError, isSuccess } = api.faqs.getFaqs.useQuery();
 
   const handleClick = (index: number) => {
     setIsOpen((prevState) => ({
@@ -73,16 +73,15 @@ const FAQ = ({ containerClass }: FAQProps) => {
 
   return (
     <div className={containerClasses}>
-      {renderFAQ}
-      {(isError || isLoading || !renderFAQ?.length) && (
-        <Loaders
-          clones={3}
-          minWidth="w-full"
-          minHeight="min-h-[100px]"
-          background="bg-forest"
-          className="my-4"
-        />
-      )}
+      <LoadingStates
+        data={data}
+        isLoading={isLoading}
+        isError={isError}
+        isSuccess={isSuccess}
+        component={renderFAQ}
+        loaderElementWidth="min-w-full"
+        loaderElementHeight="min-h-[60px]"
+      />
       <InBoundLink
         to="https://tidycal.com/staxy/platform-chat"
         className="text-[14px] font-bold no-underline transition-all hover:opacity-75"

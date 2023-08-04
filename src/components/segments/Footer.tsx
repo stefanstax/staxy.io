@@ -4,8 +4,12 @@ import InBoundLink from "../ui/InBoundLink";
 import MasterCard from "../../assets/images/mastercard-logo.png";
 import VisaCard from "../../assets/images/visa-logo.png";
 import AmericanCard from "../../assets/images/american-logo.png";
+import { Routes } from "../constants";
+import { useAuth } from "@clerk/nextjs";
 
 const Footer = () => {
+  const { userId } = useAuth();
+
   return (
     <section className="mx-auto w-full bg-forest p-10 text-beige drop-shadow-2xl">
       <div className="mx-auto max-w-[1140px]">
@@ -46,10 +50,24 @@ const Footer = () => {
             <InBoundLink footerLink outSource to="mailto:contact@staxy.io">
               Send an Email
             </InBoundLink>
-            <InBoundLink footerLink outSource to="https://wa.me/+381691920124">
-              Send WhatsApp message
-            </InBoundLink>
           </div>
+          {userId === process.env.NEXT_PUBLIC_RESTRICT_USER_ID && (
+            <div className="flex basis-full flex-col items-start justify-start lg:basis-6/12">
+              <h3 className="text-2xl font-black">Admin</h3>
+              <InBoundLink footerLink to={Routes.FEATURES_LIST}>
+                Go to Feature List
+              </InBoundLink>
+              <InBoundLink footerLink to={Routes.FAQ_LIST}>
+                Go to FAQ List
+              </InBoundLink>
+              <InBoundLink footerLink to={Routes.COMPANY_LIST}>
+                Go to Company List
+              </InBoundLink>
+              <InBoundLink footerLink to={Routes.STEP_LIST}>
+                Go to Step List
+              </InBoundLink>
+            </div>
+          )}
           <div className="flex w-full flex-wrap items-center justify-start">
             <Image src={MasterCard} alt="" width={75} height={75} />
             <Image src={VisaCard} alt="" width={75} height={75} />

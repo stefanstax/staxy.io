@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { Icon } from "@iconify/react";
 import { api } from "~/utils/api";
-import Loaders from "./Loaders";
+import LoadingStates from "./loading/LoadingStates";
 
 type FeaturesGridProps = {
   className?: string;
@@ -16,7 +16,8 @@ type FeatureContentProps = {
 };
 
 const FeaturesGrid = ({ className }: FeaturesGridProps) => {
-  const { data, isLoading, isError } = api.features.getFeatures.useQuery();
+  const { data, isLoading, isError, isSuccess } =
+    api.features.getFeatures.useQuery();
 
   const classes = classNames(
     `group w-full md:w-[48%] xl:w-[32%] min-h-[400px] flex flex-col justify-between items-end gap-[20px] rounded bg-transparent text-forest border border-forest text-beige p-10 hover:bg-slate-50 transition-all`
@@ -84,16 +85,15 @@ const FeaturesGrid = ({ className }: FeaturesGridProps) => {
 
   return (
     <div className={parentClasses}>
-      {renderFeatures}
-      {(isError || isLoading || !renderFeatures?.length) && (
-        <Loaders
-          clones={10}
-          slider
-          minWidth="w-full md:w-[48%] lg:w-[32%]"
-          minHeight="min-h-[200px]"
-          background="bg-forest"
-        />
-      )}
+      <LoadingStates
+        data={data}
+        isLoading={isLoading}
+        isError={isError}
+        isSuccess={isSuccess}
+        component={renderFeatures}
+        loaderElementWidth="min-w-full lg:min-w-[32.2%]"
+        loaderElementHeight="min-h-[452px]"
+      />
     </div>
   );
 };

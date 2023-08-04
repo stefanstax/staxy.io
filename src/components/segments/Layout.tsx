@@ -2,6 +2,8 @@ import classNames from "classnames";
 import Navigation from "./Navigation";
 import Footer from "./Footer";
 import { type ReactNode } from "react";
+import RouteBlocker from "./RouteBlocker";
+import { ToastContainer } from "react-toastify";
 
 interface LayoutProps {
   className?: string;
@@ -11,11 +13,14 @@ interface LayoutProps {
 const Layout = ({ className, children }: LayoutProps): JSX.Element => {
   const classes = classNames(className);
   return (
-    <section className={classes}>
-      <Navigation />
-      {children}
-      <Footer />
-    </section>
+    <RouteBlocker>
+      <section className={classes}>
+        <Navigation />
+        {children}
+        <Footer />
+      </section>
+      <ToastContainer />
+    </RouteBlocker>
   );
 };
 

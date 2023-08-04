@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { api } from "~/utils/api";
 import Image from "next/image";
-import Loaders from "./Loaders";
+import LoadingStates from "./loading/LoadingStates";
 
 type CompaniesGridProps = {
   className?: string;
@@ -18,13 +18,14 @@ type Props = {
 };
 
 const CompaniesGrid: React.FC<CompaniesGridProps> = ({ className }) => {
-  const { data, isLoading, isError } = api.companies.getCompanies.useQuery();
+  const { data, isLoading, isError, isSuccess } =
+    api.companies.getCompanies.useQuery();
 
   const classes = classNames("flex justify-center items-center w-2/12");
 
   const parentClasses = classNames(
     className,
-    "w-full flex justify-center items-center gap-[20px] flex-wrap"
+    "w-full flex justify-center items-center flex-wrap"
   );
 
   const RenderCompanies: React.FC<Props> = ({ data, classes }) => {
@@ -45,18 +46,20 @@ const CompaniesGrid: React.FC<CompaniesGridProps> = ({ className }) => {
     );
   };
 
+  console.log(data?.length);
+
   return (
     <div className={parentClasses}>
-      {data?.length && <RenderCompanies data={data} classes={classes} />}
-      {(isError || isLoading || !data?.length) && (
-        <Loaders
-          clones={10}
-          slider
-          minWidth="min-w-[60px] lg:w-2/12"
-          minHeight="min-h-[60px] lg:min-h-[135px]"
-          background="bg-forest"
-        />
-      )}
+      <LoadingStates
+        data={data}
+        positionMiddle
+        component={<RenderCompanies data={data} classes={classes} />}
+        isLoading={isLoading}
+        isError={isError}
+        isSuccess={isSuccess}
+        loaderElementWidth="min-w-full lg:min-w-[200px]"
+        loaderElementHeight="min-h-[100px]"
+      />
     </div>
   );
 };

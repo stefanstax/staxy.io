@@ -121,42 +121,47 @@ export const features = [
   },
   {
     title: "Google Friendly",
-    description: "",
+    description:
+      "Platform has gained success already so Google already heard about us.",
     parent: null,
     category: null,
     image: "solar:code-square-broken",
   },
   {
     title: "Ad Powered Pages",
-    description: null,
+    description:
+      "We can make curated ad powered pages so your ads can get affection that they require.",
     parent: null,
     category: null,
     image: "solar:graph-new-up-broken",
   },
   {
     title: "Personal AI Bot",
-    description: null,
+    description:
+      "Why wait on Chat GPT availability when you can have your own, personalized one straight on the platform.",
     parent: null,
     category: null,
     image: "solar:hashtag-chat-broken",
   },
   {
     title: "Live Chat",
-    description: null,
+    description:
+      "Live chat to be there for your students and visitors 24/7. We can even help in covering time zones.",
     parent: null,
     category: null,
     image: "solar:chat-square-call-broken",
   },
   {
     title: "Donations",
-    description: null,
+    description:
+      "Not only you'll be having a profitable platform but you'll also have ways to add on top of that with donation options.",
     parent: null,
     category: null,
     image: "solar:hand-money-broken",
   },
   {
     title: "Need More",
-    description: null,
+    description: "All you gotta do is ask. Staxy always over-delivers.",
     parent: null,
     category: null,
     image: "solar:magic-stick-3-broken",

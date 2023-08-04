@@ -10,7 +10,11 @@ import mdx from "@next/mdx";
 const config = {
   reactStrictMode: true,
   images: {
-    domains: ["jhhqlpktefzuwshwfvcq.supabase.co"],
+    domains: [
+      "jhhqlpktefzuwshwfvcq.supabase.co",
+      "lh3.googleusercontent.com",
+      "vzovzaauzqfjphbwoqsj.supabase.co",
+    ],
   },
   /**
    * If you have `experimental: { appDir: true }` set, then you must comment the below `i18n` config

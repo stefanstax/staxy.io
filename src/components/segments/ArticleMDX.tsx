@@ -8,7 +8,7 @@ type ArticleMDXProps = {
 
 const ArticleMDX = ({ className, children }: ArticleMDXProps) => {
   const classes = classNames(
-    `staxy__mdx px-4 bg-gradient-to-b from-[#00001a] to-matte text-[#cacaca]`,
+    `staxy__mdx px-4 bg-gradient-to-b from-forest to-matte text-[#cacaca]`,
     className
   );
   return (

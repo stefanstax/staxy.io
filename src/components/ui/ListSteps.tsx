@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
 import classNames from "classnames";
 import { api } from "~/utils/api";
-import Loaders from "./Loaders";
+import LoadingStates from "./loading/LoadingStates";
 
 type ListStepsProps = {
   className: string;
@@ -9,7 +9,7 @@ type ListStepsProps = {
 };
 
 const ListSteps = ({ stepClass, className }: ListStepsProps) => {
-  const { data, isLoading, isError } = api.steps.getSteps.useQuery();
+  const { data, isLoading, isError, isSuccess } = api.steps.getSteps.useQuery();
 
   const classes = classNames(className, `mx-auto`);
   const stepClasses = classNames(stepClass);
@@ -69,16 +69,15 @@ const ListSteps = ({ stepClass, className }: ListStepsProps) => {
 
   return (
     <div className={classes}>
-      {renderSteps}
-      {(isError || isLoading || !renderSteps?.length) && (
-        <Loaders
-          clones={4}
-          minWidth="w-full"
-          minHeight="min-h-[200px]"
-          className="my-4"
-          background="bg-forestLight"
-        />
-      )}
+      <LoadingStates
+        data={data}
+        component={renderSteps}
+        isLoading={isLoading}
+        isError={isError}
+        isSuccess={isSuccess}
+        loaderElementWidth="min-w-full"
+        loaderElementHeight="min-h-[250px]"
+      />
     </div>
   );
 };

@@ -18,7 +18,12 @@
     "noUncheckedIndexedAccess": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./src/*"]
+      "~/*": ["./src/*"],
+      "~/assets/images/": ["./src/assets/images/*"],
+      "~/routers/": ["./src/server/routers/*"],
+      "~/ui/": ["./src/components/ui/*"],
+      "~/segments/": ["./src/components/segments/*"],
+      "~/constants/": ["./src/components/constants/*"]
     }
   },
   "include": [
