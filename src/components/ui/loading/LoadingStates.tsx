@@ -9,7 +9,6 @@ type LoadingStatesProps = {
   isLoading: boolean;
   isError: boolean;
   isSuccess: boolean;
-  isFetched: boolean;
   component?: ReactNode;
   loaderElementWidth: string;
   loaderElementHeight: string;
@@ -22,7 +21,6 @@ const LoadingStates = ({
   data,
   isError,
   isSuccess,
-  isFetched,
   isLoading,
   component,
   loaderElementWidth,
@@ -32,18 +30,19 @@ const LoadingStates = ({
   positionMiddle,
 }: LoadingStatesProps) => {
   const classes = classNames(className, positionMiddle && `mx-auto`);
-  const dataFetchLoading = isSuccess && isFetched && isLoading && !isError;
-  const dataFetchSuccess = isSuccess && isFetched;
-  const dataFetchFailed = isError;
+  const dataLoading = isLoading;
+  const dataSuccess = isSuccess;
+  const dataError = isError;
+  const dataHasLength = data?.length;
   return (
     <>
-      {data?.length && dataFetchSuccess && component ? component : null}
+      {dataHasLength && dataSuccess && component ? component : null}
 
       {slider ? (
-        <>
-          {data?.length && dataFetchLoading ? (
+        <div className="flex gap-[20px]">
+          {dataHasLength && dataLoading && !dataError ? (
             <Loaders
-              clones={5}
+              clones={3}
               loaderElementWidth={loaderElementWidth}
               loaderElementHeight={loaderElementHeight}
               colorScheme="border-blue-600 text-blue-600"
@@ -52,9 +51,9 @@ const LoadingStates = ({
               }
             />
           ) : null}
-          {dataFetchFailed ? (
+          {dataError ? (
             <Loaders
-              clones={5}
+              clones={3}
               loaderElementWidth={loaderElementWidth}
               loaderElementHeight={loaderElementHeight}
               colorScheme="border-red-600 text-red-600"
@@ -63,10 +62,10 @@ const LoadingStates = ({
               }
             />
           ) : null}
-          {!data?.length && !dataFetchFailed ? (
+          {!dataHasLength && !dataError ? (
             <Loaders
               slider={slider}
-              clones={5}
+              clones={3}
               loaderElementWidth={loaderElementWidth}
               loaderElementHeight={loaderElementHeight}
               contentScheme={
@@ -74,13 +73,13 @@ const LoadingStates = ({
               }
             />
           ) : null}
-        </>
+        </div>
       ) : (
         <div className="my-8 flex w-full flex-wrap gap-[10px]">
-          {data?.length && dataFetchLoading ? (
+          {dataHasLength && dataLoading && !dataError ? (
             <Loaders
               className={classes}
-              clones={5}
+              clones={3}
               loaderElementWidth={loaderElementWidth}
               loaderElementHeight={loaderElementHeight}
               colorScheme="border-blue-600 text-blue-600"
@@ -89,10 +88,10 @@ const LoadingStates = ({
               }
             />
           ) : null}
-          {dataFetchFailed ? (
+          {dataError ? (
             <Loaders
               className={classes}
-              clones={5}
+              clones={3}
               loaderElementWidth={loaderElementWidth}
               loaderElementHeight={loaderElementHeight}
               colorScheme="border-red-600 text-red-600"
@@ -101,11 +100,11 @@ const LoadingStates = ({
               }
             />
           ) : null}
-          {!data?.length && !dataFetchFailed ? (
+          {!dataHasLength && !dataError ? (
             <Loaders
               className={classes}
               slider={slider}
-              clones={5}
+              clones={3}
               loaderElementWidth={loaderElementWidth}
               loaderElementHeight={loaderElementHeight}
               contentScheme="Staxy hasn't shared this data yet."

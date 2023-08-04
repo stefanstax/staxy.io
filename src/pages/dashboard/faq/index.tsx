@@ -11,8 +11,7 @@ import LoadingStates from "~/components/ui/loading/LoadingStates";
 import { api } from "~/utils/api";
 
 const FaqList = () => {
-  const { data, isLoading, isError, isSuccess, isFetched } =
-    api.faqs.getFaqs.useQuery();
+  const { data, isLoading, isError, isSuccess } = api.faqs.getFaqs.useQuery();
   const mutation = api.faqs.deleteFaqById.useMutation();
 
   const handleDelete = (identifier: string, question: string) => {
@@ -87,7 +86,6 @@ const FaqList = () => {
           isLoading={isLoading}
           isError={isError}
           isSuccess={isSuccess}
-          isFetched={isFetched}
           loaderElementWidth="min-w-full lg:min-w-[32%]"
           loaderElementHeight="min-h-[200px]"
         />

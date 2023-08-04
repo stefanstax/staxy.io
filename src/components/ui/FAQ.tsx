@@ -15,8 +15,7 @@ type IsOpenState = {
 
 const FAQ = ({ containerClass }: FAQProps) => {
   const [isOpen, setIsOpen] = useState<IsOpenState>({});
-  const { data, isLoading, isError, isSuccess, isFetched } =
-    api.faqs.getFaqs.useQuery();
+  const { data, isLoading, isError, isSuccess } = api.faqs.getFaqs.useQuery();
 
   const handleClick = (index: number) => {
     setIsOpen((prevState) => ({
@@ -79,7 +78,6 @@ const FAQ = ({ containerClass }: FAQProps) => {
         isLoading={isLoading}
         isError={isError}
         isSuccess={isSuccess}
-        isFetched={isFetched}
         component={renderFAQ}
         loaderElementWidth="min-w-full"
         loaderElementHeight="min-h-[60px]"

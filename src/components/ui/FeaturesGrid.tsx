@@ -16,7 +16,7 @@ type FeatureContentProps = {
 };
 
 const FeaturesGrid = ({ className }: FeaturesGridProps) => {
-  const { data, isLoading, isError, isSuccess, isFetched } =
+  const { data, isLoading, isError, isSuccess } =
     api.features.getFeatures.useQuery();
 
   const classes = classNames(
@@ -89,7 +89,6 @@ const FeaturesGrid = ({ className }: FeaturesGridProps) => {
         data={data}
         isLoading={isLoading}
         isError={isError}
-        isFetched={isFetched}
         isSuccess={isSuccess}
         component={renderFeatures}
         loaderElementWidth="min-w-full lg:min-w-[32.2%]"

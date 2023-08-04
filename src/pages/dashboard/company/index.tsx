@@ -9,7 +9,7 @@ import LoadingStates from "~/components/ui/loading/LoadingStates";
 import { api } from "~/utils/api";
 
 const CompaniesList = () => {
-  const { data, isLoading, isError, isSuccess, isFetched } =
+  const { data, isLoading, isError, isSuccess } =
     api.companies.getCompanies.useQuery();
 
   const renderCompanies = data
@@ -61,7 +61,6 @@ const CompaniesList = () => {
           isLoading={isLoading}
           isError={isError}
           isSuccess={isSuccess}
-          isFetched={isFetched}
           loaderElementWidth="min-w-full lg:min-w-[32%]"
           loaderElementHeight="min-h-[200px]"
         />

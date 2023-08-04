@@ -11,7 +11,7 @@ import LoadingStates from "~/components/ui/loading/LoadingStates";
 import { api } from "~/utils/api";
 
 const FeaturesList = () => {
-  const { data, isLoading, isError, isSuccess, isFetched } =
+  const { data, isLoading, isError, isSuccess } =
     api.features.getFeatures.useQuery();
   const mutation = api.features.deleteFeatureById.useMutation();
 
@@ -89,7 +89,6 @@ const FeaturesList = () => {
           isLoading={isLoading}
           isError={isError}
           isSuccess={isSuccess}
-          isFetched={isFetched}
           loaderElementWidth="min-w-full lg:min-w-[32%]"
           loaderElementHeight="min-h-[200px]"
         />

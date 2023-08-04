@@ -1,19 +1,18 @@
+import Image from "next/image";
 import React from "react";
 import InBoundLink from "~/components/ui/InBoundLink";
+import MaintenanceImage from "~/assets/images/maintenance-db.svg";
 
 const Maintenace = () => {
   return (
     <section className="flex h-screen w-full flex-col items-center justify-center gap-[20px] bg-gradient-to-t from-forest to-matte px-4 py-40 text-beige">
-      <h1 className="text-[25px] lg:text-[40px]">
-        We&apos;re currently working on few updates. We&apos;ll be back soon!
+      <Image src={MaintenanceImage as string} width={400} height={400} alt="" />
+      <h1 className="text-[25px]">
+        Database upgrade in progress. We&apos;ll be back shortly.
       </h1>
-      <p className="text-[20px]">
-        In case your inquiry can not wait; by all means,
-        <InBoundLink inline to="mailto:contact@staxy.io">
-          email
-        </InBoundLink>{" "}
-        us
-      </p>
+      <InBoundLink primary to="mailto:contact@staxy.io">
+        Urgent Inquiry
+      </InBoundLink>
     </section>
   );
 };

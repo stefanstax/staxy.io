@@ -26,7 +26,7 @@ const CompaniesCarousel: React.FC<CompaniesCarouselProps> = ({
   options,
   className,
 }) => {
-  const { data, isLoading, isError, isSuccess, isFetched } =
+  const { data, isSuccess, isLoading, isError } =
     api.companies.getCompanies.useQuery();
 
   const classes = classNames(
@@ -124,7 +124,6 @@ const CompaniesCarousel: React.FC<CompaniesCarouselProps> = ({
           isLoading={isLoading}
           isError={isError}
           isSuccess={isSuccess}
-          isFetched={isFetched}
           loaderElementWidth="min-w-[300px]"
           loaderElementHeight="min-h-[300px]"
           className="gap-[10px]"

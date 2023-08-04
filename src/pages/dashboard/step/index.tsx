@@ -10,8 +10,7 @@ import LoadingStates from "~/components/ui/loading/LoadingStates";
 import { api } from "~/utils/api";
 
 const StepsList = () => {
-  const { data, isLoading, isError, isSuccess, isFetched } =
-    api.steps.getSteps.useQuery();
+  const { data, isLoading, isError, isSuccess } = api.steps.getSteps.useQuery();
 
   const mutation = api.steps.deleteStep.useMutation();
 
@@ -90,7 +89,6 @@ const StepsList = () => {
           isLoading={isLoading}
           isError={isError}
           isSuccess={isSuccess}
-          isFetched={isFetched}
           loaderElementWidth="min-w-full lg:min-w-[32%]"
           loaderElementHeight="min-h-[200px]"
         />
