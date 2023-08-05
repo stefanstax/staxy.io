@@ -6,7 +6,6 @@ import { SignInButton, UserButton, useAuth } from "@clerk/nextjs";
 
 const Navigation = () => {
   const { userId } = useAuth();
-  console.log(userId);
 
   return (
     <nav className="fixed left-0 top-0 z-[999] flex max-h-[60px] min-h-[60px] w-full items-center justify-center bg-forest drop-shadow-2xl">
