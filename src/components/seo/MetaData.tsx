@@ -20,7 +20,7 @@ const MetaData: FC<MetaData> = ({ type, title, description, imageUrl }) => {
 
   return (
     <>
-      {process.env.NODE_ENV === "development" &&
+      {process.env.NODE_ENV === "production" &&
         (!canonicalUrl?.includes("/dashboard") ||
           !canonicalUrl?.includes("/login") ||
           !canonicalUrl?.includes("/register")) && (
@@ -37,7 +37,7 @@ const MetaData: FC<MetaData> = ({ type, title, description, imageUrl }) => {
             }}
           />
         )}
-      {process.env.NODE_ENV === "development" && (
+      {process.env.NODE_ENV === "production" && (
         <NextSeo
           title={title}
           description={description}
