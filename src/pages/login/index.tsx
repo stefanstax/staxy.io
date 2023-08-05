@@ -1,4 +1,5 @@
 import { SignIn, SignOutButton, useAuth } from "@clerk/nextjs";
+import { NextSeo } from "next-seo";
 import React from "react";
 import Layout from "~/components/segments/Layout";
 
