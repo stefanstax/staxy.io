@@ -9,30 +9,17 @@ import MediaAndText from "~/components/ui/MediaAndText";
 import FeaturesGrid from "~/components/ui/FeaturesGrid";
 import Container from "~/components/ui/Container";
 import CompaniesCarousel from "~/components/ui/CompaniesCarousel";
-import { NextSeo } from "next-seo";
+import MetaData from "~/components/seo/MetaData";
+import { HomePage } from "~/components/seo/pagesSEO";
 
 export default function Home() {
-  const seoTitle = "Become the GO-TO for your profession";
-  const seoDescription =
-    "Move Udemy, SkillShare, Kajabi and all others aside. Own your data. Own your audience. Own your business.";
   return (
     <>
-      <NextSeo
-        title={seoTitle}
-        description={seoDescription}
-        openGraph={{
-          type: "website",
-          title: seoTitle,
-          description: seoDescription,
-          images: [
-            {
-              url: "https://jhhqlpktefzuwshwfvcq.supabase.co/storage/v1/object/public/seo/home-image.png",
-              width: 1200,
-              height: 630,
-              alt: "Illustrated gradient image having text describing terms and conditions page with extra image of personnel",
-            },
-          ],
-        }}
+      <MetaData
+        type={HomePage?.type}
+        title={HomePage?.title}
+        description={HomePage?.description}
+        imageUrl={HomePage?.imageUrl}
       />
       <Layout className="mt-[60px]">
         <Container className="flex min-h-[800px] flex-wrap items-center justify-center gap-[20px] bg-forest">

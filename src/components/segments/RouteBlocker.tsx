@@ -8,7 +8,7 @@ type RouteBlockerProps = {
 };
 
 const RouteBlocker = ({ children }: RouteBlockerProps) => {
-  const { userId } = useAuth();
+  const { userId, isLoaded } = useAuth();
 
   const router = useRouter();
 
@@ -28,15 +28,13 @@ const RouteBlocker = ({ children }: RouteBlockerProps) => {
   );
 
   useEffect(() => {
-    if (
-      (userId !== process.env.NEXT_PUBLIC_RESTRICT_USER_ID || !userId) &&
-      currentlyOnRestricted &&
-      router?.pathname?.includes("/") &&
-      router?.pathname !== "/login"
-    ) {
+    const isUserRestricted =
+      userId !== process.env.NEXT_PUBLIC_RESTRICT_USER_ID || !userId;
+
+    if (currentlyOnRestricted && isUserRestricted && isLoaded) {
       void router.push("/maintenance");
     }
-  }, [userId, router, currentlyOnRestricted]);
+  }, [userId, currentlyOnRestricted]);
 
   return <main className="min-h-screen scroll-smooth">{children}</main>;
 };
