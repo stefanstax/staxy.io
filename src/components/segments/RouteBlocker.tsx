@@ -12,6 +12,8 @@ const RouteBlocker = ({ children }: RouteBlockerProps) => {
 
   const router = useRouter();
 
+  const login = router?.route === "/login";
+
   const { data } = api.restrictedPaths.getRestrictedPaths.useQuery();
 
   const lockedPaths: string[] = [];
@@ -31,7 +33,16 @@ const RouteBlocker = ({ children }: RouteBlockerProps) => {
     const isUserRestricted =
       userId !== process.env.NEXT_PUBLIC_RESTRICT_USER_ID || !userId;
 
-    if (currentlyOnRestricted && isUserRestricted && isLoaded) {
+    if (
+      currentlyOnRestricted &&
+      isUserRestricted &&
+      isLoaded &&
+      !lockedPaths?.includes("maintenance")
+    ) {
+      void router.push("/404");
+    }
+
+    if (lockedPaths?.includes("maintenance") && isUserRestricted && isLoaded) {
       void router.push("/maintenance");
     }
   }, [userId, currentlyOnRestricted]);

@@ -2,6 +2,7 @@ import classNames from "classnames";
 import { Icon } from "@iconify/react";
 import { api } from "~/utils/api";
 import LoadingStates from "./loading/LoadingStates";
+import { type FC } from "react";
 
 type FeaturesGridProps = {
   className?: string;
@@ -15,7 +16,7 @@ type FeatureContentProps = {
   module?: string | null;
 };
 
-const FeaturesGrid = ({ className }: FeaturesGridProps) => {
+const FeaturesGrid: FC<FeaturesGridProps> = ({ className }) => {
   const { data, isLoading, isError, isSuccess } =
     api.features.getFeatures.useQuery();
 
@@ -28,13 +29,13 @@ const FeaturesGrid = ({ className }: FeaturesGridProps) => {
     `w-full my-24 flex flex-wrap gap-[20px] items-center justify-start`
   );
 
-  const FeatureContent = ({
+  const FeatureContent: FC<FeatureContentProps> = ({
     title,
     description,
     id,
     parent,
     module,
-  }: FeatureContentProps) => {
+  }) => {
     return (
       <div className="flex min-h-[250px] w-full flex-col items-start justify-start gap-[20px]">
         <div className="flex items-center justify-start gap-[10px]">
@@ -91,8 +92,7 @@ const FeaturesGrid = ({ className }: FeaturesGridProps) => {
         isError={isError}
         isSuccess={isSuccess}
         component={renderFeatures}
-        loaderElementWidth="min-w-full lg:min-w-[32.2%]"
-        loaderElementHeight="min-h-[452px]"
+        skeletonGrid
       />
     </div>
   );

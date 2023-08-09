@@ -89,8 +89,7 @@ const StepsList = () => {
           isLoading={isLoading}
           isError={isError}
           isSuccess={isSuccess}
-          loaderElementWidth="min-w-full lg:min-w-[32%]"
-          loaderElementHeight="min-h-[200px]"
+          skeletonGrid
         />
       </div>
       <ToastContainer />

@@ -9,16 +9,16 @@ import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/router";
 import Button from "~/components/ui/Button";
 import ErrorMessage from "~/components/ui/ErrorMessage";
-import LoadingEditView from "~/components/ui/loading/LoadingEditView";
 import PageBack from "~/components/ui/PageBack";
 import FormSection from "~/components/ui/forms/components/FormSection";
+import Skeleton from "~/components/ui/loading/Skeleton";
 
 const FaqUpdate = () => {
   const router = useRouter();
   // ? Acquire current post's id
   const { id } = router.query;
   // ? Grab data using current id
-  const { data, isLoading, isError } = api.faqs.getFaqById.useQuery({
+  const { data, isLoading } = api.faqs.getFaqById.useQuery({
     identifier: id as string,
   });
 
@@ -64,14 +64,9 @@ const FaqUpdate = () => {
     <Layout>
       <div className="mx-auto my-48 flex w-full max-w-[1280px] flex-wrap items-start justify-start gap-[20px] px-4">
         <PageBack />
-        <LoadingEditView
-          clones={1}
-          isLoading={isLoading}
-          isError={isError}
-          loaderElementWidth="min-w-full"
-          loaderElementHeight="min-h-[400px]"
-        />
-        {data ? (
+        {isLoading ? (
+          <Skeleton times={1} skeletonFull />
+        ) : data ? (
           <>
             <h1 className="w-full rounded bg-forest p-2 text-[40px] font-black uppercase text-forestLight drop-shadow-md">
               Record data: {data?.question}

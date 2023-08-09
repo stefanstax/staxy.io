@@ -1,3 +1,4 @@
+import { type FC } from "react";
 import classNames from "classnames";
 import { Splide, SplideSlide, SplideTrack } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css/core";
@@ -26,7 +27,7 @@ const CompaniesCarousel: React.FC<CompaniesCarouselProps> = ({
   options,
   className,
 }) => {
-  const { data, isSuccess, isLoading, isError } =
+  const { data, isLoading, isSuccess, isError } =
     api.companies.getCompanies.useQuery();
 
   const classes = classNames(
@@ -64,7 +65,7 @@ const CompaniesCarousel: React.FC<CompaniesCarouselProps> = ({
     interceptData[3] = dataInterceptBlock;
   }
 
-  const RenderCompanies: React.FC<Props> = ({ data, classes }) => {
+  const RenderCompanies: FC<Props> = ({ data, classes }) => {
     return (
       <>
         {data?.map((company: CompanyProps) => (
@@ -104,6 +105,7 @@ const CompaniesCarousel: React.FC<CompaniesCarouselProps> = ({
         breakpoints: {
           640: {
             perPage: 2,
+            gap: "2rem",
           },
           768: {
             perPage: 3,
@@ -124,9 +126,7 @@ const CompaniesCarousel: React.FC<CompaniesCarouselProps> = ({
           isLoading={isLoading}
           isError={isError}
           isSuccess={isSuccess}
-          loaderElementWidth="min-w-[300px]"
-          loaderElementHeight="min-h-[300px]"
-          className="gap-[10px]"
+          skeletonGrid
         />
       </SplideTrack>
       <div className="splide__arrows splide__arrows--ltr mt-4 flex gap-[10px]">
