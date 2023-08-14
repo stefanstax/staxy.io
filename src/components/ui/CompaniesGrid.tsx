@@ -52,13 +52,11 @@ const CompaniesGrid: React.FC<CompaniesGridProps> = ({ className }) => {
     <div className={parentClasses}>
       <LoadingStates
         data={data}
-        positionMiddle
         component={<RenderCompanies data={data} classes={classes} />}
         isLoading={isLoading}
         isError={isError}
         isSuccess={isSuccess}
-        loaderElementWidth="min-w-full lg:min-w-[200px]"
-        loaderElementHeight="min-h-[100px]"
+        skeletonGrid
       />
     </div>
   );

@@ -73,8 +73,7 @@ const FeaturesCarousel = ({ className, options }: FeaturesCarouselProps) => {
         isError={isError}
         isSuccess={isSuccess}
         component={renderFeatures}
-        loaderElementWidth="min-w-full lg:min-w-[32.2%]"
-        loaderElementHeight="min-h-[452px]"
+        skeletonGrid
       />
     </Splide>
   );

@@ -79,8 +79,7 @@ const FAQ = ({ containerClass }: FAQProps) => {
         isError={isError}
         isSuccess={isSuccess}
         component={renderFAQ}
-        loaderElementWidth="min-w-full"
-        loaderElementHeight="min-h-[60px]"
+        skeletonFull
       />
       <InBoundLink
         to="https://tidycal.com/staxy/platform-chat"
