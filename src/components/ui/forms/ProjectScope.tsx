@@ -13,23 +13,17 @@ import { useEffect } from "react";
 import FormDisclaimer from "./components/FormDisclaimer";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-// type ProjectScopeData = {
-//   domain: string;
-//   category: string;
-//   budget: string;
-//   payment_type: string[];
-//   revenue_expectation: string;
-//   return_expectation: string;
-//   team_size: string;
-//   description: string;
-//   modules: string[];
-//   created_at: Date;
-//   email: string;
-// };
+import ErrorMessage from "../ErrorMessage";
 
 const ProjectScope = () => {
-  const { handleSubmit, reset, register, control, setValue } = useForm();
+  const {
+    handleSubmit,
+    reset,
+    register,
+    control,
+    setValue,
+    formState: { errors },
+  } = useForm();
 
   const mutation = api.projects.createProject.useMutation();
 
@@ -116,20 +110,31 @@ const ProjectScope = () => {
         {/* Project desired Domain Name */}
         <input
           {...register("domain", { required: true })}
-          placeholder="Domain..."
+          placeholder="Desired domain name (with extension)"
           className={inputClasses}
         />
+        <ErrorMessage>
+          {errors?.domain?.type === "required" && "Domain is a required field."}
+        </ErrorMessage>
         {/* Project brief description */}
         <textarea
           {...register("description", { required: true })}
           placeholder="Tell us more about your idea"
           className={inputClasses}
         />
+        <ErrorMessage>
+          {errors?.description?.type === "required" &&
+            "Description is a required field."}
+        </ErrorMessage>
         <input
           className={inputClasses}
           {...register("country", { required: true })}
           placeholder="Which country would you launch this idea in? (example: USA \ UK \ Serbia \ Spain)"
         />
+        <ErrorMessage>
+          {errors?.country?.type === "required" &&
+            "Country is a required field."}
+        </ErrorMessage>
         <FormSection label="Project Categorization" />
         {/* Project category */}
         <select
@@ -144,6 +149,10 @@ const ProjectScope = () => {
           <option value="religion">Church Services</option>
           <option value="other">Other</option>
         </select>
+        <ErrorMessage>
+          {errors?.category?.type === "required" &&
+            "Category must have one of the choices selected."}
+        </ErrorMessage>
         {/* Project budget */}
         <select
           {...register("budget", { required: true })}
@@ -156,6 +165,10 @@ const ProjectScope = () => {
           <option value="enterprise">Enterprise</option>
           <option value="other">Other</option>
         </select>
+        <ErrorMessage>
+          {errors?.budget?.type === "required" &&
+            "Budget must have one of the choices selected."}
+        </ErrorMessage>
         {/* Project number of personnel */}
         <select
           {...register("team_size", { required: true })}
@@ -167,6 +180,10 @@ const ProjectScope = () => {
           <option value="6-15">6-15 (Software)</option>
           <option value="enterprise">Enterprise (Service)</option>
         </select>
+        <ErrorMessage>
+          {errors?.team_size?.type === "required" &&
+            "Team size must have one of the choices selected."}
+        </ErrorMessage>
         {/* Project Users */}
         <select
           {...register("users", { required: true })}
@@ -178,6 +195,10 @@ const ProjectScope = () => {
           <option value="500">more than 500</option>
           <option value="enterprise">Enterprise</option>
         </select>
+        <ErrorMessage>
+          {errors?.users?.type === "required" &&
+            "Users must have one of the choices selected."}
+        </ErrorMessage>
         {/* Project payment in Weeks/Months/One-Time */}
         <FormSection label="How will you be able to invest in this project?" />
         <Controller
@@ -280,12 +301,20 @@ const ProjectScope = () => {
           placeholder="Revenue expectation (example: $25.000,00)"
           className={inputClasses}
         />
+        <ErrorMessage>
+          {errors?.revenue_expectation?.type === "required" &&
+            "Revenue expectation is a required field."}
+        </ErrorMessage>
         {/* Project investment return expectation */}
         <input
           {...register("return_expectation", { required: true })}
           placeholder="Return expectation date (example: By may 2024)"
           className={inputClasses}
         />
+        <ErrorMessage>
+          {errors?.return_expectation?.type === "required" &&
+            "Return expectation is a required field."}
+        </ErrorMessage>
         <FormDisclaimer label="Expectation is purely informational. We would love to know your ambition and be ready to support in more areas than just providing the means to your business utmost success." />
         <FormSection label="Contact Information" />
         <input
@@ -294,6 +323,9 @@ const ProjectScope = () => {
           className={inputClasses}
           type="email"
         />
+        <ErrorMessage>
+          {errors?.email?.type === "required" && "Email is a required field."}
+        </ErrorMessage>
         {/* Project Submit all data */}
         <Button>Submit Project Scope</Button>
       </form>
